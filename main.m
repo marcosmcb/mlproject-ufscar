@@ -22,11 +22,9 @@ clear ; close all; clc
 %  funcao de normalizacao dos atributos (normalizacao.m).
 %
 fprintf('Carregando os dados...\n\n');
-
 % Carrega dataset de treinamento
-train_dataset = 'datasets/train.csv';
-train_arq = fopen(train_dataset);
-train_mat = textscan( train_arq, '%s%s%s%s%s%s%s%s', 'delimiter', ',', 'headerlines', 1)
+train_arq = fopen(fullfile('datasets', 'train.csv'));
+train_matrix = textscan( train_arq, '%s%s%s%s%s%s%s%s%s%s', 'delimiter', ',', 'headerlines', 1);
 
 
 
