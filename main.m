@@ -23,8 +23,10 @@ fprintf('Carregando os dados...\n\n');
 % Displays the menu options and gets back the user's answer
 menu_resp = menu();
 
+
 displayColumnData( menu_resp, train_data );
 
 
 
+% arr = strrep( train_data{8}, 'years', '52' );
 
