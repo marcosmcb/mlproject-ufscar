@@ -16,20 +16,14 @@
 %% Inicializacao
 clear ; close all; clc
 
-%% ================= Parte 1: Visualizacao dos Dados ====================
-%  Muitas vezes a visualizacao dos dados auxilia na interpretacao dos dados
-%  e como eles estao distribuidos. Nesta etapa, voce precisa completar a
-%  funcao de normalizacao dos atributos (normalizacao.m).
-%
+%% Load the train dataset as well as the test dataset 
 fprintf('Carregando os dados...\n\n');
-% Carrega dataset de treinamento
-train_arq = fopen(fullfile('datasets', 'train.csv'));
-train_matrix = textscan( train_arq, '%s%s%s%s%s%s%s%s%s%s', 'delimiter', ',', 'headerlines', 1);
+[ train_data, test_data ] = readData();
 
+% Displays the menu options and gets back the user's answer
+menu_resp = menu();
 
-
-
-
+displayColumnData( menu_resp, train_data );
 
 
 

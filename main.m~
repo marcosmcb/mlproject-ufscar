@@ -1,0 +1,50 @@
+%% Universidade Federal de Sao Carlos - UFSCar, Sorocaba
+%
+%  Disciplina: Aprendizado de M�quina
+%  Prof. Tiago A. Almeida
+%
+%  Projeto Aprendizado de Máquina - Shelter Animal Outcomes ( www.kaggle.com )
+%
+%  Instrucoes
+%  ----------
+%
+%  
+%
+%  
+%
+
+%% Inicializacao
+clear ; close all; clc
+
+%% ================= Parte 1: Visualizacao dos Dados ====================
+%  Muitas vezes a visualizacao dos dados auxilia na interpretacao dos dados
+%  e como eles estao distribuidos. Nesta etapa, voce precisa completar a
+%  funcao de normalizacao dos atributos (normalizacao.m).
+%
+fprintf('Carregando os dados...\n\n');
+% Carrega dataset de treinamento
+train_arq = fopen(fullfile('datasets', 'train.csv'));
+train_matrix = textscan( train_arq, '%s%s%s%s%s%s%s%s%s%s', 'delimiter', ',', 'headerlines', 1);
+
+
+% Get the "date-time" frequency for each value
+fprintf('Escolha um dos atributos listados para exibir as suas respectivas frequências\n');
+fprintf('\t 1- ID');
+fprintf('\t 2- Name');
+fprintf('\t 3- DateTime');
+fprintf('\t 4- OutcomeType');
+fprintf('\t 5- Outcome');
+fprintf('\t 1- ID');
+fprintf('\t 1- ID');
+fprintf('\t 1- ID');
+
+[count, words, percentage]  = getValuesFrequency( train_matrix{9} );
+fprintf('Palavras \t Número de Ocorrências \t Frequência');
+[words num2cell(count') num2cell(percentage')]
+
+fprintf('Número de Ocorrências - Somatório [ %d ] palavras \n\n', sum( count ) );
+
+
+
+
+
