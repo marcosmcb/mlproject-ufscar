@@ -6,10 +6,11 @@ function menu_choice = menu()
     fprintf('\t 3- DateTime\n\n');
     fprintf('\t 4- OutcomeType\n\n');
     fprintf('\t 5- OutcomeSubType\n\n');
-    fprintf('\t 6- SexuponOutcome\n\n');
-    fprintf('\t 7- AgeuponOutcome\n\n');
-    fprintf('\t 8- Breed\n\n');
-    fprintf('\t 9- Color\n\n');
+    fprintf('\t 6- AnimalType\n\n');
+    fprintf('\t 7- SexuponOutcome\n\n');
+    fprintf('\t 8- AgeuponOutcome\n\n');
+    fprintf('\t 9- Breed\n\n');
+    fprintf('\t 10- Color\n\n');
 
     menu_choice = input( 'Informe um valor entre 1 .. 9\n\n' );
 
