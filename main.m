@@ -8,9 +8,6 @@
 %  Instrucoes
 %  ----------
 %
-%  
-%
-%  
 %
 
 %% Initialization
@@ -29,12 +26,28 @@ displayColumnData( menu_resp, train_data );
 
 %% Functions' calls to normalize the datasets
 fprintf('Normalizando os dados...\n\n\n');
-% with name == 1 and without name == 0
+
+
+% With name == 1 and without name == 0
 names_arr = normalizeNames( train_data{2} );
 
 
-% with dog == 1 and cat == 0
+% With dog == 1 and cat == 0
 animal_type_arr = normalizeAnimalType( train_data{6} );
+
+
+% Removes empty cells, and noisy ones ('0 years') and transform the data
+ages_arr = normalizeAgeuponOutcome( char( train_data{8} ) );
+
+
+
+
+
+
+
+
+
+
 
 
 

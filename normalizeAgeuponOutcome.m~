@@ -1,6 +1,0 @@
-function [ ages_arr ] = normalizeAgeuponOutcome( ages )
-    
-    ages_arr = strrep( ages, 'years', '365' );
-    ages_arr = strrep( ages_arr, 'year', '365' );
-
-end
