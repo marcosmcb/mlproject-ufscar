@@ -1,13 +1,5 @@
-function [ age_cells ] = normalizeAgeuponOutcome( ages )
-    
-    % Removing empty cells
-    age_cells = cellstr( ages );
-    age_cells = age_cells( ~cellfun(@isempty, age_cells) );
+function [ age_cells ] = normalizeAgeuponOutcome( age_cells )
 
-    % Removing zero years - 0 years
-    zero_year_arr = find(ismember(age_cells, '0 years' ));
-    age_cells( zero_year_arr ) = [];
-    
     % Replacing the period set (day/days, week/weeks, month/months, year/years ) 
     % by its respective value in the value set(1 , 7, 30, 365)
     % 
