@@ -1,0 +1,5 @@
+function [ages, zeros_idxs, empty_cell_arr] = removeEmptyAndNoisyCells( empty_a )
+
+    
+    
+end
