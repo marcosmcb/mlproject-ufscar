@@ -46,11 +46,3 @@ end;
 % With dog == 1 and cat == 0
 %animal_type_arr = normalizeAnimalType( train_data{6} );
 
-
-%% Call to logistic regression using the training data
-fprintf('pressione enter para chamar a regressao logistica');
-pause;
-logisticaDoida(train_data);
-
-%% Exiting
-clear; close all;
