@@ -25,13 +25,13 @@ displayColumnData( menu_resp, train_data );
 
 
 %% Functions' calls to normalize the datasets
-fprintf('Normalizando os dados...\n\n\n');
+%fprintf('Normalizando os dados...\n\n\n');
 
 % Gets the empty and noisy cells from the column AgesuponOutcome
-[zeros_arr, empty_arr] = getEmptyAndZeroCells( train_data{8} );
+%[zeros_arr, empty_arr] = getEmptyAndZeroCells( train_data{8} );
 
 % Removes empty cells, noisy ones ('0 years') and transform the data
-train_data = cleanDataSet( train_data );
+%train_data = cleanDataSet( train_data );
 
 
 %ages_arr = normalizeAgeuponOutcome( char( train_data{8} ) );
