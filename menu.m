@@ -12,6 +12,6 @@ function menu_choice = menu()
     fprintf('\t 9- Breed\n\n');
     fprintf('\t 10- Color\n\n');
 
-    menu_choice = input( 'Informe um valor entre 1 .. 9\n\n' );
+    menu_choice = input( 'Informe um valor entre 1 .. 10\n\n' );
 
 end
