@@ -48,7 +48,7 @@ end;
 
 
 %% Call to logistic regression using the training data
-fprintf('pressione enter para chamar a regressao logistica');
+fprintf('pressione enter para chamar a regressao logistica\n');
 pause;
 logisticaDoida(train_data);
 

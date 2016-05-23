@@ -1,4 +1,4 @@
-function chamaLogistica( X, y )
+function [theta, J] = chamaLogistica( X, y )
 %% chamada inicial com theta inicial (zeros)
 % deixei so pra testar, tirar depois e deixar so a fminunc
 theta_inicial = zeros(size(X, 2), 1);

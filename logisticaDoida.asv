@@ -6,8 +6,6 @@ function logisticaDoida( train_data )
 %% inicializacao
 % fprintf('logisticaDoida\n'); % debug, ou nao
 
-lambda = 1; % ainda nao eh passado pra funcao que faz os calculos
-
 % todas colunas usam dummyvar (futuramente isso vai mudar (acho))
 
 animalType = dummyvar(train_data(6));
@@ -60,11 +58,12 @@ resultClassificado_y1 = sigmoid(relevantVariables(1:2480,:) * theta);
 disp(size(resultClassificado_y1));
 disp(size(theta));
 
-predizer = int8(resultClassificado_y1);
+predizer = int8(resultSigmoid);
 p = mod(predizer,2);
 
-fprintf('calculando taxa de acerto com lambda %d: \n', lambda);
-erroMedio = mean(double(p == outcomeType(1:2480,1))) * 100;
+
+fprintf('calculando erro medio: \n');
+erroMedio = mean(double(p==outcomeType(1:2480,:;
 disp(erroMedio);
 
 end
