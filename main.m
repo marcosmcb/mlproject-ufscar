@@ -21,7 +21,7 @@ fprintf('Carregando os dados...\n\n');
 menu_resp = menu();
 
 % Option to bypass this menu selection if a value not in 1-9 range is selected
-if (menu_resp >= 1) && (menu_resp <= 9)
+if (menu_resp >= 1) && (menu_resp <= 10)
     displayColumnData( menu_resp, train_data );
 end;
 
