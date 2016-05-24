@@ -14,7 +14,15 @@ fprintf('Carregando os dados...\n\n');
 
 % Displays the menu options and gets back the user's answer
 menu_resp = menu();
+<<<<<<< HEAD
 displayColumnData( menu_resp, train_data );
+=======
+
+% Option to bypass this menu selection if a value not in 1-9 range is selected
+if (menu_resp >= 1) && (menu_resp <= 10)
+    displayColumnData( menu_resp, train_data );
+end;
+>>>>>>> 217a62990648f68560cce0a71e8801f534b150ee
 
 %% Functions' calls to normalize the datasets
 fprintf('Normalizando os dados...\n\n\n');
@@ -24,6 +32,8 @@ fprintf('Normalizando os dados...\n\n\n');
 
 % Removes empty cells, noisy ones ('0 years') and transform the data
 train_data = cleanDataSet( train_data, empty_arr, zeros_arr );
+
+ages_arr = normalizeAgeuponOutcome( train_data{8} );
 
 % Gives back the ages (in days) multiplyed by its respective value in days
 % parameters:   array of cell strings
@@ -42,8 +52,10 @@ names_arr = normalizeNames( train_data{2} );
 animal_type_arr = normalizeAnimalType( train_data{6} );
 
 
+%% Call to logistic regression using the training data
+fprintf('pressione enter para chamar a regressao logistica\n');
+pause;
+logisticaDoida(train_data);
 
-
-
-
-
+%% Exiting
+clear; close all;
