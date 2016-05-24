@@ -3,15 +3,19 @@
 %  Disciplina: Aprendizado de Maquina
 %  Prof. Tiago A. Almeida
 %
+%   Alunos:
+%       Rafael Brandao Barbosa Fairbanks
+%       Marcos Cavalcante
+%       Lucas Lukasavicus Silva
+%       Filipe Santos Rocchi
+%
 %  Projeto Aprendizado de Máquina - Shelter Animal Outcomes ( www.kaggle.com )
 %
 %  Instrucoes
 %  ----------
 %
-%
-
 %% Initialization
-clear all; close all; clc;
+clear; close all; clc;
 
 %% Load the train dataset as well as the test dataset 
 fprintf('Carregando os dados...\n\n');
@@ -47,10 +51,10 @@ end;
 %animal_type_arr = normalizeAnimalType( train_data{6} );
 
 
-%% Call to logistic regression using the training data
+%% Call to Logistic Regression using the training data
 fprintf('pressione enter para chamar a regressao logistica\n');
 pause;
-logisticaDoida(train_data);
+RL_init(train_data);
 
 %% Exiting
 clear; close all;
