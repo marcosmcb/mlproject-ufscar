@@ -5,11 +5,6 @@
 %
 %  Projeto Aprendizado de Máquina - Shelter Animal Outcomes ( www.kaggle.com )
 %
-%  Instrucoes
-%  ----------
-%
-%
-
 %% Initialization
 clear all; close all; clc;
 
@@ -19,10 +14,7 @@ fprintf('Carregando os dados...\n\n');
 
 % Displays the menu options and gets back the user's answer
 menu_resp = menu();
-
-
 displayColumnData( menu_resp, train_data );
-
 
 %% Functions' calls to normalize the datasets
 fprintf('Normalizando os dados...\n\n\n');
@@ -31,16 +23,27 @@ fprintf('Normalizando os dados...\n\n\n');
 [zeros_arr, empty_arr] = getEmptyAndZeroCells( train_data{8} );
 
 % Removes empty cells, noisy ones ('0 years') and transform the data
-train_data = cleanDataSet( train_data );
+train_data = cleanDataSet( train_data, empty_arr, zeros_arr );
 
-
-%ages_arr = normalizeAgeuponOutcome( char( train_data{8} ) );
-
+% Gives back the ages (in days) multiplyed by its respective value in days
+% parameters:   array of cell strings
+% return:       double array
+ages_arr = normalizeAgeuponOutcome( train_data{8} );
 
 % With name == 1 and without name == 0
-%names_arr = normalizeNames( train_data{2} );
+% parameters:   array of cell strings
+% return:       logical array
+names_arr = normalizeNames( train_data{2} );
 
 
 % With dog == 1 and cat == 0
-%animal_type_arr = normalizeAnimalType( train_data{6} );
+% parameters:   array of cell strings
+% return:       logical array
+animal_type_arr = normalizeAnimalType( train_data{6} );
+
+
+
+
+
+
 
