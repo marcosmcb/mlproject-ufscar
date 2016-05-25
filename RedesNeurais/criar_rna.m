@@ -54,8 +54,14 @@ function [] = criar_rna()
     %% learning
     for epoch = 1:10
     tic
-        %delta_InputInterm = zeros(tam_camada(1) + 1, tam_camada(2));
-        %delta_IntermOutput = zeros(tam_camada(length(tam_camada) - 1) + 1, tam_camada(length(tam_camada)));
+        % acumulação de deltas pro offline training
+        %deltaAcum_InputInterm = zeros(tam_camada(1) + 1, tam_camada(2));
+        %deltaAcum_IntermOutput = zeros(tam_camada(length(tam_camada) - 1) + 1, tam_camada(length(tam_camada)));
+        
+        % aleatorização dos dados pra cada época do online training
+        randomized_rows = randperm(size(training_data, 1));
+        training_data = training_data(randomized_rows, :);
+        training_target_data = training_target_data(randomized_rows, :);
 
         for row_n = 1:size(training_data, 1)
             %% forward propagation
@@ -84,27 +90,27 @@ function [] = criar_rna()
             derivs_InputInterm = a_input' * erros_backprop_interm(2:size(erros_backprop_interm, 2)); % ignora primeiro erro pois input não é ligado com bias da prox camada
 
             %% online training (atualiza pesos a cada linha entrada)
-
+            
             pesos_InputInterm = pesos_InputInterm - (derivs_InputInterm * tx_aprend);
             pesos_IntermOutput = pesos_IntermOutput - (derivs_IntermOutput * tx_aprend);
 
             %% offline/batch training accumulation
 
-            %delta_InputInterm = delta_InputInterm - (derivs_InputInterm * tx_aprend);
-            %delta_IntermOutput = delta_IntermOutput - (derivs_IntermOutput * tx_aprend);
+            %deltaAcum_InputInterm = deltaAcum_InputInterm - derivs_InputInterm;
+            %deltaAcum_IntermOutput = deltaAcum_IntermOutput - derivs_IntermOutput;
 
         end
 
         %% offline/batch training (atualiza pesos baseado na soma dos deltas de todas as entradas)
-        %pesos_InputInterm = pesos_InputInterm + delta_InputInterm;
-        %pesos_IntermOutput = pesos_IntermOutput + delta_IntermOutput;
+        %pesos_InputInterm = pesos_InputInterm + (deltaAcum_InputInterm * tx_aprend);
+        %pesos_IntermOutput = pesos_IntermOutput + (deltaAcum_IntermOutput * tx_aprend);
     toc
     end
 
     entrada = 0;
-    while entrada < 2.5
+    while entrada <= 2.5
         entrada = input('Valor: ')
-
+    
         a_input = horzcat(1, entrada);
         a_interm = horzcat(1, 1 ./ (1 + exp(-a_input * pesos_InputInterm)));
         a_output = 1 ./ (1 + exp(-a_interm * pesos_IntermOutput));
