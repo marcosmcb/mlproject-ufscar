@@ -45,14 +45,14 @@ RL_nomeArquivo1 = sprintf('RL_theta_y_otimizado%d', RL_lambda);
 save(RL_nomeArquivo1, 'RL_custo_y', 'RL_theta_y');
 %}
 
-%% Teste dos resultados
+%% Teste dos resultados (falta atualizar)
 %{
 fprintf('Teste dos resultados para a base de treino\n');
 fprintf('carregando do arquivo de thetas calculados\n');
 load('RL_theta_y1');
 disp(size(RL_theta_y1));
 % aplica os thetas
-resultClassificado_y1 = sigmoid(relevantVariables(1:2480,:) * RL_theta_y1);
+resultClassificado_y1 = RL_sigmoid(relevantVariables(1:2480,:) * RL_theta_y1);
 
 %fprintf('resultado da classificacao para y1:\n');
 %disp(resultClassificado_y1(1:5,1));
@@ -68,4 +68,3 @@ erroMedio = mean(double(p == outcomeType(1:2480,1))) * 100;
 disp(erroMedio);
 %}
 end
-
