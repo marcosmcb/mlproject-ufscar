@@ -35,23 +35,17 @@ addpath('./datasets_functions'); % funcoes de tratamento de dados
 addpath('./RedesNeurais'); % funcao de redes neurais
 
 %% Load the train dataset as well as the test dataset 
-fprintf('Carregando os dados...\n\n');
+fprintf('Carregando os dados do dataset [sem normalizacao] ...\n\n');
 [ train_data, test_data ] = readData();
 
-% Displays the menu options and gets back the user's answer
-menu_resp = menu();
-
-% Option to bypass this menu selection if a value not in 1-9 range is selected
-if (menu_resp >= 1) && (menu_resp <= 10)
-    displayColumnData( menu_resp, train_data );
-end;
-
-
 %% Functions' calls to normalize the datasets
-fprintf('Normalizando os dados...\n\n\n');
+fprintf('Preparando os dados...\n\n\n');
 tic;
 [ train_dataset_normalized, train_dataset_colour, train_dataset_breed, train_dataset_no_colour_breed ] = normalizeDataset( train_data );
 toc;
+
+%% Displays the menu options and gets back the user's answer
+menu( train_data, train_dataset_normalized );
 
 %% Call to Logistic Regression using the training data
 %{

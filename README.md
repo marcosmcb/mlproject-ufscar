@@ -1,10 +1,59 @@
-# Projeto do Curso de Aprendizado de Máquina da Universidade Federal de São Carlos - UFSCar
+#### Projeto do Curso de Aprendizado de Máquina da Universidade Federal de São Carlos - UFSCar
 
-* Limpeza do Dados - Remover amostras duplicadas e/ou inconsistentes
-* Preparação do Dados - Normalizar os atributos: DateTime, AgeuponOutcome, Breed, Color...
-* Transformar os valores definidos em vetores binários
+<br />
 
-+ Implementar o K-NN
-+ Implementar a Regressão Logística
-+ Implementar o SVM
-+ Implementar a Rede Neural Artificial
+#### Lista de Tarefas
+
+<br />
+
+
+1. Implementação
+
+	- [ ] KNN
+
+	- [ ] Regressão Logística
+	
+	- [ ] SVM
+	
+	- [ ] Rede Neural
+
+2. Avaliação e Testes
+
+	- [ ] Treino, Validação, Teste, Medidas de Desempenho
+
+	- [ ] Análise dos Métodos - Curvas de Aprendizagem, Ajuste de parâmetros
+
+	- [ ] Pré-processamento dos dados
+
+3. Bônus
+
+	- [ ] PCA
+	
+	- [ ] Regressão Linear Multivariada
+	
+	- [ ] Rede Neural Online
+	
+	- [ ] Segundo Kernel do SVM
+
+
+- Tarefas pré-processamento de dados
+	
+	- [X] Eliminação Manual de Atributos
+	- [X] Limpeza de Dados
+	- [ ] Amostragem de Dados
+	- [ ] Balanceamento de Dados
+	- [X] Redução de Dimensionalidade
+	- [X] Extração de Características
+	- [X] Transformação de Dados
+
+
+
+
+
+
+
+
+
+
+
+
