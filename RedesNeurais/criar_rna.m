@@ -7,7 +7,7 @@ function [] = criar_rna()
     % // (matriz vai ficar transposta  em relação à rede mas é mais fácil pra 
     % pensar no código)
     
-    clear all; close all; clc;
+    clear all; close all; clc; % REMOVER DEPOIS
     
     %% dummy data
     

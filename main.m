@@ -3,19 +3,18 @@
 %  Disciplina: Aprendizado de Maquina
 %  Prof. Tiago A. Almeida
 %
-%   Alunos:
-%       Rafael Brandao Barbosa Fairbanks
-%       Marcos Cavalcante
-%       Lucas Lukasavicus Silva
-%       Filipe Santos Rocchi
-%
 %  Projeto Aprendizado de Máquina - Shelter Animal Outcomes ( www.kaggle.com )
 %
 %  Instrucoes
 %  ----------
 %
+%
+
 %% Initialization
-clear; close all; clc;
+clear all; close all; clc;
+
+addpath('./datasets_functions');
+addpath('./RedesNeurais');
 
 %% Load the train dataset as well as the test dataset 
 fprintf('Carregando os dados...\n\n');
@@ -31,25 +30,36 @@ end;
 
 
 %% Functions' calls to normalize the datasets
-%fprintf('Normalizando os dados...\n\n\n');
+fprintf('Normalizando os dados...\n\n\n');
 
 % Gets the empty and noisy cells from the column AgesuponOutcome
-%[zeros_arr, empty_arr] = getEmptyAndZeroCells( train_data{8} );
+[zeros_arr, empty_arr] = getEmptyAndZeroCells( train_data{8} );
 
 % Removes empty cells, noisy ones ('0 years') and transform the data
-%train_data = cleanDataSet( train_data );
+train_data = cleanDataSet( train_data, empty_arr, zeros_arr);
 
+ages_arr = normalizeAgeuponOutcome( train_data{8} );
 
-%ages_arr = normalizeAgeuponOutcome( char( train_data{8} ) );
-
-
-% With name == 1 and without name == 0
-%names_arr = normalizeNames( train_data{2} );
-
+% 'With name' == 1 and 'without name' == 0
+names_arr = normalizeNames( train_data{2} );
 
 % With dog == 1 and cat == 0
-%animal_type_arr = normalizeAnimalType( train_data{6} );
+animal_type_arr = normalizeAnimalType( train_data{6} );
 
+%SexUponOutCome cleaning
+max = size(animal_type_arr);
+sex_upon_out_come_arr = zeros(max);
+
+%Breed cleaning
+max = size(animal_type_arr);
+breed_arr = zeros(max);
+
+%Color cleaning
+max = size(animal_type_arr);
+color_arr = zeros(max);
+
+%% Create a Final Clean and Top Matrix
+MATRIX = [names_arr, animal_type_arr, sex_upon_out_come_arr, ages_arr, breed_arr, color_arr];
 
 %% Call to Logistic Regression using the training data
 fprintf('pressione enter para chamar a regressao logistica\n');
