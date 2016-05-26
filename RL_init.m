@@ -9,11 +9,10 @@ function RL_init( RL_data )
 fprintf('Iniciando procedimentos para [REGRESSAO LOGISTICA]\n');
 
 %% Iniciando parametros
-nOut = 5; % numero de colunas alvo (ultimas do RL_data
 
+nOut = 5; % numero de colunas alvo (ultimas do RL_data)
 [RL_dataLinhas, RL_dataColunas] = size(RL_data);
 
-%test{
 disp(RL_dataLinhas); % RD (REMOVER DEPOIS)
 disp(RL_dataColunas); % RD
 
@@ -21,7 +20,6 @@ trainData = RL_data(:,1:RL_dataColunas-nOut);
 targetData = RL_data(:,RL_dataColunas-nOut:end);
 
 fprintf('Separou train e target\nenter para continuar\n'); % RD
-
 disp(size(trainData)); % RD
 disp(size(targetData)); % RD
 pause; % RD

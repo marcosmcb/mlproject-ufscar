@@ -54,9 +54,25 @@ tic;
 toc;
 
 %% Call to Logistic Regression using the training data
-fprintf('pressione enter para chamar a regressao logistica\n');
+%{
+fprintf('pressione enter para chamar a regressao logistica com train_dataset_normalized\n');
 pause;
 RL_init(train_dataset_normalized);
+%}
+
+%{
+fprintf('pressione enter para chamar a regressao logistica com train_dataset_no_colour_breed\n');
+pause;
+RL_init(train_dataset_no_colour_breed);
+%}
+
+%% Call to Support Vector Machine using the training data
+% {
+fprintf('pressione enter para chamar a svm\n');
+pause;
+SVM_init(train_dataset_normalized);
+%}
 
 %% Exiting
-clear; close all;
+fprintf('\nExiting...\n');
+%clear; close all; % removido para testes, decidir sobre mudar depois

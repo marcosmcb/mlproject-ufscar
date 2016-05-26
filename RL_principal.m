@@ -34,8 +34,8 @@ save(RL_nomeArquivo, 'RL_custo_y4', 'RL_theta_y4', '-append');
 fprintf('y5-Salvando dados do theta otimizado em arquivo (lambda = %d)\n', RL_lambda);
 RL_nomeArquivo = sprintf('RL_theta_otmz_lambda%d', RL_lambda);
 save(RL_nomeArquivo, 'RL_custo_y5', 'RL_theta_y5', '-append');
-fprintf('\n');
+
 
 %}
-
+fprintf('\n');
 end
