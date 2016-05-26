@@ -3,10 +3,19 @@
 %  Disciplina: Aprendizado de Maquina
 %  Prof. Tiago A. Almeida
 %
+%   Alunos:
+%       Rafael Brandao Barbosa Fairbanks
+%       Marcos Cavalcante
+%       Lucas Lukasavicus Silva
+%       Filipe Santos Rocchi
+%
 %  Projeto Aprendizado de Máquina - Shelter Animal Outcomes ( www.kaggle.com )
 %
+%  Instrucoes
+%  ----------
+%
 %% Initialization
-clear all; close all; clc;
+clear; close all; clc;
 
 %% Load the train dataset as well as the test dataset 
 fprintf('Carregando os dados...\n\n');
@@ -14,15 +23,12 @@ fprintf('Carregando os dados...\n\n');
 
 % Displays the menu options and gets back the user's answer
 menu_resp = menu();
-<<<<<<< HEAD
 displayColumnData( menu_resp, train_data );
-=======
 
 % Option to bypass this menu selection if a value not in 1-9 range is selected
 if (menu_resp >= 1) && (menu_resp <= 10)
     displayColumnData( menu_resp, train_data );
 end;
->>>>>>> 217a62990648f68560cce0a71e8801f534b150ee
 
 %% Functions' calls to normalize the datasets
 fprintf('Normalizando os dados...\n\n\n');
@@ -52,10 +58,10 @@ names_arr = normalizeNames( train_data{2} );
 animal_type_arr = normalizeAnimalType( train_data{6} );
 
 
-%% Call to logistic regression using the training data
+%% Call to Logistic Regression using the training data
 fprintf('pressione enter para chamar a regressao logistica\n');
 pause;
-logisticaDoida(train_data);
+RL_init(train_data);
 
 %% Exiting
 clear; close all;

@@ -1,14 +1,17 @@
 %% Universidade Federal de Sao Carlos - UFSCar, Sorocaba
-%
-%  Disciplina: Aprendizado de Maquina
-%  Prof. Tiago A. Almeida
-%
-%  Projeto Aprendizado de Máquina - Shelter Animal Outcomes ( www.kaggle.com )
-%
-%  Instrucoes
-%  ----------
-%
-%
+%  Projeto Final de Aprendizado de Máquina
+%  Function: normalizeAndCleaner
+%  Help:
+%  Colunas de Resultado:
+%  1 -          Names               (1 - se tem nome, 0 - c.c.);
+%  2 -          Animal Type         (1 - Dog, 0 - Cat);
+%  3 - 7 -      Sex Upon Out Come   (Vetor de Bits com 5 possibilidades);
+%  8 -          Ages                (Valor em dias da idade);
+%  9 - 390 -    Breed(main)         (Vetor de Bits com 382 possiblidades);
+%  391 - 536 -  Breed(secondary)    (Vetor de Bits com 146 possiblidades);
+%  537 - 593 -  Color(main)         (Vetor de Bits com 57 possiblidades);
+%  594 - 637 -  Color(secondary)    (Vetor de Bits com 44 possiblidades);
+%  638 - 642 -  Class(RESULT)       (Vetor de Bits com 5 possibilidades);
 
 %% Initialization
 clear all; close all; clc;
@@ -67,11 +70,19 @@ train_data = cleanDataSet( train_data, empty_arr, zeros_arr);
 	color_arr2 = dummyvar( train_data10b );
 % ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 
+
+% ====================== Results cleaning ======================
+	results = dummyvar( grp2idx( train_data{4} ) );
+% ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+
+
+
+
 %% Create a Final Clean and Top Matrix
-MATRIX = [names_arr, animal_type_arr, sex_upon_out_come_arr, ages_arr, breed_arr1, breed_arr2, color_arr1, color_arr2];
+MATRIX = [names_arr, animal_type_arr, sex_upon_out_come_arr, ages_arr, breed_arr1, breed_arr2, color_arr1, color_arr2, results];
 
 MATRIX(isnan(MATRIX)) = 0;
-
+fprintf('Imprindo os dados em um arquivo: "datasetNormalAndClean.csv "...\n\n');
 dlmwrite('../datasets_normal&clean/datasetNormalAndClean.csv',MATRIX);
 
 %% Exiting
