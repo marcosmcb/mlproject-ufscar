@@ -1,0 +1,30 @@
+How to install libSVM on matlab
+
+Seguinte, pro windows:
+
+use o zip fornecido na pasta do git (extrair em outra pasta)
+
+ou faça o download da libsvm no site dos cara:
+	http://www.csie.ntu.edu.tw/~cjlin/cgi-bin/libsvm.cgi?+http://www.csie.ntu.edu.tw/~cjlin/libsvm+zip
+
+extrai em algum lugar (lembre onde)
+	- Não na pasta do git do trabalho, por favor
+
+instale o Visual Studio 2013 (ou Windows SDK 7.1 (para windows7) -- não testado)
+	- VS versão 2015 deu ruim com o Matlab2015, talvez funcione com o 2016 (-- não testado)
+
+abre o Matlab (ele vai rodar umas instalações pra conectar com o compiler que o visual studio instalou)
+
+vai na pasta do libsvm que você extraiu anteriormente
+
+entra na subpasta matlab e roda o comando:
+
+>> make
+
+se der tudo certo (ele não printar erros) roda o comando:
+
+>> addpath('C:\aminho completo da pasta\onde voce deu make')
+
+and you should be able to use the libsvm functions
+
+se não der certo, chora.

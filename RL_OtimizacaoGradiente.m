@@ -16,7 +16,7 @@ tic; % mede o tempo de execucao
 
 % Otimiza o gradiente
 [RL_thetaOtimizado, RL_custoOtimizado, exit_flag] = ...
-        fminunc(@(t)(LR_costRegularized(t, RL_entrada, RL_alvo, RL_lambda)), RL_theta_inicial, RL_opcoes);
+        fminunc(@(t)(RL_funcaoCustoRegularizada(t, RL_entrada, RL_alvo, RL_lambda)), RL_theta_inicial, RL_opcoes);
 
 toc; % imprime o tempo de execucao
 

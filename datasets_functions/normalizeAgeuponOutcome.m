@@ -15,5 +15,5 @@ function [ age_cells ] = normalizeAgeuponOutcome( age_cells )
     
     [lengthArr, ~] = size(age_cells);
     age_cells = tokenizeAndMultiply( age_cells, lengthArr );
-
+    
 end
