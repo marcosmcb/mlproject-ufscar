@@ -1,33 +1,81 @@
-function RL_init( RL_data )
+function RL_init( data, execCoarse, execGrid, nOutTest)
+% RL_init (data, execCoarse, execGrid)
+% Faz as operacoes iniciais da regressao logistica
+%
+% data : sao os dados brutos
+% execCoarse : flag para ativar (>0) ou nao (0) a coarse gridsearch
+% execGrid : flag para ativar (>0) ou nao (0) a gridsearch
+% nOutTest : especifica quantas colunas ao final de 'data' sao colunas alvo [max=5]
+%
+% code by Rocchi™
+
 %% Essa funcao:
 %{
     + Chama uma regressao logistica por saida alvo
-    - Recebe diferentes datasets
-    - Chama um gridSearch para cada dataset
 %}
 
 fprintf('Iniciando procedimentos para [REGRESSAO LOGISTICA]\n');
 
 %% Iniciando parametros
 
-nOut = 5; % numero de colunas alvo (ultimas do RL_data)
-[RL_dataLinhas, RL_dataColunas] = size(RL_data);
+[RL_dataLinhas, RL_dataColunas] = size(data);
+nOut = RL_dataColunas-nOutTest; % numero de colunas alvo (ultimas do RL_data)
 
 disp(RL_dataLinhas); % RD (REMOVER DEPOIS)
 disp(RL_dataColunas); % RD
 
-trainData = RL_data(:,1:RL_dataColunas-nOut);
-targetData = RL_data(:,RL_dataColunas-nOut:end);
+trainData = data(:,1:nOut);
+targetData = data(:,(nOut+1):end);
 
-fprintf('Separou train e target\nenter para continuar\n'); % RD
+fprintf('Separou train e target data\n'); % RD
 disp(size(trainData)); % RD
 disp(size(targetData)); % RD
+fprintf('pressione enter para continuar\n');
 pause; % RD
 
+% cria a pasta para guardar os dados
+[~, ~, ~] = mkdir('RL_results');
+
+%% Dados para o Coarse GridSearch
+
+if execCoarse ~= 0
+	fprintf('Iniciando Coarse gridSearc\n');
+
+	randomIndex = randperm(RL_dataLinhas); % permuta os indices randomicamente
+	dezPorCento = floor(RL_dataLinhas * 0.1); % pega 10% das amostras para o coarse GS
+
+	% pega 10% randomicos dos dados
+	coarseTrainData = trainData(randomIndex(1:dezPorCento),:);
+	coarseTargetData = targetData(randomIndex(1:dezPorCento),:);
+
+	% Coarse GridSearch
+	tic;
+	for coarseLambda = [0.01 0.05 0.1 0.25 0.5 1 2 5 10] % escolhidos empiricamente para buscar pelo melhor
+		RL_principal(coarseTrainData, coarseTargetData, coarseLambda, nOutTest);
+	end
+	fprintf('Tempo de execucao da Coarse gridSearch: \n');
+	toc;
+	
+	fprintf('Fim da Coarse gridSearch, enter para continuar\n'); % RparcialmenteD
+	pause; % RD
+	
+else
+	fprinft('Pulando coarse gridSearch\n');
+end
+
+%% set de variaveis - MUDAR/REMOVER DEPOIS
+
 RL_lambda = 1; % passado para a funcao que otimiza o gradiente (VAI MUDAR NO GRIDSEARCH DEPOIS)
-RL_principal(trainData, targetData, RL_lambda); % REMOVER QUANDO GRIDSEARCH ESTIVER PRONTO
+% RL_principal(trainData, targetData, RL_lambda, nOutTest); % REMOVER QUANDO GRIDSEARCH ESTIVER PRONTO
 
 %% FAZENDO O GRID SEARCH
+
+if execGrid == 0 % OU NAO
+	fprintf('Pulando o gridSearch\n');
+	return; % termina a funcao caso execGrid seja 0
+	% MUDAR DEPOIS, se for fazer a parte de teste dos resultados aqui
+end
+
 %{
 for I = 1:2 % variar o lambda
 	for J = 1:2 % variar o Romero Brito
@@ -37,7 +85,7 @@ for I = 1:2 % variar o lambda
 			end
 
 			% Chamada da otimizacao
-			%RL_principal(trainData, targetData, RL_lambda);
+			%RL_principal(trainData, targetData, RL_lambda, nOutTest);
 
 		end 
 	end

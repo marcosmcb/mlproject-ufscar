@@ -1,41 +1,32 @@
-function [ output_args ] = RL_principal( trainData, targetData , RL_lambda)
+function RL_principal( trainData, targetData , RL_lambda, nColunasAlvo )
+% RL_principal( trainData, targetData , RL_lambda, nOutTest)
+% Faz a chamada para a otimizacao do gradiente usando a regressao linear
+%
+% trainData : dados usados para o treino do classificador
+% targetData : dados-alvo da regressao logistica
+% RL_lambda : valor do lambda usado na funcao
+% nOutTest : numero de colunas alvo nos dados-alvo
+%
+% code by Rocchi™
 
-fprintf('RL - otimizando gradiente para lambda = %d\n', RL_lambda);
+fprintf('RL - Otimizando gradiente para lambda = %g, com numColunasAlvo = %d\n', RL_lambda, nColunasAlvo);
 
+[~, numThetas] = size(trainData); % numero de thetas e o numero de colunas dos dados
 
-[RL_theta_y1, RL_custo_y1] = RL_OtimizacaoGradiente(trainData, targetData(1), RL_lambda);
+% variaveis para salvar em arquivo
+RL_thetaMatrix = zeros(numThetas, nColunasAlvo);
+RL_custoVector = zeros(1, nColunasAlvo);
 
-fprintf('y1-Salvando dados do theta otimizado em arquivo (lambda = %d)\n', RL_lambda);
-RL_nomeArquivo = sprintf('RL_theta_otmz_lambda%d', RL_lambda);
-save(RL_nomeArquivo, 'RL_custo_y1', 'RL_theta_y1');
+for iAlvo = 1:nColunasAlvo
+	[RL_theta, RL_custo] = RL_OtimizacaoGradiente(trainData, targetData(:,iAlvo), RL_lambda);
+	
+	RL_custoVector(1,iAlvo) = RL_custo; % cada posicao do vetor guarda o custo para uma coluna alvo
+	RL_thetaMatrix(:,iAlvo) = RL_theta; % cada coluna da matriz guarda um vetor de thetas para uma coluna alvo
+end
 
-%{
-/\ REMOVER DEPOIS
-[RL_theta_y2, RL_custo_y2] = RL_OtimizacaoGradiente(trainData, targetData(2), RL_lambda);
+fprintf('Salvando dados do(s) theta(s) otimizado(s) em arquivo para lambda=%d\n', RL_lambda);
 
-fprintf('y2-Salvando dados do theta otimizado em arquivo (lambda = %d)\n', RL_lambda);
-RL_nomeArquivo = sprintf('RL_theta_otmz_lambda%d', RL_lambda);
-save(RL_nomeArquivo, 'RL_custo_y2', 'RL_theta_y2', '-append');
+RL_nomeArquivo = strcat('./RL_results/RL_lambda_',strrep(num2str(RL_lambda), '.', ''), '.mat');
+save(RL_nomeArquivo, 'RL_custoVector', 'RL_thetaMatrix');
 
-[RL_theta_y3, RL_custo_y3] = RL_OtimizacaoGradiente(trainData, targetData(3), RL_lambda);
-
-fprintf('y3-Salvando dados do theta otimizado em arquivo (lambda = %d)\n', RL_lambda);
-RL_nomeArquivo = sprintf('RL_theta_otmz_lambda%d', RL_lambda);
-save(RL_nomeArquivo, 'RL_custo_y3', 'RL_theta_y3', '-append');
-
-[RL_theta_y4, RL_custo_y4] = RL_OtimizacaoGradiente(trainData, targetData(4), RL_lambda);
-
-fprintf('y4-Salvando dados do theta otimizado em arquivo (lambda = %d)\n', RL_lambda);
-RL_nomeArquivo = sprintf('RL_theta_otmz_lambda%d', RL_lambda);
-save(RL_nomeArquivo, 'RL_custo_y4', 'RL_theta_y4', '-append');
-
-[RL_theta_y5, RL_custo_y5] = RL_OtimizacaoGradiente(trainData, targetData(5), RL_lambda);
-
-fprintf('y5-Salvando dados do theta otimizado em arquivo (lambda = %d)\n', RL_lambda);
-RL_nomeArquivo = sprintf('RL_theta_otmz_lambda%d', RL_lambda);
-save(RL_nomeArquivo, 'RL_custo_y5', 'RL_theta_y5', '-append');
-
-
-%}
-fprintf('\n');
 end

@@ -1,4 +1,4 @@
-function [ output_args ] = SVM_init( SVM_data )
+function [ output_args ] = SVM_init( data )
 %% Metodo de classificacao usando SVM
 % essa funcao usa a libSVM, interface para treinamento com SVM
 % disponivel em: http://www.csie.ntu.edu.tw/~cjlin/libsvm
@@ -9,13 +9,13 @@ function [ output_args ] = SVM_init( SVM_data )
 %% Inicializacao dos dados
 
 nOut = 5; % numero de colunas alvo (ultimas do RL_data)
-[SVM_dataLinhas, SVM_dataColunas] = size(SVM_data);
+[SVM_dataLinhas, SVM_dataColunas] = size(data);
 
 disp(SVM_dataLinhas); % RD (REMOVER DEPOIS)
 disp(SVM_dataColunas); % RD
 
-trainData = SVM_data(:,1:SVM_dataColunas-nOut);
-targetData = SVM_data(:,SVM_dataColunas-nOut:end);
+trainData = data(:,1:SVM_dataColunas-nOut);
+targetData = data(:,SVM_dataColunas-nOut:end);
 
 fprintf('Separou train e target\n'); % RD
 disp(size(trainData)); % RD
@@ -24,7 +24,7 @@ fprintf('enter para continuar\n');
 pause; % RD
 
 %% gridSearch com kernel linear
-fprintf('SVM_ gridSearch com kernel linear\n');
+fprintf('SVM - gridSearch com kernel linear\n');
 
 melhorCoefVar = 0;
 melhorC = 0;

@@ -31,6 +31,7 @@
 %% Initialization
 clear all; close all; clc;
 
+%% Adding needed subfolders to path
 addpath('./datasets_functions'); % funcoes de tratamento de dados
 addpath('./RedesNeurais'); % funcao de redes neurais
 
@@ -38,35 +39,9 @@ addpath('./RedesNeurais'); % funcao de redes neurais
 fprintf('Carregando os dados do dataset [sem normalizacao] ...\n\n');
 [ train_data, test_data ] = readData();
 
-%% Functions' calls to normalize the datasets
-fprintf('Preparando os dados...\n\n\n');
-tic;
-[ train_dataset_normalized, train_dataset_colour, train_dataset_breed, train_dataset_no_colour_breed ] = normalizeDataset( train_data );
-toc;
-
 %% Displays the menu options and gets back the user's answer
-menu( train_data, train_dataset_normalized );
-
-%% Call to Logistic Regression using the training data
-%{
-fprintf('pressione enter para chamar a regressao logistica com train_dataset_normalized\n');
-pause;
-RL_init(train_dataset_normalized);
-%}
-
-%{
-fprintf('pressione enter para chamar a regressao logistica com train_dataset_no_colour_breed\n');
-pause;
-RL_init(train_dataset_no_colour_breed);
-%}
-
-%% Call to Support Vector Machine using the training data
-% {
-fprintf('pressione enter para chamar a svm\n');
-pause;
-SVM_init(train_dataset_normalized);
-%}
+menu(train_data, test_data);
 
 %% Exiting
-fprintf('\nExiting...\n');
+fprintf('\nFinalizando...\n');
 %clear; close all; % removido para testes, decidir sobre mudar depois
