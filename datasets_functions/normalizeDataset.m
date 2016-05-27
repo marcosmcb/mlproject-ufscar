@@ -7,7 +7,13 @@ function [ train_dataset_normalized, train_dataset_colour, train_dataset_breed, 
 train_data = cleanDataSet( train_data, empty_arr, zeros_arr);
 
 %% Start to actually normalize the dataset, the previous steps were performed to clean the dataset
+
 ages_arr = normalizeAgeuponOutcome( train_data{8} );
+
+% normalize age range
+% MAY CAUSE PROBLEMS IN TEST DATA, be warned
+ages_arr = zscore(ages_arr);
+
 
 % 'With name' == 1 and 'without name' == 0
 names_arr = normalizeNames( train_data{2} );

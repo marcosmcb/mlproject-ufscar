@@ -1,9 +1,9 @@
-function g = sigmoid(z)
+function g = RL_sigmoid(z)
 %SIGMOID Calcula a funcao sigmoidal
 %   G = SIGMOID(z) calcula a sigmoid de z.
 
 % Variavel de retorno
-g = zeros(size(z)); %#ok<*PREALL>
+g = zeros(size(z));
 
 % Calcula a sigmoid de cada valor de z (z pode ser uma matriz,
 %               vetor ou escalar).
