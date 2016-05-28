@@ -4,8 +4,8 @@ function [vals] = getClasses( mat )
 	% by creating an integer value for each different class
 	int_class_arr = bi2de( mat ) ;	
 	
-	% After grouping, we proceed to count the number of the different classes 
-	% And return the probability of each instance
+	% After grouping, we proceed to count the number of different classes 
+	% And return the probability of each instance.
 	[classesFrequency, classes] = hist( int_class_arr, unique( int_class_arr ) );
 
 	class_vals = zeros( 5, 2);
@@ -21,7 +21,10 @@ function [vals] = getClasses( mat )
 		end
 	end
 
-	vals = class_vals(5,1);
+
+	vals = class_vals(:,1);
+	vals = vals';
+	
 
 end
 

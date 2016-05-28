@@ -7,6 +7,8 @@ function [ resp_mat ] = knn( Dataset, K)
 
 	for idx = 1:nRows
 
+		fprintf('Running KNN for the [%d] sample\n\n', idx);
+
 		target = Dataset( idx, : );
 		dist_arr = calcDistance( Dataset, target,  idx );
 		class_vals = getKNN( dist_arr, K, Dataset, idx );
@@ -14,6 +16,6 @@ function [ resp_mat ] = knn( Dataset, K)
 
 	end	
 
-	disp(resp_mat);
+	save('knn_output.mat', resp_mat);
 
 end
