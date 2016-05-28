@@ -1,4 +1,4 @@
-function RL_principal( trainData, targetData , RL_lambda, nColAlvo, execCGS )
+function [RL_custoVector, RL_thetaMatrix] = RL_principal( trainData, targetData , RL_lambda, nColAlvo)
 % RL_principal( trainData, targetData , RL_lambda, nOutTest)
 % Faz a chamada para a otimizacao do gradiente usando a regressao linear
 %
@@ -24,16 +24,5 @@ for iAlvo = 1:nColAlvo
 	RL_custoVector(1,iAlvo) = RL_custo; % cada posicao do vetor guarda o custo para uma coluna alvo
 	RL_thetaMatrix(:,iAlvo) = RL_theta; % cada coluna da matriz guarda um vetor de thetas para uma coluna alvo
 end
-
-%% Salvando dados em arquivo
-fprintf('Salvando dados do(s) theta(s) otimizado(s) em arquivo para lambda=%g\n', RL_lambda);
-
-if execCGS % adiciona _coarse ao nome de arquivo
-	RL_nomeArquivo = strcat('./RL_results/RL_lambda_',strrep(num2str(RL_lambda), '.', ''), '_coarse.mat');
-else
-	RL_nomeArquivo = strcat('./RL_results/RL_lambda_',strrep(num2str(RL_lambda), '.', ''), '_normal.mat');
-end
-
-save(RL_nomeArquivo, 'RL_lambda', 'RL_custoVector', 'RL_thetaMatrix');
 
 end

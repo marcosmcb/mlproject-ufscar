@@ -31,6 +31,8 @@ sex_upon_out_come_arr = binarizeColumn( train_data(7) );
 [color_arr, pattern_arr] = splitColorAndPattern( train_data(10) );
 
 %Classes normalization
+%The columns are in this disposal:
+%Return_to_owner | Euthanasia | Adoption | Transfer | Died
 results = dummyvar( grp2idx( train_data{4} ) );
 
 %% Final steps
