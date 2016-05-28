@@ -22,8 +22,10 @@ addpath('./KNN_files'); % funcoes de KNN
 fprintf('Carregando os dados do dataset [sem normalizacao] ...\n\n');
 [ train_data, test_data ] = readData();
 
+tic
 %% Displays the menu options and gets back the user's answer
 menu(train_data, test_data);
+toc
 
 %% Exiting
 fprintf('\n[Programa Finalizado]\n');

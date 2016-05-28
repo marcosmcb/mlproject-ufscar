@@ -16,6 +16,6 @@ function [ resp_mat ] = knn( Dataset, K)
 
 	end	
 
-	save('knn_output.mat', resp_mat);
+	save('knn_output.mat', 'resp_mat');
 
 end

@@ -71,11 +71,16 @@ function menu( train_data, test_data )
 		
 		% chama knn() { ele roda e salva em arquivo os resultados}
 		tic
-		knn( train_dataset_normalized, 10 );
+		knn_resp = knn( train_dataset_normalized, 10 );
 		toc
+
+		pause;
+
         resp = input('Deseja visulizar os dados gerados pelo KNN? [1-Sim 0-Nao]\n> ');
         
         if( resp ) % carrega os dados e calcula a acuracia (?)
+
+			knn_resp
 
         end;
 

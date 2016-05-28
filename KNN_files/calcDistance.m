@@ -1,24 +1,15 @@
-function [ dist_arr ] = calcDistance( target, Dataset, idx_target )
+function [ dist_arr ] = calcDistance(  Dataset, target, idx_target )
 
-	% We subtract one because we don't consider the target value
-	nRows = size(Dataset,1) - 1;
+	mat = Dataset;
 
-	[ Dataset, target, age_dataset_col, age_target ] = deleteClassRow( Dataset, target, 8);
+	mat(idx_target,:) = [];
 
-	dist_arr = zeros( nRows, 1 );
+	[ mat, target, age_mat_col, age_target ] = deleteClassRow( mat, target, 8);
 
-	for idx = 1 : nRows
+	ham_dist = pdist2( mat, target, 'hamming' );
 
-		if idx == idx_target
-			continue;
-		end;
+	euc_dist = pdist2( age_target, age_mat_col, 'euclidean' );
 
-		ham_dist = pdist2( Dataset(idx,:), target(), 'hamming' );
-
-    	euc_dist = pdist2( age_target, age_dataset_col(idx,:), 'euclidean' );
-
-    	dist_arr(idx,1) = ham_dist + euc_dist;
-
-	end
-
+	dist_arr = euc_dist' + ham_dist ;
+    
 end
