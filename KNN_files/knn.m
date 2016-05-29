@@ -33,7 +33,6 @@ function [ resp_mat ] = knn( Dataset, K)
 		classes_neighbours = classesCols(knn_arr(:,1), :);
 
 		resp_mat(idx,:) = sum(classes_neighbours) ./ K;
-		toc
 	end	
-
+	toc
 end
