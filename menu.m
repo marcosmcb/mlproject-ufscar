@@ -2,7 +2,7 @@ function menu( train_data, test_data )
 % menu( train_data, train_dataset_normalized )
 % Lista opcoes para executar cada parte do projeto
 
-%% Esquema possivel do menu - Rocchi
+%% Esquema possivel do menu
 %{
 	// definicao: ASK = oferecer opcao pro usuario opcoes e receber resposta dele
 	primeiro ASK : fornecer info estatistica dos dados (originais) (que ja esta implementado)
@@ -59,20 +59,21 @@ function menu( train_data, test_data )
 		tic;
 		% NOTA: coluna de idade pode ou nao estar sendo normalizada por padronizacao, checar se necessario
 		[ train_dataset_normalized, train_dataset_colour, train_dataset_breed, train_dataset_no_colour_breed ] = normalizeDataset( train_data );
+		
 		fprintf('Tempo gasto com o processamento:\n');
 		toc;
 	end
 	
+	nColAlvo = 5; % numero de colunas alvo do dataset (colunas binarias para cada possivel saida)
 	
 %% KNN
     resp = input('\nDeseja executar o algoritmo KNN? [ 1-Sim 0-Nao ]\n> ');
 
     if ( resp )
 		
-		% chama knn() { ele roda e salva em arquivo os resultados}
+		% chama o menu do KNN
 		tic;
-			menu_KNN( train_dataset_normalized, 10 );
-		toc
+			menu_KNN( train_dataset_normalized, test_data );
 
     end;
 
@@ -80,35 +81,23 @@ function menu( train_data, test_data )
 %% Regressao Logistica
 
 	fprintf('\nRegressao Logistica, opcoes:\n');
-	fprintf('[1] - Submenu para processamento ou carregamento dos dados.\n');
-	fprintf('[0] - Mostrar (se disponiveis) dados salvos.\n');
+	fprintf('[1] - Submenu da Regressao Logistica.\n');
+	fprintf('[0] - Continuar\n');
 
     resp = input('> ');
 
     if ( resp==1 )
-		
-		RL_submenu( train_dataset_normalized , 5 ); % segundo parametro e o numero de colunas alvo
-		
-	else
-		
-		% RL_exibeDados();
-		
+		tic;
+		RL_submenu( train_dataset_normalized , nColAlvo ); % segundo parametro e o numero de colunas alvo
     end;
 
 
 %% SVM
-    resp = input('\nDeseja executar o algoritmo SVM? [ 1-Sim 0-Nao ]\n> ');
+    resp = input('\nEntrar no submenu da SVM? [ 1-Sim 0-Nao ]\n> ');
 
     if ( resp )
-		
-		SVM_init(train_dataset_normalized);
-
-        resp = input('Deseja visulizar os dados gerados pela SVM? [1-Sim 0-Nao]\n> ');
-        
-        if( resp )
-
-        end;
-
+		tic;
+		SVM_submenu(train_dataset_normalized, nColAlvo);
     end;
     
 	

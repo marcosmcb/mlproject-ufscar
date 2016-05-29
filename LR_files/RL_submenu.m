@@ -93,8 +93,10 @@ if nArquivos > 2 % '.' e '..' sempre contam
 		end
 		
 		% executa o n-fold cross validation
+		tic
 		for i = 1:numFold
 			RL_gridSearch(trainDataFold(:,:,i), targetDataFold(:,:,i), execCGS, nColAlvo, i);
+			toc
 		end
 
 	else
@@ -111,8 +113,10 @@ else
 	execCGS = input('> ');
 
 	% executa o n-fold cross validation
+	tic
 	for i = 1:numFold
 		RL_gridSearch(trainDataFold(:,:,i), targetDataFold(:,:,i), execCGS, nColAlvo, i);
+		toc;
 	end
 
 end
@@ -153,7 +157,7 @@ for i = 1:nArquivos
 		
 		compara = 0;
 		for k = 1:nColAlvo
-			if acuracia(j,k) > acuracia(maior,k)
+			if acuracia(j,k) >= acuracia(maior,k)
 				compara = compara + 1;
 			else
 				compara = compara - 1;
@@ -175,66 +179,5 @@ for i = 1:nArquivos
 	fprintf('\n');
 	
 end
-
-
-%% ANTIGOOOOOOOOOOOOOOOOOOOOOOO
-
-%{
-max = 1;
-
-lambdaPorArquivo = zeros(nArquivos,1);
-acuracia = zeros(nArquivos, nColAlvo);
-
-for i = 1:nArquivos
-	
-	% carrega variaveis
-	nomeArquivo = strcat('./RL_results/', listArq(i).name);
-	% fprintf('Carregando arquivo: %s\n', listArq(i).name);
-	load(nomeArquivo);
-	
-	lambdaPorArquivo(i) = RL_lambda;
-	
-	% chama funcao que calcula acuracia (e salva os resultados)
-	acuracia(i,:) = RL_calculaResultados(trainData, targetData, RL_thetaMatrix, nColAlvo);
-	
-	% mostra resultados parciais
-	% {
-	fprintf('lambda = %g\t (por coluna-alvo) acuracia = ', lambdaPorArquivo(i));
-	fprintf('%g\t', acuracia(i,:));
-	fprintf('\n');
-	% }
-	
-	% verifica o melhor
-	compara = 0;
-	for j = 1:nColAlvo
-		if acuracia(i,j) > acuracia(max,j)
-			compara = compara + 1;
-		else
-			compara = compara - 1;
-		end
-	end
-	
-	if compara > 0
-		fprintf('i=%g > max=%g por %g\n', i, max, compara);
-		max = i;
-	else
-		fprintf('i=%g < max=%g, compara=%g\n', i, max, compara);
-	end
-end
-
-fprintf('\nMelhor lambda: %g\n', lambdaPorArquivo(max));
-fprintf('Acuracias para esse lambda: ');
-fprintf('%g\t', acuracia(max,:));
-fprintf('\n');
-
-% Salva a acuracia em arquivo para esses lambdas
-fprintf('Salvando resultados dessas acuracias em arquivo...\n');
-listArq = dir('RL_results/acuracia*.mat');
-
-[nArquivos, ~] = size(listArq);
-
-nomeArquivo = strcat('./RL_results/acuracia', num2str(nArquivos+1), '.mat');
-save(nomeArquivo, 'lambdaPorArquivo', 'acuracia');
-%}
 
 end

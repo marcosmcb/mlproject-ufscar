@@ -1,27 +1,18 @@
-function [ output_args ] = SVM_init( data )
+function SVM_principal( trainData, targetData , nColAlvo )
+% SVM_principal ( trainData, targetData , nColAlvo )
+%
+% Usa a biblioteca libSVM para criar um classificado nos dados passados
+%
+% code by Rocchi™
+
 %% Metodo de classificacao usando SVM
 % essa funcao usa a libSVM, interface para treinamento com SVM
 % disponivel em: http://www.csie.ntu.edu.tw/~cjlin/libsvm
 
 % >> svmtrain
+% >> svmpredict
 % mostra o help da funcao da libsvm
 
-%% Inicializacao dos dados
-
-nOut = 5; % numero de colunas alvo (ultimas do RL_data)
-[SVM_dataLinhas, SVM_dataColunas] = size(data);
-
-disp(SVM_dataLinhas); % RD (REMOVER DEPOIS)
-disp(SVM_dataColunas); % RD
-
-trainData = data(:,1:SVM_dataColunas-nOut);
-targetData = data(:,SVM_dataColunas-nOut:end);
-
-fprintf('Separou train e target\n'); % RD
-disp(size(trainData)); % RD
-disp(size(targetData)); % RD
-fprintf('enter para continuar\n');
-pause; % RD
 
 %% gridSearch com kernel linear
 fprintf('SVM - gridSearch com kernel linear\n');
@@ -117,5 +108,6 @@ save('SVM_melhoresValores.mat', 'melhorCoefVarRadial', 'melhorCRadial', 'melhorG
 
 %}
 fprintf('\n');
+
 end
 

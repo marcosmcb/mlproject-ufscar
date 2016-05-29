@@ -11,7 +11,7 @@ train_data = cleanDataSet( train_data, empty_arr, zeros_arr);
 ages_arr = normalizeAgeuponOutcome( train_data{8} );
 
 % normalize age range
-% MAY CAUSE PROBLEMS IN TEST DATA, be warned
+% MAY CAUSE PROBLEMS IN TEST DATA, be warned to preprocess it
 ages_arr = zscore(ages_arr);
 
 
