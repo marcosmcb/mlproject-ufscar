@@ -16,8 +16,9 @@ function [ acuracia ] = RL_calculaResultados( evalData, targetData, thetas, nCol
 evalResults = RL_sigmoid(evalData * thetas);
 
 
-%% Verifica as classes
+%% Classifica as classes
 
+% vetor de retorno, com as acuracias de cada coluna
 acuracia = zeros(nColAlvo,1);
 
 % para cada coluna de saida

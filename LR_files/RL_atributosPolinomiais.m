@@ -4,19 +4,17 @@ function [ RL_AP_matriz ] = RL_atributosPolinomiais( trainData , colReal)
 % colReal : indice da coluna com valores reais possiveis de serem exponenciados (idade)
 %
 % Recebe a base e aplica AND nas colunas binarias para gerar combinacoes
-% E junta com colunas de exponenciacoes da coluna real (idade)
+% Junta com colunas de exponenciacoes da coluna real (idade)
+%
+% Retorna a base original mais as colunas criadas
 %
 % code by Rocchi™
 
-%% Variaveis necessarias
+%% Variaveis uteis
 
 [nLinhas, nColunas] = size(trainData);
 
-nColBin = nColunas - 1; % menos a coluna Real
-
-matrizReal = zeros(nLinhas, 3);
-
-matrizBin = zeros(nLinhas, nColBin*2);
+nColBin = nColunas - 1; % numero de colunas binarias (todas menos a coluna Real)
 
 %% Separacao das colunas
 
@@ -31,32 +29,31 @@ realTrainCol = trainData(:,colReal);
 % coluna real exponenciada a 2, 3 e 4
 matrizReal = [realTrainCol.^2, realTrainCol.^3, realTrainCol.^4];
 
-% combinacoes(AND) em pares de colunas binarias subsequentes
-for i = 1:(nColBin-1)
-	matrizBin(:,i) = binTrainData(:,i) & binTrainData(:,i+1);
-end
-matrizBin(:,nColBin) = binTrainData(:,nColBin) & binTrainData(:,1); % combina a ultima com a primeira
+% combinacoes (AND) 2 a 2
+comb2 = zeros(nLinhas, floor(nColBin/2));
 
-% combinacoesem(AND) em pares de colunas binarias em ordem randomica
-randomIndex = randperm(nColBin); % permuta os indices randomicamente
-for i = 1:(nColBin-1)
-	matrizBin(:,i+nColBin) = binTrainData(:,randomIndex(i)) & binTrainData(:,randomIndex(i+1));
+for i = 1:floor(nColBin/2)
+	comb2(:,i) = binTrainData(:,(i*2)-1) & binTrainData(:,i*2);
 end
-matrizBin(:,nColBin*2) = binTrainData(:,randomIndex(end)) & binTrainData(:,randomIndex(1)); % combina a ultima com a primeira
+
+% combinacoes (AND) 3 a 3
+comb3 = zeros(nLinhas, floor(nColBin/3));
+
+for i = 1:floor(nColBin/3)
+	comb3(:,i) = binTrainData(:,(i*3)-2) & binTrainData(:,(i*3)-1) & binTrainData(:,i*3);
+end
+
+% combinacoes (AND) 4 a 4
+comb4 = zeros(nLinhas, floor(nColBin/4));
+
+for i = 1:floor(nColBin/4)
+	comb4(:,i) = binTrainData(:,(i*4)-3) & binTrainData(:,(i*4)-2) & binTrainData(:,(i*4)-1) & binTrainData(:,i*4);
+end
 
 	
 %% Juncao para retorno
 
-RL_AP_matriz = [matrizBin, matrizReal];
+RL_AP_matriz = [trainData, matrizReal, comb2, comb3, comb4];
 
-%% Secao de testes
-%{
-fprintf('mostrando tamanhanho resultante das matrizes binaria, real, e total:\n');
-disp(size(matrizReal));
-disp(size(matrizBin));
-disp(size(RL_AP_matriz));
-fprintf('enter para continuar\n');
-pause;
-%}
 
 end

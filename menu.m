@@ -39,7 +39,7 @@ function menu( train_data, test_data )
 	
 	% se existem dados em arquivo, da a opcao de carregar
 	if isThereProcessedData
-		resp = input('Dados processados encontrados em arquivo, carregar? [ 1-Sim 0-Nao ]\n> ');
+		resp = input('Bases de Dados processados encontrados em arquivo, carregar? [ 1-Sim 0-Nao ]\n> ');
 		
 		if resp % caso selecione carregar
 			load('processed_data.mat');

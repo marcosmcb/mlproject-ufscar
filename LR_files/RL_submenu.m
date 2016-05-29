@@ -5,24 +5,6 @@ function RL_submenu( train_dataset_normalized, nColAlvo )
 %
 % code by Rocchi™
 
-%% Inicializacao da base de dados (separacao e inclusao de atributos polinomiais)
-
-% fprintf('Adicionando atributos polinomiais a base de treino.\n');
-
-[~,nCol] = size(train_dataset_normalized);
-
-% separa as colunas alvo do resto da base de dados
-trainData = train_dataset_normalized(:,1:nCol-nColAlvo);
-targetData = train_dataset_normalized(:,nCol-nColAlvo+1:end);
-
-%test
-%{
-disp(size(trainData));
-disp(size(targetData));
-pause;
-%}
-
-trainData = [trainData, RL_atributosPolinomiais(trainData, 8)];
 
 %% Variaveis necessarias
 
@@ -34,7 +16,49 @@ listaArquivos = dir('RL_results');
 
 resp = 0; % recebe o input do usuario
 
-[nLinhasData, nColData] = size(trainData); % dimensoes dos dados de entrada
+numFold = 10; % numero de folds da cross validation
+
+%% Inicializacao dos dados
+
+[~,nCol] = size(train_dataset_normalized);
+
+% separa as colunas alvo do resto da base de dados
+trainData = train_dataset_normalized(:,1:nCol-nColAlvo);
+targetData = train_dataset_normalized(:,nCol-nColAlvo+1:end);
+
+
+%% Atributos polinomiais
+
+fprintf('Adicionando atributos polinomiais a base de treino...\n');
+tic
+trainData = RL_atributosPolinomiais(trainData, 8);
+toc
+[nLin, nCol] = size(trainData);
+fprintf('Atributos polinomiais adicionados, tamanho dos dados: %g %g\n', nLin, nCol);
+
+
+%% Prepara os dados para o n-fold cross validation
+
+nDataPfold = ceil(nLin/numFold);
+
+trainDataFold = zeros(floor(nDataPfold*(numFold-1)), nCol, numFold);
+targetDataFold = zeros(floor(nDataPfold*(numFold-1)), nColAlvo, numFold);
+
+testDataFold = zeros(floor(nDataPfold)-1, nCol, numFold); % prealocacao
+testTargetDataFold = zeros(floor(nDataPfold)-1, nColAlvo, numFold); % prealocacao
+
+for i = 1:numFold
+
+	[trainDataFoldPart, targetDataFoldPart, testDataFoldPart, testTargetDataFoldPart] = ...
+				RL_splitDadosNFold(trainData, targetData, numFold, i);
+			
+	trainDataFold(:,:,i) = trainDataFoldPart;
+	targetDataFold(:,:,i) = targetDataFoldPart;
+	
+	testDataFold(:,:,i) = testDataFoldPart;
+	testTargetDataFold(:,:,i) = testTargetDataFoldPart;
+
+end
 
 %% Menu de opcoes da regresao Logistica
 
@@ -61,11 +85,17 @@ if nArquivos > 2 % '.' e '..' sempre contam
 		execCGS = input('> ');
 		
 		% apaga os arquivos antigos da pasta
-		delete('./RL_results/*_coarse.mat', './RL_results/*_normal.mat');
+		if execCGS == 1
+			delete('./RL_results/*_coarseGS.mat');
+		end
+		if execCGS == 0
+			delete('./RL_results/*_normalGS.mat');
+		end
 		
-		% por enquanto só usa o train_dataset_normalized, depois o n-fold cross validation muda isso
-		% ultimo parametro sao as colunas alvo
-		RL_gridSearch(trainData, targetData, execCGS, nColAlvo);
+		% executa o n-fold cross validation
+		for i = 1:numFold
+			RL_gridSearch(trainDataFold(:,:,i), targetDataFold(:,:,i), execCGS, nColAlvo, i);
+		end
 
 	else
 		fprintf('Dados existentes serao utilizados...\n');
@@ -80,12 +110,14 @@ else
 
 	execCGS = input('> ');
 
-	% por enquanto só usa o train_dataset_normalized, depois o n-fold cross validation muda isso
-	RL_gridSearch(trainData, targetData, execCGS, 5);
+	% executa o n-fold cross validation
+	for i = 1:numFold
+		RL_gridSearch(trainDataFold(:,:,i), targetDataFold(:,:,i), execCGS, nColAlvo, i);
+	end
 
 end
 
-%% Avalicao dos resultados
+%% Avaliacao dos resultados (ATUALIZANDO)
 
 % Carregando dados
 
@@ -94,31 +126,64 @@ resp = input('[1] - Coarse\n[0]- Normal\n> ');
 
 if resp % Coarse
 	fprintf('Carregando dados do Coarse Grid Search...\n');
-	listArq = dir('RL_results/*_coarse.mat');
-
-	[nArquivos, ~] = size(listArq);
-
-	fprintf('Numero de arquivos encontrados: %g\n', nArquivos);
-
+	listArq = dir('RL_results/*_coarseGS.mat');
 else % Normal
 	fprintf('Carregando dados do Grid Search normal...\n');
-	listArq = dir('RL_results/*_normal.mat');
-
-	[nArquivos, ~] = size(listArq);
-
-	fprintf('Arquivos encontrados: %g\n', nArquivos);
-
+	listArq = dir('RL_results/*_normalGS.mat');
 end
 
-% Calculando resultados
-if resp
-	fprintf('Acuracia da base para a coarse grid search: \n');
-else
-	fprintf('Acuracia da base para a grid search normal: \n');
+[nArquivos, ~] = size(listArq);
+fprintf('Arquivos encontrados: %g\n', nArquivos);
+
+for i = 1:nArquivos
+	% carrega variaveis
+	
+	%fprintf('\nCarregando arquivo: %s\n', listArq(i).name);
+	nomeArquivo = strcat('./RL_results/', listArq(i).name);
+	load(nomeArquivo);
+	
+	% variaveis carregadas : nFold, RL_custosVector, RL_lambdas, RL_thetasMatrix
+	[~, nLambdas] = size(RL_lambdas);
+	
+	acuracia = zeros(nLambdas, nColAlvo);
+	maior = 1;
+	
+	for j = 1:nLambdas 
+		acuracia(j,:) = RL_calculaResultados(testDataFold(:,:,i), testTargetDataFold(:,:,i), RL_thetasMatrix(j), nColAlvo);
+		
+		compara = 0;
+		for k = 1:nColAlvo
+			if acuracia(j,k) > acuracia(maior,k)
+				compara = compara + 1;
+			else
+				compara = compara - 1;
+			end
+		end
+		
+		if compara > 0
+			%fprintf('NOVO MAIOR j=%g > maior=%g por %g\n', j, maior, compara);
+			maior = j;
+		%else
+			%fprintf('i=%g < max=%g, compara=%g\n', i, maior, compara);
+		end
+		
+	end
+	
+	fprintf('n-fold:%g, melhor lambda: %g\t', nFold, RL_lambdas(maior));
+	fprintf('Acuracias para esse lambda: ');
+	fprintf('%g\t', acuracia(maior,:));
+	fprintf('\n');
+	
 end
 
-max = zeros(nColAlvo,1);
-melhorLambda = 0;
+
+%% ANTIGOOOOOOOOOOOOOOOOOOOOOOO
+
+%{
+max = 1;
+
+lambdaPorArquivo = zeros(nArquivos,1);
+acuracia = zeros(nArquivos, nColAlvo);
 
 for i = 1:nArquivos
 	
@@ -127,18 +192,22 @@ for i = 1:nArquivos
 	% fprintf('Carregando arquivo: %s\n', listArq(i).name);
 	load(nomeArquivo);
 	
-	% chama funcao que calcula acuracia (e salva os resultados)
-	acuracia = RL_calculaResultados(trainData, targetData, RL_thetaMatrix, nColAlvo);
+	lambdaPorArquivo(i) = RL_lambda;
 	
-	% mostra resultados
-	fprintf('lambda = %g\t (por coluna-alvo) acuracia = ', RL_lambda);
-	fprintf('%g\t', acuracia);
+	% chama funcao que calcula acuracia (e salva os resultados)
+	acuracia(i,:) = RL_calculaResultados(trainData, targetData, RL_thetaMatrix, nColAlvo);
+	
+	% mostra resultados parciais
+	% {
+	fprintf('lambda = %g\t (por coluna-alvo) acuracia = ', lambdaPorArquivo(i));
+	fprintf('%g\t', acuracia(i,:));
 	fprintf('\n');
+	% }
 	
 	% verifica o melhor
 	compara = 0;
 	for j = 1:nColAlvo
-		if(acuracia(j) > max(j))
+		if acuracia(i,j) > acuracia(max,j)
 			compara = compara + 1;
 		else
 			compara = compara - 1;
@@ -146,14 +215,26 @@ for i = 1:nArquivos
 	end
 	
 	if compara > 0
-		max = acuracia;
-		melhorLambda = RL_lambda;
+		fprintf('i=%g > max=%g por %g\n', i, max, compara);
+		max = i;
+	else
+		fprintf('i=%g < max=%g, compara=%g\n', i, max, compara);
 	end
 end
 
-fprintf('\nMelhor lambda: %g\n', melhorLambda);
+fprintf('\nMelhor lambda: %g\n', lambdaPorArquivo(max));
 fprintf('Acuracias para esse lambda: ');
-fprintf('%g\t', acuracia);
+fprintf('%g\t', acuracia(max,:));
 fprintf('\n');
+
+% Salva a acuracia em arquivo para esses lambdas
+fprintf('Salvando resultados dessas acuracias em arquivo...\n');
+listArq = dir('RL_results/acuracia*.mat');
+
+[nArquivos, ~] = size(listArq);
+
+nomeArquivo = strcat('./RL_results/acuracia', num2str(nArquivos+1), '.mat');
+save(nomeArquivo, 'lambdaPorArquivo', 'acuracia');
+%}
 
 end
