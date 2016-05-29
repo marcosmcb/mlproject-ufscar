@@ -3,6 +3,7 @@ function menu_KNN( train_data, test_data )
     resp = input('\nDeseja rodar 10-fold cross validation? [ 1-Sim 0-Nao ]\n> ');
 
     num_fold = 10;
+	resp_grid = 0;
     K = 11; % default value when grid-search is not selected
 	
 	[~, ~, ~] = mkdir('KNN_results');
