@@ -13,9 +13,9 @@ gInicialGcoarse = -9;
 passoCoarse = 2;
 
 cInicialLnormal = -4;
-cInicialGnormal = -;
-gInicialGnormal = -;
-passoNormal = 0.25;
+cInicialGnormal = 0.5;
+gInicialGnormal = -4;
+passoNormal = 0.5;
 
 %% Opcoes
 	
@@ -124,7 +124,7 @@ elseif opcao == 0
 		
 	end
 	
-	fprintf('Melhor resultado: C = 2^%g\nAcuracias por coluna-alvo: \n', cInicialLnormal + ( passoNormal*(maiorL-1) ) );
+	fprintf('Melhor resultado: C = 2^%g\nAcuracias por coluna-alvo: \n', cInicialLnormal + ( (maiorL-1) ) );
 	fprintf('%g ', accKernelLinear(maiorL,:));
 	fprintf('\n');
 	
@@ -158,7 +158,7 @@ elseif opcao == 0
 	end
 	
 	fprintf('Melhor resultado: C = 2^%g , gamma = 2^%g\nAcuracias por coluna-alvo: \n', ...
-							cInicialGnormal + ( passoNormal*(maiorG(1)-1) ) , gInicialGnormal + (passoNormal*(maiorG(2)-1) ) );
+							cInicialGnormal + ( passoNormal*(maiorG(1)-1) ) , gInicialGnormal + ((maiorG(2)-1) ) );
 	fprintf('%g ', accKernelGaussiano(maiorG(1), maiorG(2),:));
 	fprintf('\n');
 end

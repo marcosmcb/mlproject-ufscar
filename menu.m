@@ -83,24 +83,38 @@ function menu( train_data, test_data )
 %% Regressao Logistica
 
 	fprintf('\nRegressao Logistica, opcoes:\n');
-	fprintf('[1] - Submenu da Regressao Logistica.\n');
+	fprintf('[1] - Treinar classificador da Regressao Logistica.\n');
 	fprintf('[0] - Continuar\n');
 
     resp = input('> ');
 
     if ( resp==1 )
 		tic;
-		RL_submenu( train_dataset_normalized , nColAlvo, test_dataset_normalized ); % segundo parametro e o numero de colunas alvo
+		RL_submenu( train_dataset_normalized , nColAlvo ); % segundo parametro e o numero de colunas alvo
     end;
+	
+	resp = input('\nClassificar base de teste com o classificador da Regressao Logistica? [ 1-Sim 0-Nao ]\n> ');
+
+	if ( resp )
+		tic;
+		RL_classificar(test_dataset_normalized);
+	end;
 
 
 %% SVM
     resp = input('\nEntrar no submenu da SVM? [ 1-Sim 0-Nao ]\n> ');
 
-    if ( resp )
+	if ( resp )
 		tic;
 		SVM_submenu(train_dataset_normalized, nColAlvo);
-    end;
+	end;
+	
+	resp = input('\nClassificar base de teste com o classificador da SVM? [ 1-Sim 0-Nao ]\n> ');
+
+	if ( resp )
+		tic;
+		%SVM_classificar(test_dataset_normalized);
+	end;
     
 	
 %% Redes Neurais Artificiais

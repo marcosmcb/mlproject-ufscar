@@ -153,7 +153,7 @@ for i = 1:nArquivos
 	maior = 1;
 	
 	for j = 1:nLambdas 
-		acuracia(j,:) = RL_calculaResultados(testDataFold(:,:,i), testTargetDataFold(:,:,i), RL_thetasMatrix(j), nColAlvo);
+		acuracia(j,:) = RL_calculaResultados(testDataFold(:,:,i), testTargetDataFold(:,:,i), RL_thetasMatrix(:,:,j), nColAlvo);
 		
 		compara = 0;
 		for k = 1:nColAlvo
