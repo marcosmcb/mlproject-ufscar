@@ -1,0 +1,171 @@
+%% Universidade Federal de Sao Carlos - UFSCar, Sorocaba
+%
+
+%% Inicializacao
+clear ; close all; clc
+
+% ============================ Dados ===========================
+    fprintf('Carregando os dados...[1/5]\n\n');
+
+    train_matrix = load('../datasets_normal&clean/datasetNormalAndCleanWithGroupOfBreedsAndColors.csv');
+
+    [sizeM, sizeN] = size(train_matrix);
+
+    %Faz o reverso do dummyvar
+    [results, ~] = find(train_matrix(:, sizeN-4:sizeN)');
+% ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+
+% ========================= PARAMETERS =========================
+    fprintf('Escolha do Número K...[2/5]\n\n');
+    %fscanf('%d', K); %-K-NN
+    K = 1;%floor(sqrt(sizeM)/10);%floor(sizeM*0.2);%floor(sqrt(sizeM));
+    %Porcentagem da base que sera usada 
+    pTreino = 30;
+    pTeste = 100 - pTreino;
+% ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+
+
+dados = train_matrix(:, 1:sizeN-5);
+dados(:,sizeN-4) = results;
+[sizeM_norm, sizeN_norm] = size(dados);
+numRounds = floor(100/pTreino);
+sizeFold = floor(pTreino/100 * sizeM);
+partialResults = zeros(numRounds, sizeM-sizeFold);
+indexes = 1:sizeM;
+treino = zeros(sizeFold, sizeN_norm);
+test = zeros(sizeM - sizeFold, sizeN_norm);
+
+for k=1:numRounds
+    % ========================== FOLD ==============================
+        fprintf('Preparação do Fold...[3/5]\n\n');
+
+        treinoIDX = indexes( ( (k-1) * sizeFold) + 1 : ((k) * sizeFold));
+        testIDX = setdiff(indexes, treinoIDX);
+        for i=1:sizeFold
+            treino(i,:) = dados(treinoIDX(i), :);
+        end
+        for i=1:sizeM - sizeFold
+            test(i,:) = dados(testIDX(i), :);
+        end
+    % ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+
+
+
+
+    % ======================== CALCULATION =========================
+        fprintf('Calculo do Vizinho...[4/5]\n\n');
+        %  Voce devera completar essa funcao.
+        %[y, ind_viz] = knn_calc(x_teste_norm, X_norm, Y, K);
+
+        for i=1:sizeM-sizeFold
+            [y, ~] = knn_calc(test(i,1:sizeN_norm-1), treino(:,1:sizeN_norm-1), treino(:,sizeN_norm), K);
+            fprintf('... [ %d <=> %d ] -  %.4f ...[%d/%d][%d]\n\n', y, test(i, sizeN_norm), (((i / (sizeFold)) * 100 )), k, numRounds, i);
+            partialResults(k,i) = y;
+        end
+    % ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+end
+
+% ======================== CALCULATION =========================
+    fprintf('Resultados...[5/5]\n\n');
+    %for j=1:numRounds
+        %fprintf('>>%d\n\n', (sum(partialResults(j,:) == test(:, sizeN_norm))/(sizeFold)) );
+    %end
+% ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+
+
+
+%{
+%  Exibe o rotulo da amostra de teste retornado pelo algoritmo KNN
+fprintf('Segundo o KNN, a classe da amostra de teste e: %d ==> ', y);
+
+
+clear ; close all;
+
+fprintf('\n\n------------------ EXEMPLO 2 ---------------------------\n\n');
+
+fprintf('\nPlotando dados...\n');
+
+% Carrega os dados do arquivo
+load('ex01Dados2.mat');
+
+% Plota os dados para visualizacao
+visualizarDados(X,Y);
+
+% Insere titulo, legenda e eixos
+title('Plot 2D da base de dados Iris');
+legend('Iris Virginica (+)','Iris Versicolour (-)');
+xlabel('Comprimento da petala (cm)');
+ylabel('Largura da petala (cm)');
+hold on;
+
+fprintf('\nPrograma pausado. Pressione enter para continuar.\n');
+pause;
+
+%  Variaveis que deverao ser calculadas
+[m,n] = size(X); % m = qtde de objetos e n = qtde de atributos por objeto
+
+X_norm = zeros(m,n); % inicializa X_norm
+mu = 1; % inicializa media
+sigma = 1; % inicializa desvio padrao
+
+% Normaliza os dados de X 
+[X_norm, mu, sigma] = normalizar(X);
+
+
+%  Definicao de outro caso de teste.
+%-------------------
+x_teste = [5.90 2.84]; %Voce pode testar outros valores
+%-------------------
+
+%  Normaliza o caso de teste usando o valor de mu e sigma pre-calculado
+x_teste_norm = (x_teste - mu)./sigma;
+
+
+fprintf('\nPrograma pausado. Pressione enter para continuar.\n');
+pause;
+
+
+%  Define a quantidade de vizinhos. Recomenda-se que seja impar (1, 3, ou 5)
+%-----
+K = 1; %Voce pode testar outros valores
+%-----
+
+%  Chama o algoritmo do k-vizinhos para predizer o rotulo da amostra teste.
+%  Voce devera completar essa funcao.
+[y, ind_viz] = knn(x_teste_norm, X_norm, Y, K);
+
+
+%  Exibe o rotulo da amostra de teste retornado pelo algoritmo KNN
+fprintf('\n\nSegundo o KNN, a classe da amostra de teste e: %d ==> ', y);
+
+%  Imprime a especie da planta de acordo com o rotulo informado
+if (y == 0)
+    fprintf('Iris Versicolour.\n');
+else
+    fprintf('Iris Virginica.\n');
+end
+
+
+fprintf('Plotanto o(s) %d-vizinho(s) mais proximo(s) usado(s) na classificacao.\n\n',K);
+
+%  Visualizando o caso de teste junto com os dados
+for i = 1:K
+    if (Y(ind_viz(i)) == 1)
+        plot(X(ind_viz(i), 1), X(ind_viz(i), 2), 'k+','LineWidth', 2, 'MarkerSize', 7);
+    else
+        plot(X(ind_viz(i), 1), X(ind_viz(i), 2), 'ko', 'MarkerFaceColor', 'k', 'MarkerSize', 7);
+    end
+end
+
+fprintf('\nPrograma pausado. Pressione enter para continuar.\n');
+pause;
+
+
+%  Libera a figura
+hold off;
+
+%}
+
+%  Fecha figuras abertas
+close all;
+%clc; clear;
