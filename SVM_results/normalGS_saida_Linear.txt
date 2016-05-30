@@ -1,0 +1,1363 @@
+Iniciando Coarse gridSearch (na SVM)
+
+Grid search normal para Kernel Linear
+SVM - NGS - parametros: Kernel Linear, C = 0.0625
+{Error using <a href="matlab:matlab.internal.language.introspective.errorDocCallback('svmtrain', '/Applications/MATLAB_R2015b.app/toolbox/stats/stats/svmtrain.m', 234)" style="font-weight:bold">svmtrain</a> (<a href="matlab: opentoline('/Applications/MATLAB_R2015b.app/toolbox/stats/stats/svmtrain.m',234,0)">line 234</a>)
+Y must be a vector or a character array.
+
+Error in <a href="matlab:matlab.internal.language.introspective.errorDocCallback('SVM_normalGS', '/Users/marcoscavalcante/Documents/UFSCar/9 Semestre/Oficial - Aprendizado de Maquina/Projeto/SVM_files/SVM_normalGS.m', 57)" style="font-weight:bold">SVM_normalGS</a> (<a href="matlab: opentoline('/Users/marcoscavalcante/Documents/UFSCar/9 Semestre/Oficial - Aprendizado de Maquina/Projeto/SVM_files/SVM_normalGS.m',57,0)">line 57</a>)
+		accKernelLinear(iC,i) = svmtrain(targetData(:,i), trainData, SVM_opcoes);
+
+Error in <a href="matlab:matlab.internal.language.introspective.errorDocCallback('SVM_submenu', '/Users/marcoscavalcante/Documents/UFSCar/9 Semestre/Oficial - Aprendizado de Maquina/Projeto/SVM_files/SVM_submenu.m', 64)" style="font-weight:bold">SVM_submenu</a> (<a href="matlab: opentoline('/Users/marcoscavalcante/Documents/UFSCar/9 Semestre/Oficial - Aprendizado de Maquina/Projeto/SVM_files/SVM_submenu.m',64,0)">line 64</a>)
+		SVM_normalGS(trainData, targetData, nColAlvo);
+
+Error in <a href="matlab:matlab.internal.language.introspective.errorDocCallback('menu', '/Users/marcoscavalcante/Documents/UFSCar/9 Semestre/Oficial - Aprendizado de Maquina/Projeto/menu.m', 100)" style="font-weight:bold">menu</a> (<a href="matlab: opentoline('/Users/marcoscavalcante/Documents/UFSCar/9 Semestre/Oficial - Aprendizado de Maquina/Projeto/menu.m',100,0)">line 100</a>)
+		SVM_submenu(train_dataset_normalized, nColAlvo);
+
+Error in <a href="matlab:matlab.internal.language.introspective.errorDocCallback('main', '/Users/marcoscavalcante/Documents/UFSCar/9 Semestre/Oficial - Aprendizado de Maquina/Projeto/main.m', 26)" style="font-weight:bold">main</a> (<a href="matlab: opentoline('/Users/marcoscavalcante/Documents/UFSCar/9 Semestre/Oficial - Aprendizado de Maquina/Projeto/main.m',26,0)">line 26</a>)
+menu(train_data, test_data);
+} 
+opentoline('/Users/marcoscavalcante/Documents/UFSCar/9 Semestre/Oficial - Aprendizado de Maquina/Projeto/SVM_files/SVM_normalGS.m',57,0)
+opentoline('/Users/marcoscavalcante/Documents/UFSCar/9 Semestre/Oficial - Aprendizado de Maquina/Projeto/SVM_files/SVM_normalGS.m',57,0)
+path
+
+		MATLABPATH
+
+	./KNN_files
+	./SVM_files
+	./LR_files
+	./ANN_files
+	./datasets_functions
+	/Users/marcoscavalcante/Documents/MATLAB
+	/Applications/MATLAB_R2015b.app/toolbox/matlab/addons
+	/Applications/MATLAB_R2015b.app/toolbox/matlab/addons/cef
+	/Applications/MATLAB_R2015b.app/toolbox/matlab/addons/fallbackmanager
+	/Applications/MATLAB_R2015b.app/toolbox/matlab/demos
+	/Applications/MATLAB_R2015b.app/toolbox/matlab/graph2d
+	/Applications/MATLAB_R2015b.app/toolbox/matlab/graph3d
+	/Applications/MATLAB_R2015b.app/toolbox/matlab/graphics
+	/Applications/MATLAB_R2015b.app/toolbox/matlab/graphics/obsolete
+	/Applications/MATLAB_R2015b.app/toolbox/matlab/plottools
+	/Applications/MATLAB_R2015b.app/toolbox/matlab/scribe
+	/Applications/MATLAB_R2015b.app/toolbox/matlab/scribe/obsolete
+	/Applications/MATLAB_R2015b.app/toolbox/matlab/specgraph
+	/Applications/MATLAB_R2015b.app/toolbox/matlab/uitools
+	/Applications/MATLAB_R2015b.app/toolbox/matlab/uitools/obsolete
+	/Applications/MATLAB_R2015b.app/toolbox/matlab/hardware/stubs
+	/Applications/MATLAB_R2015b.app/toolbox/matlab/images
+	/Applications/MATLAB_R2015b.app/toolbox/local
+	/Applications/MATLAB_R2015b.app/toolbox/matlab/optimfun
+	/Applications/MATLAB_R2015b.app/toolbox/matlab/codetools
+	/Applications/MATLAB_R2015b.app/toolbox/matlab/datafun
+	/Applications/MATLAB_R2015b.app/toolbox/matlab/datamanager
+	/Applications/MATLAB_R2015b.app/toolbox/matlab/datastoreio
+	/Applications/MATLAB_R2015b.app/toolbox/matlab/datatypes
+	/Applications/MATLAB_R2015b.app/toolbox/matlab/depfun
+	/Applications/MATLAB_R2015b.app/toolbox/matlab/elfun
+	/Applications/MATLAB_R2015b.app/toolbox/matlab/elmat
+	/Applications/MATLAB_R2015b.app/toolbox/matlab/funfun
+	/Applications/MATLAB_R2015b.app/toolbox/matlab/general
+	/Applications/MATLAB_R2015b.app/toolbox/matlab/graphfun
+	/Applications/MATLAB_R2015b.app/toolbox/matlab/guide
+	/Applications/MATLAB_R2015b.app/toolbox/matlab/helptools
+	/Applications/MATLAB_R2015b.app/toolbox/matlab/icons
+	/Applications/MATLAB_R2015b.app/toolbox/matlab/iofun
+	/Applications/MATLAB_R2015b.app/toolbox/matlab/lang
+	/Applications/MATLAB_R2015b.app/toolbox/matlab/mapreduceio
+	/Applications/MATLAB_R2015b.app/toolbox/matlab/matfun
+	/Applications/MATLAB_R2015b.app/toolbox/matlab/ops
+	/Applications/MATLAB_R2015b.app/toolbox/matlab/polyfun
+	/Applications/MATLAB_R2015b.app/toolbox/matlab/randfun
+	/Applications/MATLAB_R2015b.app/toolbox/matlab/sparfun
+	/Applications/MATLAB_R2015b.app/toolbox/matlab/specfun
+	/Applications/MATLAB_R2015b.app/toolbox/matlab/strfun
+	/Applications/MATLAB_R2015b.app/toolbox/matlab/testframework
+	/Applications/MATLAB_R2015b.app/toolbox/matlab/testframework/obsolete
+	/Applications/MATLAB_R2015b.app/toolbox/matlab/testframework/parallel
+	/Applications/MATLAB_R2015b.app/toolbox/matlab/timefun
+	/Applications/MATLAB_R2015b.app/toolbox/matlab/verctrl
+	/Applications/MATLAB_R2015b.app/toolbox/matlab/winfun
+	/Applications/MATLAB_R2015b.app/toolbox/matlab/winfun/NET
+	/Applications/MATLAB_R2015b.app/toolbox/hdlcoder/matlabhdlcoder/matlabhdlcoder
+	/Applications/MATLAB_R2015b.app/toolbox/hdlcoder/matlabhdlcoder
+	/Applications/MATLAB_R2015b.app/toolbox/simulink/components
+	/Applications/MATLAB_R2015b.app/toolbox/simulink/dee
+	/Applications/MATLAB_R2015b.app/toolbox/simulink/blocks/library
+	/Applications/MATLAB_R2015b.app/toolbox/simulink/blocks/library/simulinkcoder
+	/Applications/MATLAB_R2015b.app/toolbox/simulink/blocks/obsolete
+	/Applications/MATLAB_R2015b.app/toolbox/simulink/blocks
+	/Applications/MATLAB_R2015b.app/toolbox/simulink/simulink/dataclasses
+	/Applications/MATLAB_R2015b.app/toolbox/simulink/simulink
+	/Applications/MATLAB_R2015b.app/toolbox/simulink/simulink/MPlayIO
+	/Applications/MATLAB_R2015b.app/toolbox/simulink/simulink/dataobjectwizard
+	/Applications/MATLAB_R2015b.app/toolbox/simulink/simulink/slresolve
+	/Applications/MATLAB_R2015b.app/toolbox/simulink/simulink/core_templates
+	/Applications/MATLAB_R2015b.app/toolbox/simulink/simdemos/dataclasses
+	/Applications/MATLAB_R2015b.app/toolbox/simulink/simdemos
+	/Applications/MATLAB_R2015b.app/toolbox/simulink/simdemos/aerospace
+	/Applications/MATLAB_R2015b.app/toolbox/simulink/simdemos/automotive
+	/Applications/MATLAB_R2015b.app/toolbox/simulink/simdemos/simfeatures
+	/Applications/MATLAB_R2015b.app/toolbox/simulink/simdemos/simfeatures/modelreference
+	/Applications/MATLAB_R2015b.app/toolbox/simulink/simdemos/simfeatures/datadictionary
+	/Applications/MATLAB_R2015b.app/toolbox/simulink/simdemos/automotive/fuelsys
+	/Applications/MATLAB_R2015b.app/toolbox/simulink/simdemos/simgeneral
+	/Applications/MATLAB_R2015b.app/toolbox/simulink/simdemos/industrial
+	/Applications/MATLAB_R2015b.app/toolbox/simulink/simdemos/automotive/powerwindow
+	/Applications/MATLAB_R2015b.app/toolbox/simulink/sldependency
+	/Applications/MATLAB_R2015b.app/toolbox/simulink/hmi
+	/Applications/MATLAB_R2015b.app/toolbox/simulink/simulink/modeladvisor
+	/Applications/MATLAB_R2015b.app/toolbox/simulink/simulink/modeladvisor/fixpt
+	/Applications/MATLAB_R2015b.app/toolbox/simulink/sdi
+	/Applications/MATLAB_R2015b.app/toolbox/simulink/sysarch/sysarch
+	/Applications/MATLAB_R2015b.app/toolbox/simulink/simulink/frameedit
+	/Applications/MATLAB_R2015b.app/toolbox/rtw/targets/asap2/asap2/dataclasses
+	/Applications/MATLAB_R2015b.app/toolbox/rtw/targets/asap2/asap2
+	/Applications/MATLAB_R2015b.app/toolbox/rtw/targets/asap2/asap2/user
+	/Applications/MATLAB_R2015b.app/toolbox/rtw/targets/common/can/blocks/dataclasses
+	/Applications/MATLAB_R2015b.app/toolbox/rtw/targets/common/can/blocks
+	/Applications/MATLAB_R2015b.app/toolbox/rtw/targets/common/can/blocks/tlc_c
+	/Applications/MATLAB_R2015b.app/toolbox/rtw/targets/common/tgtcommon
+	/Applications/MATLAB_R2015b.app/toolbox/coder/simulinkcoder/cgv/API
+	/Applications/MATLAB_R2015b.app/toolbox/rtw/rtw/misra
+	/Applications/MATLAB_R2015b.app/toolbox/coder/simulinkcoder
+	/Applications/MATLAB_R2015b.app/toolbox/coder/simulinkcoder/templates
+	/Applications/MATLAB_R2015b.app/toolbox/coder/simulinkcoder/targets
+	/Applications/MATLAB_R2015b.app/toolbox/rtw/targets/pil
+	/Applications/MATLAB_R2015b.app/toolbox/coder/advisor
+	/Applications/MATLAB_R2015b.app/toolbox/rtw/targets/AUTOSAR/AUTOSAR/dataclasses
+	/Applications/MATLAB_R2015b.app/toolbox/rtw/targets/AUTOSAR/AUTOSAR
+	/Applications/MATLAB_R2015b.app/toolbox/rtw/accel
+	/Applications/MATLAB_R2015b.app/toolbox/coder/simulinkcoder_core
+	/Applications/MATLAB_R2015b.app/toolbox/rtw/rtwdemos
+	/Applications/MATLAB_R2015b.app/toolbox/rtw/rtwdemos/rsimdemos
+	/Applications/MATLAB_R2015b.app/toolbox/coder/objectives
+	/Applications/MATLAB_R2015b.app/toolbox/simulinktest/simulinktest
+	/Applications/MATLAB_R2015b.app/toolbox/simulinktest/core/simharness/simharness
+	/Applications/MATLAB_R2015b.app/toolbox/simulinktest/simulinktestdemos
+	/Applications/MATLAB_R2015b.app/toolbox/stateflow/stateflow
+	/Applications/MATLAB_R2015b.app/toolbox/stateflow/coder
+	/Applications/MATLAB_R2015b.app/toolbox/stateflow/sfdemos
+	/Applications/MATLAB_R2015b.app/toolbox/stateflow/sftemplates
+	/Applications/MATLAB_R2015b.app/toolbox/matlab/addons_product
+	/Applications/MATLAB_R2015b.app/toolbox/matlab/addons_zip
+	/Applications/MATLAB_R2015b.app/toolbox/aero/aero
+	/Applications/MATLAB_R2015b.app/toolbox/aero/astdemos
+	/Applications/MATLAB_R2015b.app/toolbox/aeroblks
+	/Applications/MATLAB_R2015b.app/toolbox/aeroblks/aeroblks
+	/Applications/MATLAB_R2015b.app/toolbox/aeroblks/aeroblksutilities
+	/Applications/MATLAB_R2015b.app/toolbox/aeroblks/aerodemos
+	/Applications/MATLAB_R2015b.app/toolbox/aeroblks/aerodemos/texture
+	/Applications/MATLAB_R2015b.app/toolbox/antenna/antenna
+	/Applications/MATLAB_R2015b.app/toolbox/antenna/antenna/antennautilities
+	/Applications/MATLAB_R2015b.app/toolbox/antenna/antenna/meshutilities
+	/Applications/MATLAB_R2015b.app/toolbox/antenna/atexamples
+	/Applications/MATLAB_R2015b.app/toolbox/matlab/apps
+	/Applications/MATLAB_R2015b.app/toolbox/matlab/audiovideo
+	/Applications/MATLAB_R2015b.app/toolbox/bioinfo/bioinfo
+	/Applications/MATLAB_R2015b.app/toolbox/bioinfo/biolearning
+	/Applications/MATLAB_R2015b.app/toolbox/bioinfo/microarray
+	/Applications/MATLAB_R2015b.app/toolbox/bioinfo/mass_spec
+	/Applications/MATLAB_R2015b.app/toolbox/bioinfo/proteins
+	/Applications/MATLAB_R2015b.app/toolbox/bioinfo/biomatrices
+	/Applications/MATLAB_R2015b.app/toolbox/bioinfo/graphtheory
+	/Applications/MATLAB_R2015b.app/toolbox/bioinfo/bioinfodata
+	/Applications/MATLAB_R2015b.app/toolbox/bioinfo/biodemos
+	/Applications/MATLAB_R2015b.app/toolbox/matlab/cefclient
+	/Applications/MATLAB_R2015b.app/toolbox/coder/codedescriptor_core
+	/Applications/MATLAB_R2015b.app/toolbox/coder/codegendemos
+	/Applications/MATLAB_R2015b.app/toolbox/coder/coder
+	/Applications/MATLAB_R2015b.app/toolbox/coder/connectivity
+	/Applications/MATLAB_R2015b.app/toolbox/rtw/targets/connectivity
+	/Applications/MATLAB_R2015b.app/toolbox/coder/emlcodermex
+	/Applications/MATLAB_R2015b.app/toolbox/coder/coverage
+	/Applications/MATLAB_R2015b.app/toolbox/rtw/rtw
+	/Applications/MATLAB_R2015b.app/toolbox/coder/foundation
+	/Applications/MATLAB_R2015b.app/toolbox/coder/foundation/build
+	/Applications/MATLAB_R2015b.app/toolbox/coder/foundation/build/tools/registry
+	/Applications/MATLAB_R2015b.app/toolbox/coder/foundation/tfl
+	/Applications/MATLAB_R2015b.app/toolbox/coder/foundation/tfl/AUTOSAR/AUTOSAR4p0/IFX
+	/Applications/MATLAB_R2015b.app/toolbox/coder/foundation/tfl/AUTOSAR/AUTOSAR4p0/IFL
+	/Applications/MATLAB_R2015b.app/toolbox/coder/foundation/tfl/gui
+	/Applications/MATLAB_R2015b.app/toolbox/coder/foundation/templates
+	/Applications/MATLAB_R2015b.app/toolbox/shared/simtargets
+	/Applications/MATLAB_R2015b.app/toolbox/coder/matlabcoder
+	/Applications/MATLAB_R2015b.app/toolbox/coder/matlabcoder/templates
+	/Applications/MATLAB_R2015b.app/toolbox/coder/profile
+	/Applications/MATLAB_R2015b.app/toolbox/coder/rtiostream
+	/Applications/MATLAB_R2015b.app/toolbox/coder/trace
+	/Applications/MATLAB_R2015b.app/toolbox/coder/wizard
+	/Applications/MATLAB_R2015b.app/toolbox/coder/xrel
+	/Applications/MATLAB_R2015b.app/toolbox/comm/comm
+	/Applications/MATLAB_R2015b.app/toolbox/comm/commutilities/comminit
+	/Applications/MATLAB_R2015b.app/toolbox/comm/commutilities/commmex
+	/Applications/MATLAB_R2015b.app/toolbox/comm/commutilities
+	/Applications/MATLAB_R2015b.app/toolbox/comm/commdeprecated
+	/Applications/MATLAB_R2015b.app/toolbox/comm/comm/compiled
+	/Applications/MATLAB_R2015b.app/toolbox/comm/cdma2000
+	/Applications/MATLAB_R2015b.app/toolbox/comm/commdemos
+	/Applications/MATLAB_R2015b.app/help/toolbox/comm/examples
+	/Applications/MATLAB_R2015b.app/toolbox/comm/templates
+	/Applications/MATLAB_R2015b.app/toolbox/shared/comparisons
+	/Applications/MATLAB_R2015b.app/toolbox/simulink/compiled_model_interface
+	/Applications/MATLAB_R2015b.app/toolbox/compiler
+	/Applications/MATLAB_R2015b.app/toolbox/compiler/compilerdemos
+	/Applications/MATLAB_R2015b.app/toolbox/compiler/java
+	/Applications/MATLAB_R2015b.app/toolbox/compiler_sdk
+	/Applications/MATLAB_R2015b.app/toolbox/compiler_sdk/java
+	/Applications/MATLAB_R2015b.app/toolbox/matlab/configtools
+	/Applications/MATLAB_R2015b.app/toolbox/matlab/connector/connector
+	/Applications/MATLAB_R2015b.app/toolbox/control/control
+	/Applications/MATLAB_R2015b.app/toolbox/control/ctrlguis
+	/Applications/MATLAB_R2015b.app/toolbox/control/ctrlobsolete
+	/Applications/MATLAB_R2015b.app/toolbox/control/ctrlutil
+	/Applications/MATLAB_R2015b.app/toolbox/control/ctrldemos
+	/Applications/MATLAB_R2015b.app/help/toolbox/control/examples
+	/Applications/MATLAB_R2015b.app/toolbox/curvefit/curvefit
+	/Applications/MATLAB_R2015b.app/toolbox/curvefit/splines
+	/Applications/MATLAB_R2015b.app/toolbox/curvefit/cftoolgui
+	/Applications/MATLAB_R2015b.app/toolbox/curvefit/sftoolgui
+	/Applications/MATLAB_R2015b.app/toolbox/curvefit/curvefitdemos
+	/Applications/MATLAB_R2015b.app/toolbox/database/database
+	/Applications/MATLAB_R2015b.app/toolbox/database/vqb
+	/Applications/MATLAB_R2015b.app/toolbox/database/dbdemos
+	/Applications/MATLAB_R2015b.app/toolbox/datafeed/datafeed
+	/Applications/MATLAB_R2015b.app/toolbox/datafeed/datafeeddemos
+	/Applications/MATLAB_R2015b.app/toolbox/datafeed/dfgui
+	/Applications/MATLAB_R2015b.app/toolbox/distcomp
+	/Applications/MATLAB_R2015b.app/toolbox/distcomp/distcomp
+	/Applications/MATLAB_R2015b.app/toolbox/distcomp/user
+	/Applications/MATLAB_R2015b.app/toolbox/distcomp/mpi
+	/Applications/MATLAB_R2015b.app/toolbox/distcomp/parallel
+	/Applications/MATLAB_R2015b.app/toolbox/distcomp/parallel/util
+	/Applications/MATLAB_R2015b.app/toolbox/distcomp/lang
+	/Applications/MATLAB_R2015b.app/toolbox/distcomp/cluster
+	/Applications/MATLAB_R2015b.app/toolbox/distcomp/gpu
+	/Applications/MATLAB_R2015b.app/toolbox/distcomp/array
+	/Applications/MATLAB_R2015b.app/toolbox/distcomp/pctdemos
+	/Applications/MATLAB_R2015b.app/toolbox/distcomp/worker
+	/Applications/MATLAB_R2015b.app/toolbox/qualkits/do
+	/Applications/MATLAB_R2015b.app/toolbox/shared/dastudio/dpvu/dpvu
+	/Applications/MATLAB_R2015b.app/toolbox/shared/dastudio/dpvu/dpvu/metamodel
+	/Applications/MATLAB_R2015b.app/toolbox/shared/dastudio/dpvu/dpvu/actions
+	/Applications/MATLAB_R2015b.app/toolbox/dsp/dsp
+	/Applications/MATLAB_R2015b.app/toolbox/dsp/dsputilities
+	/Applications/MATLAB_R2015b.app/toolbox/dsp/dsputilities/dspinit
+	/Applications/MATLAB_R2015b.app/toolbox/dsp/dsputilities/dspmex
+	/Applications/MATLAB_R2015b.app/toolbox/dsp/dsp/compiled
+	/Applications/MATLAB_R2015b.app/toolbox/dsp/dspdemos
+	/Applications/MATLAB_R2015b.app/toolbox/dsp/dspdeployabledemos
+	/Applications/MATLAB_R2015b.app/help/toolbox/dsp/examples
+	/Applications/MATLAB_R2015b.app/toolbox/shared/dsp/simulink/dsp
+	/Applications/MATLAB_R2015b.app/toolbox/dsp/templates
+	/Applications/MATLAB_R2015b.app/toolbox/shared/dsp/visionhdl/simulink/dsp
+	/Applications/MATLAB_R2015b.app/toolbox/rtw/targets/ecoder
+	/Applications/MATLAB_R2015b.app/toolbox/rtw/targets/mpt
+	/Applications/MATLAB_R2015b.app/toolbox/rtw/targets/mpt/mpt
+	/Applications/MATLAB_R2015b.app/toolbox/rtw/targets/mpt/user_specific
+	/Applications/MATLAB_R2015b.app/toolbox/coder/embeddedcoder
+	/Applications/MATLAB_R2015b.app/toolbox/rtw/targets/ecoder/ecoderdemos/dataclasses
+	/Applications/MATLAB_R2015b.app/toolbox/rtw/targets/ecoder/ecoderdemos
+	/Applications/MATLAB_R2015b.app/toolbox/econ/econ
+	/Applications/MATLAB_R2015b.app/toolbox/econ/econdemos
+	/Applications/MATLAB_R2015b.app/toolbox/coder/embeddedcoder_templates
+	/Applications/MATLAB_R2015b.app/toolbox/eml/eml
+	/Applications/MATLAB_R2015b.app/toolbox/matlab/external/engines/engine_api
+	/Applications/MATLAB_R2015b.app/toolbox/dsp/filterdesign
+	/Applications/MATLAB_R2015b.app/toolbox/finance/finance
+	/Applications/MATLAB_R2015b.app/toolbox/finance/calendar
+	/Applications/MATLAB_R2015b.app/toolbox/finance/finsupport
+	/Applications/MATLAB_R2015b.app/toolbox/finance/ftseries
+	/Applications/MATLAB_R2015b.app/toolbox/finance/findemos
+	/Applications/MATLAB_R2015b.app/toolbox/fininst/fininst
+	/Applications/MATLAB_R2015b.app/toolbox/fininst/fininstdemos
+	/Applications/MATLAB_R2015b.app/toolbox/fixedpoint/fidemos
+	/Applications/MATLAB_R2015b.app/toolbox/fixedpoint/fixedpoint
+	/Applications/MATLAB_R2015b.app/toolbox/fixedpoint/fixedpointconverter
+	/Applications/MATLAB_R2015b.app/toolbox/fixedpoint/fixedpointtool
+	/Applications/MATLAB_R2015b.app/toolbox/fixpoint
+	/Applications/MATLAB_R2015b.app/toolbox/fixpoint/fpca
+	/Applications/MATLAB_R2015b.app/toolbox/simulink/fixedandfloat/fxpdemos
+	/Applications/MATLAB_R2015b.app/toolbox/coder/float2fixed
+	/Applications/MATLAB_R2015b.app/toolbox/coder/float2fixed/dmm_emlauthoring
+	/Applications/MATLAB_R2015b.app/toolbox/fuzzy/fuzzy
+	/Applications/MATLAB_R2015b.app/toolbox/fuzzy/fuzzyutil
+	/Applications/MATLAB_R2015b.app/toolbox/fuzzy/fuzdemos
+	/Applications/MATLAB_R2015b.app/toolbox/geoweb/geoweb
+	/Applications/MATLAB_R2015b.app/toolbox/globaloptim
+	/Applications/MATLAB_R2015b.app/toolbox/globaloptim/globaloptim
+	/Applications/MATLAB_R2015b.app/toolbox/globaloptim/globaloptimdemos
+	/Applications/MATLAB_R2015b.app/toolbox/shared/glue
+	/Applications/MATLAB_R2015b.app/toolbox/shared/glue/studio
+	/Applications/MATLAB_R2015b.app/toolbox/hdlcoder/hdlcoder
+	/Applications/MATLAB_R2015b.app/toolbox/hdlcoder/hdlcoder/hdlwa
+	/Applications/MATLAB_R2015b.app/toolbox/hdlcoder/hdlcoderdemos
+	/Applications/MATLAB_R2015b.app/toolbox/hdlcoder/hdlcoderdemos/matlabhdlcoderdemos
+	/Applications/MATLAB_R2015b.app/toolbox/hdlcoder/hdlcommon
+	/Applications/MATLAB_R2015b.app/toolbox/hdlcoder/hdlcommon/modelcheckeradvisor
+	/Applications/MATLAB_R2015b.app/toolbox/hdlfilter/hdlfilter
+	/Applications/MATLAB_R2015b.app/toolbox/hdlfilter/hdlfiltdemos
+	/Applications/MATLAB_R2015b.app/toolbox/hdlcoder/hdllib/ml_lib
+	/Applications/MATLAB_R2015b.app/toolbox/hdlcoder/hdllib/sl_lib
+	/Applications/MATLAB_R2015b.app/toolbox/hdlcoder/hdlslrt
+	/Applications/MATLAB_R2015b.app/toolbox/shared/hadoopserializer
+	/Applications/MATLAB_R2015b.app/toolbox/realtime/realtime/hwconnection
+	/Applications/MATLAB_R2015b.app/toolbox/matlab/supportpackagemanagement
+	/Applications/MATLAB_R2015b.app/toolbox/idelink/extensions/eclipseide
+	/Applications/MATLAB_R2015b.app/toolbox/idelink/extensions/eclipseide/mdlinfo
+	/Applications/MATLAB_R2015b.app/toolbox/idelink/extensions/eclipseide/registry
+	/Applications/MATLAB_R2015b.app/toolbox/idelink/extensions/eclipseide/tfl
+	/Applications/MATLAB_R2015b.app/toolbox/idelink/extensions/ticcs
+	/Applications/MATLAB_R2015b.app/toolbox/idelink/extensions/ticcs/ccsblks
+	/Applications/MATLAB_R2015b.app/toolbox/idelink/extensions/ticcs/ccslinkblks
+	/Applications/MATLAB_R2015b.app/toolbox/idelink/extensions/ticcs/ccslinkblks/rtdxsimblks
+	/Applications/MATLAB_R2015b.app/toolbox/idelink/extensions/ticcs/mdlinfo
+	/Applications/MATLAB_R2015b.app/toolbox/idelink/extensions/ticcs/tfl
+	/Applications/MATLAB_R2015b.app/toolbox/idelink/extensions/ticcs/util
+	/Applications/MATLAB_R2015b.app/toolbox/idelink/extensions/ticcs/rtw
+	/Applications/MATLAB_R2015b.app/toolbox/idelink/extensions/ticcs/envChecker
+	/Applications/MATLAB_R2015b.app/toolbox/idelink/foundation/pjtgenerator
+	/Applications/MATLAB_R2015b.app/toolbox/idelink/foundation/pjtgenerator/rtw
+	/Applications/MATLAB_R2015b.app/toolbox/idelink/foundation/pjtgenerator/tgtpref2
+	/Applications/MATLAB_R2015b.app/toolbox/idelink/foundation/pjtgenerator/profiler
+	/Applications/MATLAB_R2015b.app/toolbox/idelink/foundation/pjtgenerator/mdlinfo
+	/Applications/MATLAB_R2015b.app/toolbox/idelink/foundation/pjtgenerator/blks
+	/Applications/MATLAB_R2015b.app/toolbox/idelink/foundation/pjtgenerator/blks/masks
+	/Applications/MATLAB_R2015b.app/toolbox/idelink/foundation/pjtgenerator/blks/tlc_c
+	/Applications/MATLAB_R2015b.app/toolbox/idelink/foundation
+	/Applications/MATLAB_R2015b.app/toolbox/idelink/foundation/util
+	/Applications/MATLAB_R2015b.app/toolbox/idelink/foundation/errorhandler
+	/Applications/MATLAB_R2015b.app/toolbox/idelink/foundation/xmakefile
+	/Applications/MATLAB_R2015b.app/toolbox/idelink/foundation/hookpoints
+	/Applications/MATLAB_R2015b.app/toolbox/idelink/idelinkdemos
+	/Applications/MATLAB_R2015b.app/toolbox/idelink/extensions/ticcs/ccsdemos
+	/Applications/MATLAB_R2015b.app/toolbox/idelink/extensions/ticcs/ccsdemos/util
+	/Applications/MATLAB_R2015b.app/toolbox/ident/ident
+	/Applications/MATLAB_R2015b.app/toolbox/ident/nlident
+	/Applications/MATLAB_R2015b.app/toolbox/ident/idobsolete
+	/Applications/MATLAB_R2015b.app/toolbox/ident/idguis
+	/Applications/MATLAB_R2015b.app/toolbox/ident/idutils
+	/Applications/MATLAB_R2015b.app/toolbox/ident/idrecursive
+	/Applications/MATLAB_R2015b.app/toolbox/ident/idhelp
+	/Applications/MATLAB_R2015b.app/toolbox/ident/iddemos
+	/Applications/MATLAB_R2015b.app/toolbox/ident/iddemos/examples
+	/Applications/MATLAB_R2015b.app/toolbox/qualkits/iec
+	/Applications/MATLAB_R2015b.app/toolbox/images/colorspaces
+	/Applications/MATLAB_R2015b.app/toolbox/images/images
+	/Applications/MATLAB_R2015b.app/toolbox/images/imdata
+	/Applications/MATLAB_R2015b.app/toolbox/images/imuitools
+	/Applications/MATLAB_R2015b.app/toolbox/images/iptformats
+	/Applications/MATLAB_R2015b.app/toolbox/images/iptutils
+	/Applications/MATLAB_R2015b.app/toolbox/images/imdemos
+	/Applications/MATLAB_R2015b.app/toolbox/matlab/imagesci
+	/Applications/MATLAB_R2015b.app/toolbox/imaq/imaq
+	/Applications/MATLAB_R2015b.app/toolbox/imaq/imaqdemos
+	/Applications/MATLAB_R2015b.app/toolbox/imaq/imaqblks/imaqblks
+	/Applications/MATLAB_R2015b.app/toolbox/imaq/imaqblks/imaqmex
+	/Applications/MATLAB_R2015b.app/toolbox/imaq/imaqblks/imaqmasks
+	/Applications/MATLAB_R2015b.app/toolbox/instrument/instrument
+	/Applications/MATLAB_R2015b.app/toolbox/instrument/instrumentblks/instrumentblks
+	/Applications/MATLAB_R2015b.app/toolbox/instrument/instrumentblks/instrumentmex
+	/Applications/MATLAB_R2015b.app/toolbox/instrument/instrumentblks/instrumentmasks
+	/Applications/MATLAB_R2015b.app/toolbox/instrument/instrumentdemos
+	/Applications/MATLAB_R2015b.app/toolbox/shared/instrument
+	/Applications/MATLAB_R2015b.app/toolbox/javabuilder/javabuilder
+	/Applications/MATLAB_R2015b.app/toolbox/javabuilder/javabuilderdemos
+	/Applications/MATLAB_R2015b.app/toolbox/lte/lte
+	/Applications/MATLAB_R2015b.app/toolbox/lte/lteobsolete
+	/Applications/MATLAB_R2015b.app/help/toolbox/lte/examples
+	/Applications/MATLAB_R2015b.app/toolbox/lte/lteexamples
+	/Applications/MATLAB_R2015b.app/toolbox/shared/m3i
+	/Applications/MATLAB_R2015b.app/toolbox/map/map
+	/Applications/MATLAB_R2015b.app/toolbox/map/mapgeodesy
+	/Applications/MATLAB_R2015b.app/toolbox/map/mapdisp
+	/Applications/MATLAB_R2015b.app/toolbox/map/mapformats
+	/Applications/MATLAB_R2015b.app/toolbox/map/mapproj
+	/Applications/MATLAB_R2015b.app/toolbox/map/mapdata
+	/Applications/MATLAB_R2015b.app/toolbox/map/mapdata/sdts
+	/Applications/MATLAB_R2015b.app/toolbox/map/mapdemos
+	/Applications/MATLAB_R2015b.app/toolbox/shared/mldatx
+	/Applications/MATLAB_R2015b.app/toolbox/compiler/mlhadoop
+	/Applications/MATLAB_R2015b.app/toolbox/mpc/mpc
+	/Applications/MATLAB_R2015b.app/toolbox/mpc/mpcguis
+	/Applications/MATLAB_R2015b.app/toolbox/mpc/mpcobsolete
+	/Applications/MATLAB_R2015b.app/toolbox/mpc/mpcutils
+	/Applications/MATLAB_R2015b.app/toolbox/mpc/mpcdemos
+	/Applications/MATLAB_R2015b.app/toolbox/matlab/networklib
+	/Applications/MATLAB_R2015b.app/toolbox/nnet
+	/Applications/MATLAB_R2015b.app/toolbox/nnet/nncontrol
+	/Applications/MATLAB_R2015b.app/toolbox/nnet/nnet
+	/Applications/MATLAB_R2015b.app/toolbox/nnet/nnet/nnadapt
+	/Applications/MATLAB_R2015b.app/toolbox/nnet/nnet/nndatafun
+	/Applications/MATLAB_R2015b.app/toolbox/nnet/nnet/nnderivative
+	/Applications/MATLAB_R2015b.app/toolbox/nnet/nnet/nndistance
+	/Applications/MATLAB_R2015b.app/toolbox/nnet/nnet/nndivision
+	/Applications/MATLAB_R2015b.app/toolbox/nnet/nnet/nninitlayer
+	/Applications/MATLAB_R2015b.app/toolbox/nnet/nnet/nninitnetwork
+	/Applications/MATLAB_R2015b.app/toolbox/nnet/nnet/nninitweight
+	/Applications/MATLAB_R2015b.app/toolbox/nnet/nnet/nnlearn
+	/Applications/MATLAB_R2015b.app/toolbox/nnet/nnet/nnnetfun
+	/Applications/MATLAB_R2015b.app/toolbox/nnet/nnet/nnnetinput
+	/Applications/MATLAB_R2015b.app/toolbox/nnet/nnet/nnnetwork
+	/Applications/MATLAB_R2015b.app/toolbox/nnet/nnet/nnperformance
+	/Applications/MATLAB_R2015b.app/toolbox/nnet/nnet/nnplot
+	/Applications/MATLAB_R2015b.app/toolbox/nnet/nnet/nnprocess
+	/Applications/MATLAB_R2015b.app/toolbox/nnet/nnet/nnsearch
+	/Applications/MATLAB_R2015b.app/toolbox/nnet/nnet/nntopology
+	/Applications/MATLAB_R2015b.app/toolbox/nnet/nnet/nntrain
+	/Applications/MATLAB_R2015b.app/toolbox/nnet/nnet/nntransfer
+	/Applications/MATLAB_R2015b.app/toolbox/nnet/nnet/nnweight
+	/Applications/MATLAB_R2015b.app/toolbox/nnet/nnguis
+	/Applications/MATLAB_R2015b.app/toolbox/nnet/nnobsolete
+	/Applications/MATLAB_R2015b.app/toolbox/nnet/nnutils
+	/Applications/MATLAB_R2015b.app/toolbox/nnet/nndemos
+	/Applications/MATLAB_R2015b.app/toolbox/nnet/nndemos/nndatasets
+	/Applications/MATLAB_R2015b.app/toolbox/optim/optim
+	/Applications/MATLAB_R2015b.app/toolbox/optim
+	/Applications/MATLAB_R2015b.app/toolbox/optim/optimdemos
+	/Applications/MATLAB_R2015b.app/toolbox/distcomp/mapreduce
+	/Applications/MATLAB_R2015b.app/toolbox/pde
+	/Applications/MATLAB_R2015b.app/toolbox/pde/pdedemos
+	/Applications/MATLAB_R2015b.app/toolbox/phased/phased
+	/Applications/MATLAB_R2015b.app/toolbox/phased/phasedapps
+	/Applications/MATLAB_R2015b.app/toolbox/phased/phaseddemos
+	/Applications/MATLAB_R2015b.app/toolbox/physmod/common/data/mli/m
+	/Applications/MATLAB_R2015b.app/toolbox/physmod/common/dataservices/core/m
+	/Applications/MATLAB_R2015b.app/toolbox/physmod/common/dataservices/gui/m
+	/Applications/MATLAB_R2015b.app/toolbox/physmod/common/dataservices/mli/m
+	/Applications/MATLAB_R2015b.app/toolbox/physmod/common/dataservices/sli/m
+	/Applications/MATLAB_R2015b.app/toolbox/physmod/common/external/library/m
+	/Applications/MATLAB_R2015b.app/toolbox/physmod/common/external/mli/m
+	/Applications/MATLAB_R2015b.app/toolbox/physmod/common/foundation/mli/m
+	/Applications/MATLAB_R2015b.app/toolbox/physmod/common/gl/mli/m
+	/Applications/MATLAB_R2015b.app/toolbox/physmod/common/gl/sli/m
+	/Applications/MATLAB_R2015b.app/toolbox/physmod/common/units/mli/m
+	/Applications/MATLAB_R2015b.app/toolbox/physmod/drive/drive
+	/Applications/MATLAB_R2015b.app/toolbox/physmod/drive/drivedemos
+	/Applications/MATLAB_R2015b.app/toolbox/physmod/elec/elec
+	/Applications/MATLAB_R2015b.app/toolbox/physmod/elec/advisor/m
+	/Applications/MATLAB_R2015b.app/toolbox/physmod/elec/elecdemos
+	/Applications/MATLAB_R2015b.app/toolbox/physmod/equation_language/equation_language
+	/Applications/MATLAB_R2015b.app/toolbox/physmod/gui/gfx/m
+	/Applications/MATLAB_R2015b.app/toolbox/physmod/mech/mech
+	/Applications/MATLAB_R2015b.app/toolbox/physmod/mech/importer
+	/Applications/MATLAB_R2015b.app/toolbox/physmod/mech/mechdemos
+	/Applications/MATLAB_R2015b.app/toolbox/physmod/ne_sli/ne_sli
+	/Applications/MATLAB_R2015b.app/toolbox/physmod/network_engine/network_engine
+	/Applications/MATLAB_R2015b.app/toolbox/physmod/pe/advisor/m
+	/Applications/MATLAB_R2015b.app/toolbox/physmod/pe/pedemos
+	/Applications/MATLAB_R2015b.app/toolbox/physmod/pe/library/m
+	/Applications/MATLAB_R2015b.app/toolbox/physmod/pe/utils/m
+	/Applications/MATLAB_R2015b.app/toolbox/physmod/pm_sli/pm_sli
+	/Applications/MATLAB_R2015b.app/toolbox/physmod/pm_visimpl/pm_visimpl
+	/Applications/MATLAB_R2015b.app/toolbox/physmod/powersys/powerdemo
+	/Applications/MATLAB_R2015b.app/toolbox/physmod/powersys/powerdemo/meascontrol
+	/Applications/MATLAB_R2015b.app/toolbox/physmod/powersys/powerdemo/power_utility
+	/Applications/MATLAB_R2015b.app/toolbox/physmod/powersys/DR/DR
+	/Applications/MATLAB_R2015b.app/toolbox/physmod/powersys/DR/DRdemo
+	/Applications/MATLAB_R2015b.app/toolbox/physmod/powersys/drives/drives
+	/Applications/MATLAB_R2015b.app/toolbox/physmod/powersys/drives/drivesdemo
+	/Applications/MATLAB_R2015b.app/toolbox/physmod/powersys/facts/facts
+	/Applications/MATLAB_R2015b.app/toolbox/physmod/powersys/facts/factsdemo
+	/Applications/MATLAB_R2015b.app/toolbox/physmod/powersys/library
+	/Applications/MATLAB_R2015b.app/toolbox/physmod/powersys/powerdemo/machines
+	/Applications/MATLAB_R2015b.app/toolbox/physmod/powersys/powerdemo/power_electronics
+	/Applications/MATLAB_R2015b.app/toolbox/physmod/powersys/powersys
+	/Applications/MATLAB_R2015b.app/toolbox/physmod/powersys/powerdemo/simple
+	/Applications/MATLAB_R2015b.app/toolbox/physmod/powersys/templates
+	/Applications/MATLAB_R2015b.app/toolbox/physmod/sdl/sdl
+	/Applications/MATLAB_R2015b.app/toolbox/physmod/sdl/classic
+	/Applications/MATLAB_R2015b.app/toolbox/physmod/sdl/advisor/m
+	/Applications/MATLAB_R2015b.app/toolbox/physmod/sdl/sdldemos
+	/Applications/MATLAB_R2015b.app/toolbox/physmod/sh/sh
+	/Applications/MATLAB_R2015b.app/toolbox/physmod/sh/advisor/m
+	/Applications/MATLAB_R2015b.app/toolbox/physmod/sh/shdemos
+	/Applications/MATLAB_R2015b.app/toolbox/physmod/simrf/m
+	/Applications/MATLAB_R2015b.app/toolbox/physmod/simscape/advisor/m
+	/Applications/MATLAB_R2015b.app/toolbox/physmod/simscape/compiler/mli/m
+	/Applications/MATLAB_R2015b.app/toolbox/physmod/simscape/compiler/sli/m
+	/Applications/MATLAB_R2015b.app/toolbox/physmod/simscape/simscapedemos
+	/Applications/MATLAB_R2015b.app/toolbox/physmod/simscape/engine/core/m
+	/Applications/MATLAB_R2015b.app/toolbox/physmod/simscape/engine/mli/m
+	/Applications/MATLAB_R2015b.app/toolbox/physmod/simscape/engine/sli/m
+	/Applications/MATLAB_R2015b.app/toolbox/physmod/simscape/foundation/simscape
+	/Applications/MATLAB_R2015b.app/toolbox/physmod/simscape/library/m
+	/Applications/MATLAB_R2015b.app/toolbox/physmod/simscape/simscape/m
+	/Applications/MATLAB_R2015b.app/toolbox/physmod/simscape/templates
+	/Applications/MATLAB_R2015b.app/toolbox/physmod/sm/core/m
+	/Applications/MATLAB_R2015b.app/toolbox/physmod/sm/smdemos
+	/Applications/MATLAB_R2015b.app/toolbox/physmod/sm/smdemos/images
+	/Applications/MATLAB_R2015b.app/toolbox/physmod/sm/smdemos/wing_landing_gear
+	/Applications/MATLAB_R2015b.app/toolbox/physmod/sm/smdemos/wing_landing_gear/images
+	/Applications/MATLAB_R2015b.app/toolbox/physmod/sm/smdemos/cart_double_pendulum
+	/Applications/MATLAB_R2015b.app/toolbox/physmod/sm/smdemos/cart_double_pendulum/images
+	/Applications/MATLAB_R2015b.app/toolbox/physmod/sm/smdemos/stewart_platform
+	/Applications/MATLAB_R2015b.app/toolbox/physmod/sm/smdemos/stewart_platform/images
+	/Applications/MATLAB_R2015b.app/toolbox/physmod/sm/smdemos/double_crank_aiming
+	/Applications/MATLAB_R2015b.app/toolbox/physmod/sm/smdemos/double_crank_aiming/images
+	/Applications/MATLAB_R2015b.app/toolbox/physmod/sm/smdemos/bread_slicer
+	/Applications/MATLAB_R2015b.app/toolbox/physmod/sm/smdemos/bread_slicer/images
+	/Applications/MATLAB_R2015b.app/toolbox/physmod/sm/smdemos/import/stewart_platform
+	/Applications/MATLAB_R2015b.app/toolbox/physmod/sm/smdemos/import/four_bar
+	/Applications/MATLAB_R2015b.app/toolbox/physmod/sm/smdemos/radial_engine
+	/Applications/MATLAB_R2015b.app/toolbox/physmod/sm/smdemos/radial_engine/images
+	/Applications/MATLAB_R2015b.app/toolbox/physmod/sm/smdemos/double_wishbone_suspension
+	/Applications/MATLAB_R2015b.app/toolbox/physmod/sm/smdemos/double_wishbone_suspension/images
+	/Applications/MATLAB_R2015b.app/toolbox/physmod/sm/smdemos/import/robot
+	/Applications/MATLAB_R2015b.app/toolbox/physmod/sm/smdemos/cardan_gear
+	/Applications/MATLAB_R2015b.app/toolbox/physmod/sm/smdemos/cardan_gear/images
+	/Applications/MATLAB_R2015b.app/toolbox/physmod/sm/smdemos/windshield_wiper
+	/Applications/MATLAB_R2015b.app/toolbox/physmod/sm/smdemos/windshield_wiper/images
+	/Applications/MATLAB_R2015b.app/toolbox/physmod/sm/smdemos/backhoe
+	/Applications/MATLAB_R2015b.app/toolbox/physmod/sm/smdemos/robotic_wrist
+	/Applications/MATLAB_R2015b.app/toolbox/physmod/sm/smdemos/carousel
+	/Applications/MATLAB_R2015b.app/toolbox/physmod/sm/smdemos/welding_robot
+	/Applications/MATLAB_R2015b.app/toolbox/physmod/sm/smdemos/import/robot_stepfiles
+	/Applications/MATLAB_R2015b.app/toolbox/physmod/sm/smdemos/potters_wheel
+	/Applications/MATLAB_R2015b.app/toolbox/physmod/sm/smdemos/linear_actuator
+	/Applications/MATLAB_R2015b.app/toolbox/physmod/sm/smdemos/pto_shaft
+	/Applications/MATLAB_R2015b.app/toolbox/physmod/sm/smdemos/cam_flapping_wing
+	/Applications/MATLAB_R2015b.app/toolbox/physmod/sm/docexamples
+	/Applications/MATLAB_R2015b.app/toolbox/physmod/sm/foundation/mech
+	/Applications/MATLAB_R2015b.app/toolbox/physmod/sm/gui/m
+	/Applications/MATLAB_R2015b.app/toolbox/physmod/sm/import/m
+	/Applications/MATLAB_R2015b.app/toolbox/physmod/sm/local/m
+	/Applications/MATLAB_R2015b.app/toolbox/physmod/sm/sli/m
+	/Applications/MATLAB_R2015b.app/toolbox/physmod/sm/sm/m
+	/Applications/MATLAB_R2015b.app/toolbox/physmod/sm/ssci/m
+	/Applications/MATLAB_R2015b.app/toolbox/physmod/sm/templates
+	/Applications/MATLAB_R2015b.app/toolbox/physmod/sps/sps
+	/Applications/MATLAB_R2015b.app/toolbox/polyspace/psbugfinder
+	/Applications/MATLAB_R2015b.app/toolbox/polyspace/pscodeprover
+	/Applications/MATLAB_R2015b.app/toolbox/polyspace/pscore/pscore
+	/Applications/MATLAB_R2015b.app/toolbox/polyspace/psdistcomp/psdistcomp
+	/Applications/MATLAB_R2015b.app/polyspace/toolbox/pslink/pslink
+	/Applications/MATLAB_R2015b.app/polyspace/toolbox/pslink/pslinkdemos/psdemo_model_link_sl
+	/Applications/MATLAB_R2015b.app/polyspace/toolbox/psrptgen/psrptgen
+	/Applications/MATLAB_R2015b.app/toolbox/shared/codeinstrum/codeinstrum
+	/Applications/MATLAB_R2015b.app/toolbox/shared/cxxfe_mi/cxxfe_mi
+	/Applications/MATLAB_R2015b.app/toolbox/shared/polyspace
+	/Applications/MATLAB_R2015b.app/toolbox/matlab/external/interfaces/python
+	/Applications/MATLAB_R2015b.app/toolbox/matlab/external/engines/python
+	/Applications/MATLAB_R2015b.app/toolbox/qualkits/common
+	/Applications/MATLAB_R2015b.app/toolbox/realtime
+	/Applications/MATLAB_R2015b.app/toolbox/realtime/realtime
+	/Applications/MATLAB_R2015b.app/toolbox/realtime/realtime/rtw
+	/Applications/MATLAB_R2015b.app/toolbox/rf/rf
+	/Applications/MATLAB_R2015b.app/toolbox/rf/rfnetparamfiles
+	/Applications/MATLAB_R2015b.app/toolbox/rf/rftool
+	/Applications/MATLAB_R2015b.app/toolbox/rf/rfdemos
+	/Applications/MATLAB_R2015b.app/toolbox/rfblks/rfblks
+	/Applications/MATLAB_R2015b.app/toolbox/rfblks/rfblksmasks
+	/Applications/MATLAB_R2015b.app/toolbox/rfblks/rfblksmex
+	/Applications/MATLAB_R2015b.app/toolbox/rfblks/rfblksdemos
+	/Applications/MATLAB_R2015b.app/toolbox/robotics/robotics
+	/Applications/MATLAB_R2015b.app/toolbox/robotics/ros
+	/Applications/MATLAB_R2015b.app/toolbox/robotics/robotalgs
+	/Applications/MATLAB_R2015b.app/toolbox/robotics/robotcore
+	/Applications/MATLAB_R2015b.app/toolbox/robotics/robotsimulink
+	/Applications/MATLAB_R2015b.app/toolbox/robotics/robotsimulink/robotslros
+	/Applications/MATLAB_R2015b.app/toolbox/robotics/robotsimulink/robotslros/registry
+	/Applications/MATLAB_R2015b.app/toolbox/robotics/robotexamples
+	/Applications/MATLAB_R2015b.app/toolbox/robotics/robotexamples/ros
+	/Applications/MATLAB_R2015b.app/toolbox/robotics/robotexamples/ros/helpers
+	/Applications/MATLAB_R2015b.app/toolbox/robotics/robotexamples/robotalgs
+	/Applications/MATLAB_R2015b.app/toolbox/robotics/robotexamples/robotalgs/helpers
+	/Applications/MATLAB_R2015b.app/toolbox/robotics/robotexamples/robotsimulink
+	/Applications/MATLAB_R2015b.app/toolbox/robotics/robotexamples/robotsimulink/helpers
+	/Applications/MATLAB_R2015b.app/toolbox/robust/robust
+	/Applications/MATLAB_R2015b.app/toolbox/robust/rctlmi
+	/Applications/MATLAB_R2015b.app/toolbox/robust/rctutil
+	/Applications/MATLAB_R2015b.app/toolbox/robust/rctguis
+	/Applications/MATLAB_R2015b.app/toolbox/robust/rctobsolete/robust
+	/Applications/MATLAB_R2015b.app/toolbox/robust/rctobsolete/lmi
+	/Applications/MATLAB_R2015b.app/toolbox/robust/rctobsolete/mutools/commands
+	/Applications/MATLAB_R2015b.app/toolbox/robust/rctobsolete/mutools/subs
+	/Applications/MATLAB_R2015b.app/toolbox/robust/rctdemos
+	/Applications/MATLAB_R2015b.app/help/toolbox/robust/examples
+	/Applications/MATLAB_R2015b.app/toolbox/rptgen/rptgen
+	/Applications/MATLAB_R2015b.app/toolbox/rptgen/rptgendemos
+	/Applications/MATLAB_R2015b.app/toolbox/rptgen/rptgendemos/domapi
+	/Applications/MATLAB_R2015b.app/toolbox/rptgen/rptgendemos/pptapi
+	/Applications/MATLAB_R2015b.app/toolbox/rptgen/xmlcomp
+	/Applications/MATLAB_R2015b.app/toolbox/rptgen/xmlcomp/demos
+	/Applications/MATLAB_R2015b.app/toolbox/rptgenext/rptgenext
+	/Applications/MATLAB_R2015b.app/toolbox/rptgenext/rptgenextdemos
+	/Applications/MATLAB_R2015b.app/toolbox/rptgenext/rptgenextdemos/flutter_suppression
+	/Applications/MATLAB_R2015b.app/toolbox/rptgenext/rptgenextdemos/sdd
+	/Applications/MATLAB_R2015b.app/toolbox/rptgenext/slxmlcomp
+	/Applications/MATLAB_R2015b.app/toolbox/rptgenext/rptgenextdemos/slxmlcomp
+	/Applications/MATLAB_R2015b.app/toolbox/simulink/blocks/sb2sl
+	/Applications/MATLAB_R2015b.app/toolbox/shared/advisor
+	/Applications/MATLAB_R2015b.app/toolbox/shared/asynciolib
+	/Applications/MATLAB_R2015b.app/toolbox/shared/can
+	/Applications/MATLAB_R2015b.app/toolbox/shared/can/canblks
+	/Applications/MATLAB_R2015b.app/toolbox/shared/can/canmasks
+	/Applications/MATLAB_R2015b.app/toolbox/shared/can/canmex
+	/Applications/MATLAB_R2015b.app/toolbox/shared/cgir_fe
+	/Applications/MATLAB_R2015b.app/toolbox/shared/cgxe/cgxe
+	/Applications/MATLAB_R2015b.app/toolbox/shared/coder/coder
+	/Applications/MATLAB_R2015b.app/toolbox/shared/configset
+	/Applications/MATLAB_R2015b.app/toolbox/shared/controllib/engine
+	/Applications/MATLAB_R2015b.app/toolbox/shared/controllib/engine/numerics
+	/Applications/MATLAB_R2015b.app/toolbox/shared/controllib/engine/options
+	/Applications/MATLAB_R2015b.app/toolbox/shared/controllib/engine/optim
+	/Applications/MATLAB_R2015b.app/toolbox/shared/controllib/engine/blocks
+	/Applications/MATLAB_R2015b.app/toolbox/shared/controllib/general
+	/Applications/MATLAB_R2015b.app/toolbox/shared/controllib/graphics
+	/Applications/MATLAB_R2015b.app/toolbox/shared/controllib/graphics/utils
+	/Applications/MATLAB_R2015b.app/toolbox/shared/controllib/graphics/plotoptions
+	/Applications/MATLAB_R2015b.app/toolbox/shared/controllib/requirements
+	/Applications/MATLAB_R2015b.app/toolbox/shared/curvefitlib
+	/Applications/MATLAB_R2015b.app/toolbox/shared/dastudio
+	/Applications/MATLAB_R2015b.app/toolbox/shared/dspblks/dspblks
+	/Applications/MATLAB_R2015b.app/toolbox/shared/dspblks/dspmex
+	/Applications/MATLAB_R2015b.app/toolbox/shared/dsp/dialog
+	/Applications/MATLAB_R2015b.app/toolbox/shared/dsp/hdl
+	/Applications/MATLAB_R2015b.app/toolbox/shared/dsp/vision/matlab/utilities
+	/Applications/MATLAB_R2015b.app/toolbox/shared/dsp/vision/simulink/utilities
+	/Applications/MATLAB_R2015b.app/toolbox/shared/dsp/vision/matlab/utilities/mex
+	/Applications/MATLAB_R2015b.app/toolbox/shared/dsp/vision/simulink/utilities/mex
+	/Applications/MATLAB_R2015b.app/toolbox/shared/dsp/vision/matlab/utilities/init
+	/Applications/MATLAB_R2015b.app/toolbox/shared/dsp/vision/matlab/vision
+	/Applications/MATLAB_R2015b.app/toolbox/shared/dsp/vision/simulink/vision
+	/Applications/MATLAB_R2015b.app/toolbox/shared/eda/board
+	/Applications/MATLAB_R2015b.app/toolbox/shared/eda/edagraph
+	/Applications/MATLAB_R2015b.app/toolbox/shared/eda/fil
+	/Applications/MATLAB_R2015b.app/toolbox/shared/eda/fil/filmapi
+	/Applications/MATLAB_R2015b.app/toolbox/shared/eda/fpgaautomation
+	/Applications/MATLAB_R2015b.app/toolbox/shared/eda/fpgaautomation/obsolete
+	/Applications/MATLAB_R2015b.app/toolbox/shared/eda/fpgabase
+	/Applications/MATLAB_R2015b.app/toolbox/shared/eda/hdlparser
+	/Applications/MATLAB_R2015b.app/toolbox/shared/filterdesignlib
+	/Applications/MATLAB_R2015b.app/toolbox/shared/hdlshared
+	/Applications/MATLAB_R2015b.app/toolbox/shared/hdlshared/hdlshared_gui
+	/Applications/MATLAB_R2015b.app/toolbox/shared/hwconnectinstaller
+	/Applications/MATLAB_R2015b.app/toolbox/shared/hwconnectinstaller/common
+	/Applications/MATLAB_R2015b.app/toolbox/shared/imageslib
+	/Applications/MATLAB_R2015b.app/toolbox/shared/imaqlib
+	/Applications/MATLAB_R2015b.app/toolbox/shared/mapgeodesy
+	/Applications/MATLAB_R2015b.app/toolbox/shared/maputils
+	/Applications/MATLAB_R2015b.app/toolbox/shared/measure
+	/Applications/MATLAB_R2015b.app/toolbox/shared/mlreportgen/dom
+	/Applications/MATLAB_R2015b.app/toolbox/shared/mlreportgen/dom/dom
+	/Applications/MATLAB_R2015b.app/toolbox/shared/mlreportgen/dom/dom/help
+	/Applications/MATLAB_R2015b.app/toolbox/shared/mlreportgen/ppt
+	/Applications/MATLAB_R2015b.app/toolbox/shared/mlreportgen/ppt/ppt
+	/Applications/MATLAB_R2015b.app/toolbox/shared/mlreportgen/ppt/ppt/help
+	/Applications/MATLAB_R2015b.app/toolbox/shared/multimedia
+	/Applications/MATLAB_R2015b.app/toolbox/shared/networklib
+	/Applications/MATLAB_R2015b.app/toolbox/shared/optimlib
+	/Applications/MATLAB_R2015b.app/toolbox/shared/pdelib
+	/Applications/MATLAB_R2015b.app/toolbox/shared/reqmgt
+	/Applications/MATLAB_R2015b.app/toolbox/shared/reqmgt/mmutils
+	/Applications/MATLAB_R2015b.app/toolbox/slvnv/reqmgt
+	/Applications/MATLAB_R2015b.app/toolbox/shared/rflib
+	/Applications/MATLAB_R2015b.app/toolbox/shared/rptgen
+	/Applications/MATLAB_R2015b.app/toolbox/shared/sdi
+	/Applications/MATLAB_R2015b.app/toolbox/shared/sigbldr
+	/Applications/MATLAB_R2015b.app/toolbox/shared/siglib
+	/Applications/MATLAB_R2015b.app/toolbox/shared/simulink/sysarch/sysarch
+	/Applications/MATLAB_R2015b.app/toolbox/shared/sl_async_streaming
+	/Applications/MATLAB_R2015b.app/toolbox/shared/sl_web_widgets
+	/Applications/MATLAB_R2015b.app/toolbox/shared/slci/slci
+	/Applications/MATLAB_R2015b.app/toolbox/shared/slcontrollib
+	/Applications/MATLAB_R2015b.app/toolbox/shared/sl_coverage_configset
+	/Applications/MATLAB_R2015b.app/toolbox/shared/sldv
+	/Applications/MATLAB_R2015b.app/toolbox/shared/sldv_sfcn/sldv_sfcn
+	/Applications/MATLAB_R2015b.app/toolbox/shared/slreportgen/reportexplorer
+	/Applications/MATLAB_R2015b.app/toolbox/shared/slvnv
+	/Applications/MATLAB_R2015b.app/toolbox/slvnv/slvnv
+	/Applications/MATLAB_R2015b.app/toolbox/shared/spcuilib
+	/Applications/MATLAB_R2015b.app/toolbox/shared/statslib
+	/Applications/MATLAB_R2015b.app/toolbox/shared/statslib/sensitivity
+	/Applications/MATLAB_R2015b.app/toolbox/shared/system/coder
+	/Applications/MATLAB_R2015b.app/toolbox/shared/system/coreblocks
+	/Applications/MATLAB_R2015b.app/toolbox/shared/system/preferences
+	/Applications/MATLAB_R2015b.app/toolbox/shared/system/sfun
+	/Applications/MATLAB_R2015b.app/toolbox/shared/system/simulink
+	/Applications/MATLAB_R2015b.app/toolbox/shared/testconsole
+	/Applications/MATLAB_R2015b.app/toolbox/shared/testmeaslib/general
+	/Applications/MATLAB_R2015b.app/toolbox/shared/testmeaslib/graphics
+	/Applications/MATLAB_R2015b.app/toolbox/shared/testmeaslib/simulink
+	/Applications/MATLAB_R2015b.app/toolbox/signal/signal
+	/Applications/MATLAB_R2015b.app/toolbox/signal/sigtools
+	/Applications/MATLAB_R2015b.app/toolbox/signal/sptoolgui
+	/Applications/MATLAB_R2015b.app/toolbox/signal/sigdemos
+	/Applications/MATLAB_R2015b.app/toolbox/simbio/simbio
+	/Applications/MATLAB_R2015b.app/toolbox/simbio/simbiodemos
+	/Applications/MATLAB_R2015b.app/toolbox/simevents/simevents
+	/Applications/MATLAB_R2015b.app/toolbox/simevents/simevents/icons
+	/Applications/MATLAB_R2015b.app/toolbox/simevents/examples
+	/Applications/MATLAB_R2015b.app/toolbox/simrf/simrf
+	/Applications/MATLAB_R2015b.app/toolbox/simrf/simrfV2
+	/Applications/MATLAB_R2015b.app/toolbox/simrf/simrfV2masks
+	/Applications/MATLAB_R2015b.app/help/toolbox/simrf/examples
+	/Applications/MATLAB_R2015b.app/toolbox/simrf/simrf_top
+	/Applications/MATLAB_R2015b.app/toolbox/simrf/simrfV2demos
+	/Applications/MATLAB_R2015b.app/toolbox/shared/simulink
+	/Applications/MATLAB_R2015b.app/toolbox/shared/simulation_data_repository
+	/Applications/MATLAB_R2015b.app/toolbox/sl3d/sl3d
+	/Applications/MATLAB_R2015b.app/toolbox/sl3d/sl3ddemos
+	/Applications/MATLAB_R2015b.app/toolbox/simulink/sl_async_streaming
+	/Applications/MATLAB_R2015b.app/toolbox/slvnv/simcoverage
+	/Applications/MATLAB_R2015b.app/toolbox/slvnv/simcovdemos
+	/Applications/MATLAB_R2015b.app/toolbox/simulink/fixedandfloat
+	/Applications/MATLAB_R2015b.app/toolbox/simulink/fixedandfloat/obsolete
+	/Applications/MATLAB_R2015b.app/toolbox/simulink/simulink/iodata/iomap
+	/Applications/MATLAB_R2015b.app/toolbox/simulink/sta/sourceBlocks
+	/Applications/MATLAB_R2015b.app/toolbox/simulink/simulink/iodata/ioformat
+	/Applications/MATLAB_R2015b.app/toolbox/shared/sl_messages
+	/Applications/MATLAB_R2015b.app/toolbox/simulink/slmetrics
+	/Applications/MATLAB_R2015b.app/toolbox/simulink/simulink/performance
+	/Applications/MATLAB_R2015b.app/toolbox/simulink/simulink/performance/performancea
+	/Applications/MATLAB_R2015b.app/toolbox/shared/slpir
+	/Applications/MATLAB_R2015b.app/toolbox/slrequirements
+	/Applications/MATLAB_R2015b.app/toolbox/slvnv/rmidemos
+	/Applications/MATLAB_R2015b.app/toolbox/shared/dastudio/seqdiagram
+	/Applications/MATLAB_R2015b.app/toolbox/simulink/sta/scenarioconnector
+	/Applications/MATLAB_R2015b.app/toolbox/simulink/sta/scenarioconnector/ui
+	/Applications/MATLAB_R2015b.app/toolbox/simulink/sta/scenarioconnector/ui/toolstrip/modelsection
+	/Applications/MATLAB_R2015b.app/toolbox/simulink/sta/editor/ui
+	/Applications/MATLAB_R2015b.app/toolbox/simulink/sta/ui
+	/Applications/MATLAB_R2015b.app/toolbox/simulink/sta/ui/comparisontool
+	/Applications/MATLAB_R2015b.app/toolbox/simulink/sta/ui/mapping
+	/Applications/MATLAB_R2015b.app/toolbox/simulink/sta/ui/mapping/callbacks
+	/Applications/MATLAB_R2015b.app/toolbox/simulink/sta/ui/mapping/util
+	/Applications/MATLAB_R2015b.app/toolbox/simulink/sta/ui/toolstrip
+	/Applications/MATLAB_R2015b.app/toolbox/simulink/sta/ui/toolstrip/open/streaming
+	/Applications/MATLAB_R2015b.app/toolbox/simulink/sta/ui/toolstrip/help
+	/Applications/MATLAB_R2015b.app/toolbox/simulink/sta/ui/toolstrip/open
+	/Applications/MATLAB_R2015b.app/toolbox/simulink/sta/ui/toolstrip/session
+	/Applications/MATLAB_R2015b.app/toolbox/simulink/sta/ui/toolstrip/report
+	/Applications/MATLAB_R2015b.app/toolbox/simulink/sta/derivedSignals
+	/Applications/MATLAB_R2015b.app/toolbox/simulink/sta/report
+	/Applications/MATLAB_R2015b.app/toolbox/simulink/sta/repository
+	/Applications/MATLAB_R2015b.app/toolbox/simulink/sta/repository/util
+	/Applications/MATLAB_R2015b.app/toolbox/simulink/simulink/upgradeadvisor
+	/Applications/MATLAB_R2015b.app/toolbox/slcontrol/slcontrol
+	/Applications/MATLAB_R2015b.app/toolbox/slcontrol/slctrlguis
+	/Applications/MATLAB_R2015b.app/toolbox/slcontrol/slctrlutil
+	/Applications/MATLAB_R2015b.app/toolbox/slcontrol/slctrlobsolete
+	/Applications/MATLAB_R2015b.app/toolbox/slcontrol/slctrldemos
+	/Applications/MATLAB_R2015b.app/help/toolbox/slcontrol/examples
+	/Applications/MATLAB_R2015b.app/toolbox/simulink/simulink_data_dictionary/sldd
+	/Applications/MATLAB_R2015b.app/toolbox/sldo/sldo
+	/Applications/MATLAB_R2015b.app/toolbox/sldo/sldoguis
+	/Applications/MATLAB_R2015b.app/toolbox/sldo/sloptim/sloptim
+	/Applications/MATLAB_R2015b.app/toolbox/sldo/sloptim/sloptguis
+	/Applications/MATLAB_R2015b.app/toolbox/sldo/sloptim/sloptobsolete
+	/Applications/MATLAB_R2015b.app/toolbox/sldo/slestim/slestguis
+	/Applications/MATLAB_R2015b.app/toolbox/sldo/slestim/slestim
+	/Applications/MATLAB_R2015b.app/toolbox/sldo/slestim/slestmex
+	/Applications/MATLAB_R2015b.app/toolbox/sldo/slestim/slestutil
+	/Applications/MATLAB_R2015b.app/toolbox/sldo/sldodemos
+	/Applications/MATLAB_R2015b.app/toolbox/sldo/sldodemos/optim
+	/Applications/MATLAB_R2015b.app/toolbox/sldo/sldodemos/estim
+	/Applications/MATLAB_R2015b.app/toolbox/sldo/sldodemos/estim/docexamples/adaptive
+	/Applications/MATLAB_R2015b.app/toolbox/sldo/sldodemos/estim/docexamples/lookuptable
+	/Applications/MATLAB_R2015b.app/help/toolbox/sldo/examples
+	/Applications/MATLAB_R2015b.app/toolbox/sldrt/rtw
+	/Applications/MATLAB_R2015b.app/toolbox/sldrt/sldrt
+	/Applications/MATLAB_R2015b.app/toolbox/sldrt/sldrtexamples
+	/Applications/MATLAB_R2015b.app/toolbox/sldv/slicer
+	/Applications/MATLAB_R2015b.app/toolbox/sldv/slicer/gui
+	/Applications/MATLAB_R2015b.app/toolbox/sldv/sldv
+	/Applications/MATLAB_R2015b.app/toolbox/sldv/sldvdemos
+	/Applications/MATLAB_R2015b.app/toolbox/hdlcoder/slhdltemplates
+	/Applications/MATLAB_R2015b.app/toolbox/simulink/simulink/slproject
+	/Applications/MATLAB_R2015b.app/toolbox/simulink/simulink/slproject/menu
+	/Applications/MATLAB_R2015b.app/toolbox/simulink/simulink/slproject/examples
+	/Applications/MATLAB_R2015b.app/toolbox/simulink/simulink/slproject/templates
+	/Applications/MATLAB_R2015b.app/toolbox/slreportgen/webview
+	/Applications/MATLAB_R2015b.app/toolbox/simulink/sltemplate
+	/Applications/MATLAB_R2015b.app/toolbox/slvnv/slvnvdemos
+	/Applications/MATLAB_R2015b.app/toolbox/slvnv/do178b
+	/Applications/MATLAB_R2015b.app/toolbox/slvnv/iec61508
+	/Applications/MATLAB_R2015b.app/toolbox/slvnv/metrics
+	/Applications/MATLAB_R2015b.app/toolbox/slvnv/styleguide
+	/Applications/MATLAB_R2015b.app/toolbox/matlab/uitools/uicomponents/components
+	/Applications/MATLAB_R2015b.app/toolbox/matlab/spf/matlabhost
+	/Applications/MATLAB_R2015b.app/toolbox/matlab/spf/matlabservices
+	/Applications/MATLAB_R2015b.app/toolbox/stats/stats
+	/Applications/MATLAB_R2015b.app/toolbox/stats/classreg
+	/Applications/MATLAB_R2015b.app/toolbox/stats/clustering
+	/Applications/MATLAB_R2015b.app/toolbox/stats/statsdemos
+	/Applications/MATLAB_R2015b.app/toolbox/stats/mlearnapp
+	/Applications/MATLAB_R2015b.app/toolbox/stm/stm
+	/Applications/MATLAB_R2015b.app/toolbox/symbolic/symbolic
+	/Applications/MATLAB_R2015b.app/toolbox/symbolic/symbolicdemos
+	/Applications/MATLAB_R2015b.app/toolbox/matlab/system
+	/Applications/MATLAB_R2015b.app/toolbox/systemtest/systemtest
+	/Applications/MATLAB_R2015b.app/toolbox/systemtest/systemtest/removed
+	/Applications/MATLAB_R2015b.app/toolbox/systemtest/systemtestdemos
+	/Applications/MATLAB_R2015b.app/toolbox/target/codertarget
+	/Applications/MATLAB_R2015b.app/toolbox/target/codertarget/rtw
+	/Applications/MATLAB_R2015b.app/toolbox/target/codertarget/matlabcoder
+	/Applications/MATLAB_R2015b.app/toolbox/target/extensions/processor/intelhost/tfl
+	/Applications/MATLAB_R2015b.app/toolbox/target
+	/Applications/MATLAB_R2015b.app/toolbox/target/foundation
+	/Applications/MATLAB_R2015b.app/toolbox/target/foundation/utils
+	/Applications/MATLAB_R2015b.app/toolbox/target/foundation/utils/resource_config
+	/Applications/MATLAB_R2015b.app/toolbox/target/foundation/blks
+	/Applications/MATLAB_R2015b.app/toolbox/target/foundation/blks/mex
+	/Applications/MATLAB_R2015b.app/toolbox/target/foundation/blks/masks
+	/Applications/MATLAB_R2015b.app/toolbox/target/extensions/processor/shared
+	/Applications/MATLAB_R2015b.app/toolbox/target/extensions/processor/shared/ti
+	/Applications/MATLAB_R2015b.app/toolbox/target/extensions/processor/shared/ti/mdlinfo
+	/Applications/MATLAB_R2015b.app/toolbox/target/extensions/processor/shared/ti/utils
+	/Applications/MATLAB_R2015b.app/toolbox/target/extensions/processor/shared/ti/blks
+	/Applications/MATLAB_R2015b.app/toolbox/target/extensions/processor/shared/ti/blks/mex
+	/Applications/MATLAB_R2015b.app/toolbox/target/extensions/processor/shared/ti/blks/masks
+	/Applications/MATLAB_R2015b.app/toolbox/shared/etargets/etargets
+	/Applications/MATLAB_R2015b.app/toolbox/shared/etargets/etargets/demoutils
+	/Applications/MATLAB_R2015b.app/toolbox/target/targetdemos
+	/Applications/MATLAB_R2015b.app/toolbox/target/extensions/processor/tic2000
+	/Applications/MATLAB_R2015b.app/toolbox/target/extensions/processor/tic2000/rtw
+	/Applications/MATLAB_R2015b.app/toolbox/target/extensions/processor/tic2000/utils
+	/Applications/MATLAB_R2015b.app/toolbox/target/extensions/processor/tic5000
+	/Applications/MATLAB_R2015b.app/toolbox/target/extensions/processor/tic5000/blks
+	/Applications/MATLAB_R2015b.app/toolbox/target/extensions/processor/tic5000/blks/mex
+	/Applications/MATLAB_R2015b.app/toolbox/target/extensions/processor/tic5000/blks/masks
+	/Applications/MATLAB_R2015b.app/toolbox/target/extensions/processor/tic5000/tic5000demos
+	/Applications/MATLAB_R2015b.app/toolbox/target/extensions/processor/tic6000
+	/Applications/MATLAB_R2015b.app/toolbox/target/extensions/processor/tic6000/rtw
+	/Applications/MATLAB_R2015b.app/toolbox/target/extensions/processor/tic6000/tfl
+	/Applications/MATLAB_R2015b.app/toolbox/target/extensions/processor/tic6000/utils
+	/Applications/MATLAB_R2015b.app/toolbox/target/extensions/processor/tic6000/blks/sysobj_mex
+	/Applications/MATLAB_R2015b.app/toolbox/target/extensions/processor/tic6000/blks/mex
+	/Applications/MATLAB_R2015b.app/toolbox/target/extensions/operatingsystem/linux/blks
+	/Applications/MATLAB_R2015b.app/toolbox/target/extensions/operatingsystem/linux/blks/masks
+	/Applications/MATLAB_R2015b.app/toolbox/target/extensions/operatingsystem/linux/blks/mex
+	/Applications/MATLAB_R2015b.app/toolbox/target/extensions/operatingsystem/linux/src
+	/Applications/MATLAB_R2015b.app/toolbox/target/extensions/operatingsystem/windows/blks
+	/Applications/MATLAB_R2015b.app/toolbox/target/extensions/operatingsystem/windows/blks/masks
+	/Applications/MATLAB_R2015b.app/toolbox/target/extensions/operatingsystem/windows/blks/mex
+	/Applications/MATLAB_R2015b.app/toolbox/matlab/timeseries
+	/Applications/MATLAB_R2015b.app/toolbox/matlab/hds
+	/Applications/MATLAB_R2015b.app/toolbox/matlab/toolbox_packaging
+	/Applications/MATLAB_R2015b.app/toolbox/matlab/toolboxmanagement
+	/Applications/MATLAB_R2015b.app/toolbox/matlab/toolstrip
+	/Applications/MATLAB_R2015b.app/toolbox/lte/umts
+	/Applications/MATLAB_R2015b.app/toolbox/vision/vision
+	/Applications/MATLAB_R2015b.app/toolbox/vision/visiondata
+	/Applications/MATLAB_R2015b.app/toolbox/vision/visionutilities
+	/Applications/MATLAB_R2015b.app/toolbox/vision/visionutilities/visioninit
+	/Applications/MATLAB_R2015b.app/toolbox/vision/visionutilities/visionmex
+	/Applications/MATLAB_R2015b.app/toolbox/vision/visiondemos
+	/Applications/MATLAB_R2015b.app/help/toolbox/vision/examples
+	/Applications/MATLAB_R2015b.app/toolbox/wavelet/wavelet
+	/Applications/MATLAB_R2015b.app/toolbox/wavelet/wmultisig1d
+	/Applications/MATLAB_R2015b.app/toolbox/wavelet/compression
+	/Applications/MATLAB_R2015b.app/toolbox/wavelet/wavedemo
+	/Applications/MATLAB_R2015b.app/toolbox/matlab/webcam
+	/Applications/MATLAB_R2015b.app/toolbox/matlab/external/interfaces/webservices/restful
+	/Applications/MATLAB_R2015b.app/toolbox/matlab/external/interfaces
+	/Applications/MATLAB_R2015b.app/toolbox/matlab/external/interfaces/webservices
+	/Applications/MATLAB_R2015b.app/toolbox/matlab/external/interfaces/webservices/wsdl
+addpath('./KNN_files'); % funcoes de KNN
+addpath('/Users/marcoscavalcante/Downloads/libsvm-3.21/matlab'); % funcoes de KNN
+main()
+Carregando os dados do dataset [sem normalizacao] ...
+
+ Exibindo menu das operacoes sobre a base de dados 
+
+Deseja Visualizar estatisticas sobre os dados ? [ 1-Sim 0-Nao ]
+> 0
+Bases de Dados processados encontrados em arquivo, carregar? [ 1-Sim 0-Nao ]
+> 1
+Dados carregados.
+
+Deseja executar o algoritmo KNN? [ 1-Sim 0-Nao ]
+> 0
+
+Regressao Logistica, opcoes:
+[1] - Submenu da Regressao Logistica.
+[0] - Continuar
+> 0
+
+Entrar no submenu da SVM? [ 1-Sim 0-Nao ]
+> 1
+SVM_submenu - Entre com uma das opcoes: 
+[1] - Treinar classificador
+[0] - Avaliar resultados
+> 1
+
+Treinar com...
+[1] - Coarse Grid Search
+[0] - Normal Grid Search
+> 0
+Executando Grid Search normal
+Iniciando Coarse gridSearch (na SVM)
+
+Grid search normal para Kernel Linear
+SVM - NGS - parametros: Kernel Linear, C = 0.0625
+....*
+optimization finished, #iter = 4504
+nu = 0.358468
+obj = -478.358786, rho = 0.984708
+nSV = 7812, nBSV = 7548
+Total nSV = 7812
+....*
+optimization finished, #iter = 4485
+nu = 0.358391
+obj = -478.243560, rho = 0.984952
+nSV = 7829, nBSV = 7515
+Total nSV = 7829
+....*
+optimization finished, #iter = 4515
+nu = 0.358468
+obj = -478.360751, rho = 0.984934
+nSV = 7844, nBSV = 7520
+Total nSV = 7844
+....*
+optimization finished, #iter = 4409
+nu = 0.358391
+obj = -478.246037, rho = 0.998766
+nSV = 7826, nBSV = 7521
+Total nSV = 7826
+....*
+optimization finished, #iter = 4504
+nu = 0.358407
+obj = -478.243558, rho = 0.984906
+nSV = 7837, nBSV = 7517
+Total nSV = 7837
+Cross Validation Accuracy = 82.0788%
+.*
+optimization finished, #iter = 1684
+nu = 0.116242
+obj = -155.125018, rho = -0.999963
+nSV = 2670, nBSV = 2385
+Total nSV = 2670
+.*
+optimization finished, #iter = 1695
+nu = 0.116247
+obj = -155.125018, rho = -0.999894
+nSV = 2667, nBSV = 2373
+Total nSV = 2667
+.*
+optimization finished, #iter = 1677
+nu = 0.116242
+obj = -155.125015, rho = -0.999812
+nSV = 2681, nBSV = 2383
+Total nSV = 2681
+.*
+optimization finished, #iter = 1709
+nu = 0.116247
+obj = -155.125017, rho = -0.999812
+nSV = 2656, nBSV = 2374
+Total nSV = 2656
+.*
+optimization finished, #iter = 1562
+nu = 0.116159
+obj = -155.000017, rho = -0.999656
+nSV = 2632, nBSV = 2381
+Total nSV = 2632
+Cross Validation Accuracy = 94.1886%
+.............*
+optimization finished, #iter = 13807
+nu = 0.546974
+obj = -726.060715, rho = -0.714598
+nSV = 11740, nBSV = 11610
+Total nSV = 11740
+...............*
+optimization finished, #iter = 15448
+nu = 0.547402
+obj = -726.799137, rho = -0.714522
+nSV = 11749, nBSV = 11627
+Total nSV = 11749
+................*
+optimization finished, #iter = 16777
+nu = 0.545974
+obj = -724.668955, rho = -0.720043
+nSV = 11713, nBSV = 11608
+Total nSV = 11713
+................*
+optimization finished, #iter = 16736
+nu = 0.544989
+obj = -723.501546, rho = -0.732486
+nSV = 11690, nBSV = 11582
+Total nSV = 11690
+.............*
+optimization finished, #iter = 13638
+nu = 0.548148
+obj = -727.391633, rho = -0.713208
+nSV = 11745, nBSV = 11662
+Total nSV = 11745
+Cross Validation Accuracy = 73.6596%
+.....*
+optimization finished, #iter = 5099
+nu = 0.442581
+obj = -588.188614, rho = 0.194846
+nSV = 9631, nBSV = 9320
+Total nSV = 9631
+.....*
+optimization finished, #iter = 5223
+nu = 0.443893
+obj = -589.940975, rho = 0.197780
+nSV = 9663, nBSV = 9315
+Total nSV = 9663
+.....*
+optimization finished, #iter = 5122
+nu = 0.442342
+obj = -587.809192, rho = 0.196978
+nSV = 9619, nBSV = 9303
+Total nSV = 9619
+.....*
+optimization finished, #iter = 5124
+nu = 0.443181
+obj = -589.000983, rho = 0.209661
+nSV = 9629, nBSV = 9312
+Total nSV = 9629
+.....*
+optimization finished, #iter = 5249
+nu = 0.443747
+obj = -589.686017, rho = 0.197552
+nSV = 9662, nBSV = 9314
+Total nSV = 9662
+Cross Validation Accuracy = 78.0209%
+*
+optimization finished, #iter = 464
+nu = 0.014800
+obj = -19.749997, rho = -0.999763
+nSV = 463, nBSV = 261
+Total nSV = 463
+*
+optimization finished, #iter = 659
+nu = 0.014800
+obj = -19.749604, rho = -0.999378
+nSV = 516, nBSV = 244
+Total nSV = 516
+*
+optimization finished, #iter = 525
+nu = 0.014707
+obj = -19.624996, rho = -0.999674
+nSV = 481, nBSV = 258
+Total nSV = 481
+*
+optimization finished, #iter = 412
+nu = 0.014800
+obj = -19.748959, rho = -1.003590
+nSV = 471, nBSV = 265
+Total nSV = 471
+*
+optimization finished, #iter = 578
+nu = 0.014707
+obj = -19.624996, rho = -0.999714
+nSV = 502, nBSV = 250
+Total nSV = 502
+Cross Validation Accuracy = 99.2619%
+Elapsed time is 318.666340 seconds.
+SVM - NGS - parametros: Kernel Linear, C = 0.125
+....*
+optimization finished, #iter = 4576
+nu = 0.358468
+obj = -956.685158, rho = 0.969292
+nSV = 7845, nBSV = 7532
+Total nSV = 7845
+....*
+optimization finished, #iter = 4559
+nu = 0.358391
+obj = -956.474257, rho = 0.969497
+nSV = 7835, nBSV = 7515
+Total nSV = 7835
+....*
+optimization finished, #iter = 4579
+nu = 0.358468
+obj = -956.693027, rho = 0.969565
+nSV = 7864, nBSV = 7522
+Total nSV = 7864
+....*
+optimization finished, #iter = 4543
+nu = 0.358391
+obj = -956.484168, rho = 0.997049
+nSV = 7830, nBSV = 7518
+Total nSV = 7830
+....*
+optimization finished, #iter = 4592
+nu = 0.358407
+obj = -956.474245, rho = 0.969617
+nSV = 7851, nBSV = 7510
+Total nSV = 7851
+Cross Validation Accuracy = 82.0788%
+.*
+optimization finished, #iter = 1803
+nu = 0.116242
+obj = -310.250085, rho = -0.999854
+nSV = 2685, nBSV = 2374
+Total nSV = 2685
+.*
+optimization finished, #iter = 1815
+nu = 0.116247
+obj = -310.250100, rho = -0.999862
+nSV = 2678, nBSV = 2349
+Total nSV = 2678
+.*
+optimization finished, #iter = 1767
+nu = 0.116242
+obj = -310.250083, rho = -0.999891
+nSV = 2663, nBSV = 2365
+Total nSV = 2663
+.*
+optimization finished, #iter = 1900
+nu = 0.116247
+obj = -310.250085, rho = -0.999864
+nSV = 2696, nBSV = 2371
+Total nSV = 2696
+.*
+optimization finished, #iter = 1637
+nu = 0.116159
+obj = -310.000086, rho = -0.999654
+nSV = 2651, nBSV = 2381
+Total nSV = 2651
+Cross Validation Accuracy = 94.1886%
+......................*
+optimization finished, #iter = 22446
+nu = 0.544212
+obj = -1447.988414, rho = -0.697379
+nSV = 11685, nBSV = 11543
+Total nSV = 11685
+......................*
+optimization finished, #iter = 22857
+nu = 0.544775
+obj = -1449.748220, rho = -0.703099
+nSV = 11688, nBSV = 11570
+Total nSV = 11688
+....................*
+optimization finished, #iter = 20721
+nu = 0.543201
+obj = -1445.138981, rho = -0.713976
+nSV = 11670, nBSV = 11534
+Total nSV = 11670
+.....................*
+optimization finished, #iter = 21317
+nu = 0.542291
+obj = -1443.064614, rho = -0.727370
+nSV = 11635, nBSV = 11522
+Total nSV = 11635
+..................*
+optimization finished, #iter = 18770
+nu = 0.545233
+obj = -1450.535490, rho = -0.710768
+nSV = 11691, nBSV = 11587
+Total nSV = 11691
+Cross Validation Accuracy = 73.6446%
+.....*
+optimization finished, #iter = 5347
+nu = 0.440783
+obj = -1173.904527, rho = 0.189579
+nSV = 9611, nBSV = 9223
+Total nSV = 9611
+.....*
+optimization finished, #iter = 5280
+nu = 0.442094
+obj = -1177.413894, rho = 0.195331
+nSV = 9653, nBSV = 9257
+Total nSV = 9653
+.....*
+optimization finished, #iter = 5241
+nu = 0.440543
+obj = -1173.136914, rho = 0.193411
+nSV = 9604, nBSV = 9246
+Total nSV = 9604
+.....*
+optimization finished, #iter = 5298
+nu = 0.441382
+obj = -1175.554033, rho = 0.218745
+nSV = 9600, nBSV = 9252
+Total nSV = 9600
+.....*
+optimization finished, #iter = 5305
+nu = 0.441948
+obj = -1176.894121, rho = 0.194765
+nSV = 9607, nBSV = 9265
+Total nSV = 9607
+Cross Validation Accuracy = 78.0209%
+*
+optimization finished, #iter = 636
+nu = 0.014800
+obj = -39.499995, rho = -0.999816
+nSV = 525, nBSV = 257
+Total nSV = 525
+*
+optimization finished, #iter = 690
+nu = 0.014800
+obj = -39.498426, rho = -0.999116
+nSV = 518, nBSV = 267
+Total nSV = 518
+*
+optimization finished, #iter = 558
+nu = 0.014707
+obj = -39.249997, rho = -0.999695
+nSV = 489, nBSV = 247
+Total nSV = 489
+*
+optimization finished, #iter = 575
+nu = 0.014800
+obj = -39.495848, rho = -1.007637
+nSV = 518, nBSV = 244
+Total nSV = 518
+*
+optimization finished, #iter = 653
+nu = 0.014707
+obj = -39.249996, rho = -0.999727
+nSV = 524, nBSV = 257
+Total nSV = 524
+Cross Validation Accuracy = 99.2619%
+Elapsed time is 652.221034 seconds.
+SVM - NGS - parametros: Kernel Linear, C = 0.25
+....*
+optimization finished, #iter = 4813
+nu = 0.358468
+obj = -1913.240658, rho = 0.938078
+nSV = 7863, nBSV = 7519
+Total nSV = 7863
+....*
+optimization finished, #iter = 4759
+nu = 0.358391
+obj = -1912.897053, rho = 0.938619
+nSV = 7889, nBSV = 7477
+Total nSV = 7889
+....*
+optimization finished, #iter = 4787
+nu = 0.358468
+obj = -1913.272104, rho = 0.938764
+nSV = 7887, nBSV = 7492
+Total nSV = 7887
+....*
+optimization finished, #iter = 4579
+nu = 0.358391
+obj = -1912.936675, rho = 0.993840
+nSV = 7868, nBSV = 7501
+Total nSV = 7868
+....*
+optimization finished, #iter = 4681
+nu = 0.358407
+obj = -1912.896981, rho = 0.938477
+nSV = 7860, nBSV = 7498
+Total nSV = 7860
+Cross Validation Accuracy = 82.0788%
+.*
+optimization finished, #iter = 1952
+nu = 0.116242
+obj = -620.500363, rho = -0.999862
+nSV = 2702, nBSV = 2361
+Total nSV = 2702
+..*
+optimization finished, #iter = 2002
+nu = 0.116247
+obj = -620.500309, rho = -1.000010
+nSV = 2723, nBSV = 2334
+Total nSV = 2723
+.*
+optimization finished, #iter = 1875
+nu = 0.116242
+obj = -620.500316, rho = -0.999849
+nSV = 2712, nBSV = 2362
+Total nSV = 2712
+.*
+optimization finished, #iter = 1953
+nu = 0.116247
+obj = -620.500284, rho = -0.999890
+nSV = 2709, nBSV = 2359
+Total nSV = 2709
+.*
+optimization finished, #iter = 1706
+nu = 0.116159
+obj = -620.000322, rho = -0.999822
+nSV = 2681, nBSV = 2380
+Total nSV = 2681
+Cross Validation Accuracy = 94.1886%
+..............................*
+optimization finished, #iter = 30239
+nu = 0.542709
+obj = -2890.814673, rho = -0.692459
+nSV = 11657, nBSV = 11508
+Total nSV = 11657
+...................................*
+optimization finished, #iter = 35572
+nu = 0.543350
+obj = -2894.800572, rho = -0.698330
+nSV = 11663, nBSV = 11545
+Total nSV = 11663
+......................................*
+optimization finished, #iter = 38473
+nu = 0.541630
+obj = -2885.088794, rho = -0.709651
+nSV = 11636, nBSV = 11497
+Total nSV = 11636
+................................*
+optimization finished, #iter = 32564
+nu = 0.540825
+obj = -2881.435263, rho = -0.716845
+nSV = 11604, nBSV = 11499
+Total nSV = 11604
+................................*
+optimization finished, #iter = 32858
+nu = 0.543658
+obj = -2896.061462, rho = -0.722409
+nSV = 11662, nBSV = 11564
+Total nSV = 11662
+Cross Validation Accuracy = 73.6858%
+.....*
+optimization finished, #iter = 5568
+nu = 0.439884
+obj = -2345.117614, rho = 0.178748
+nSV = 9646, nBSV = 9181
+Total nSV = 9646
+.....*
+optimization finished, #iter = 5644
+nu = 0.441195
+obj = -2352.155298, rho = 0.190415
+nSV = 9649, nBSV = 9189
+Total nSV = 9649
+.....*
+optimization finished, #iter = 5552
+nu = 0.439644
+obj = -2343.547075, rho = 0.186423
+nSV = 9613, nBSV = 9176
+Total nSV = 9613
+.....*
+optimization finished, #iter = 5652
+nu = 0.440483
+obj = -2348.515765, rho = 0.237360
+nSV = 9653, nBSV = 9196
+Total nSV = 9653
+.....*
+optimization finished, #iter = 5599
+nu = 0.441049
+obj = -2351.076048, rho = 0.189249
+nSV = 9670, nBSV = 9211
+Total nSV = 9670
+Cross Validation Accuracy = 78.0209%
+*
+optimization finished, #iter = 763
+nu = 0.014800
+obj = -78.999996, rho = -0.999769
+nSV = 553, nBSV = 242
+Total nSV = 553
+*
+optimization finished, #iter = 913
+nu = 0.014800
+obj = -78.993717, rho = -0.998396
+nSV = 558, nBSV = 241
+Total nSV = 558
+*
+optimization finished, #iter = 698
+nu = 0.014707
+obj = -78.499999, rho = -0.999746
+nSV = 530, nBSV = 246
+Total nSV = 530
+*
+optimization finished, #iter = 689
+nu = 0.014800
+obj = -78.983392, rho = -1.015283
+nSV = 585, nBSV = 238
+Total nSV = 585
+*
+optimization finished, #iter = 768
+nu = 0.014707
+obj = -78.499998, rho = -0.999740
+nSV = 521, nBSV = 240
+Total nSV = 521
+Cross Validation Accuracy = 99.2619%
+Elapsed time is 961.335100 seconds.

@@ -1,0 +1,33 @@
+Resumo:
+
+	Dentro do ramo da Inteligência Artificial, a área de Aprendizado de  Máquina tem ganhado cada vez mais notoriedade devido a sua grande aplicabilidade em problemas do mundo real. Com isso, um grande número de estudos acerca de algoritmos que ensinam computadores a aprender tem sido feito atualmente. Nesse artigo, foram implementados métodos clássicos de aprendizado de máquina, que buscam classificar objetos baseados em suas características. Tais métodos foram testados em uma base de dados de um abrigo de animais, com o intuito de analisar o desempenho de cada técnica e posterior avaliação de sua acurácia e precisão na tarefa de classificação.
+
+	Além da análise de desempenho de cada técnica, também é proposto formas de preparar os dados e escolha dos parâmetros para cada modelo a fim de encontrar a melhor combinação para classificar os dados.
+
+	Palavras-Chave — K-NN, Regressão Logística, Máquinas de Vetores de Suporte, SVM, Redes Neurais Artificais, Validação Cruzada, Classificação.
+
+Introdução:
+
+	Aprendizado de Máquina é uma das áreas de pesquisa de computação que mais tem crescido nos últimos anos. Muitas variações de algoritmos de AM e formas de como utilizá-los tem sido proposto na literatura científica. Isso ocorre devido ao grande número de aplicações que tais técnicas tem tido êxito em sua resolução [1].
+
+	Exemplos dessas aplicações são: Reconhecimento de fala, Detecção do uso fraudento de cartões de crédito, Predição de taxas de cura de pacientes com diferentes doenças, e Condução de automóveis de forma autônoma em rodovias [2]. 
+
+	Consequentemente, as técnicas de aprendizado de máquina têm sido cada vez mais estudadas e ganhado cada vez mais destaque no meio científico pois elas podem aplicar técnicas de classificação e regressão para estimar e predizer grupos e valores de objetos do mundo real [3]. Além das aplicações já citadas acima, existe grande interesse no uso dos algoritmos de aprendizado de máquina na solução de problemas de /textit{Big Data}.
+
+	O presente trabalho tem como objetivo o desenvolvimento e estudo de quatro algoritmos clássicos em aprendizado de máquina, eles são: K-NN (K vizinhos mais próximos), Regressão Logística, SVM (Máquinas de Vetores de Suporte) e Redes Neurais Artificais. Os quatro classificadores analisados foram executados sobre uma base de dados de animais para adoção e através da aplicação das técnicas de aprendizado de máquina, pretende-se encontrar informações sobre o possível destino desses animais e com tais dados, os abrigos de animais podem concentrar mais esforços em específicos animais para ajudá-los a encontrar um novo lar.
+
+
+	#
+
+	O relatório está estruturado da seguinte forma: Na seção II está descrito os atributos e demais características encontrados na base de dados, assim como os passos necessários para a sua preparação e decisões tomadas com relação ao uso e relação dos atributos da base. Nessa etapa, focou-se na seleção, limpeza e representação das características que influenciam na classificação das amostras, de forma a maximizar o desempenho dos classificadores.
+
+	A metodologia experimental é descrita detalhadamente na seção III, nessa etapa iremos descrever o uso dos métodos implementados, a escolha dos respectivos parâmetros de cada um deles e, por fim, a definição e execução das medidas de validação feitas nesse estudo.
+
+	Na seção IV, é feita uma análise profunda dos resultados obtidos por cada método, assim como uma análise comparativo entre eles. Esse estudo comparativo é feito em termos da acurácia de cada método.
+
+	Finalmente, na seção V são apresentadas as conclusões feitas durante o estudo dos métodos sobre a base de dados descrita na seção II.
+
+	[1] Machine Learning - Stanford
+	[2] Livro Katti
+	[3] A Few Useful Things to Know about Machine Learning
+	[ ] Kaggle - https://www.kaggle.com/c/shelter-animal-outcomes
