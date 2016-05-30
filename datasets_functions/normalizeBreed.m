@@ -1,4 +1,4 @@
-function [ breed_arr1, breed_arr2 ] = normalizeBreed( breed_cells, animal_type_arr )
+function [ breed_arr1, breed_arr2, breedA_preDummy, breedB_preDummy] = normalizeBreed( breed_cells, animal_type_arr )
 
     [breed_col_A, breed_col_B ] = strtok(breed_cells, '/');
     
@@ -22,4 +22,8 @@ function [ breed_arr1, breed_arr2 ] = normalizeBreed( breed_cells, animal_type_a
 	
     breed_arr1 = dummyvar( grp2idx( breed_col_A ) );
     breed_arr2 = dummyvar( grp2idx( breed_col_B ) );
+	
+	breedA_preDummy = breed_col_A;
+	breedB_preDummy = breed_col_B;
+	
 end

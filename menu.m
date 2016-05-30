@@ -53,12 +53,14 @@ function menu( train_data, test_data )
 		if ~isThereProcessedData
 			fprintf('Dados processados nao encontrados em arquivo, executando processamento...\n');
 		else
-			fprintf('Reprocessando dados... (Tempo aproximado 20s)\n');
+			fprintf('Reprocessando dados... (Tempo aproximado 30s)\n');
 		end
 		
 		tic;
+		
 		% NOTA: coluna de idade pode ou nao estar sendo normalizada por padronizacao, checar se necessario
-		[ train_dataset_normalized, train_dataset_colour, train_dataset_breed, train_dataset_no_colour_breed ] = normalizeDataset( train_data );
+		[ train_dataset_normalized, train_dataset_colour, train_dataset_breed, train_dataset_no_colour_breed, test_dataset_normalized] = ...
+				normalizeDataset( train_data , test_data);
 		
 		fprintf('Tempo gasto com o processamento:\n');
 		toc;
@@ -73,7 +75,7 @@ function menu( train_data, test_data )
 		
 		% chama o menu do KNN
 		tic;
-			menu_KNN( train_dataset_normalized, test_data );
+			menu_KNN( train_dataset_normalized, test_dataset_normalized );
 
     end;
 
@@ -88,7 +90,7 @@ function menu( train_data, test_data )
 
     if ( resp==1 )
 		tic;
-		RL_submenu( train_dataset_normalized , nColAlvo ); % segundo parametro e o numero de colunas alvo
+		RL_submenu( train_dataset_normalized , nColAlvo, test_dataset_normalized ); % segundo parametro e o numero de colunas alvo
     end;
 
 
