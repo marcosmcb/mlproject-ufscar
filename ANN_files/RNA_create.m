@@ -1,27 +1,23 @@
-function [] = criar_rna()
-%function [ pesos ] = criar_rna(training_data, training_target_data, num_camadas_interm, num_neurs_interm, taxa_aprendizagem)
+function [ pesos_InputInterm, pesos_IntermInterm, pesos_IntermOutput ] = ...
+    RNA_create(training_data, training_target_data, num_neurs_interm, ...
+                tx_aprend, num_epocas)
 
-    %output: matriz de pesos
-    % pesos[l][n][c] // l = layer/camada, n = neuronios da camada à esquerda, 
-    % c = pesos daquele neuronio pra cada neuronio da camada à direita;
-    % // (matriz vai ficar transposta  em relação à rede mas é mais fácil pra 
-    % pensar no código)
-    
-    clear all; close all; clc; % REMOVER DEPOIS
-    
     %% dummy data
-    
+    %{
     training_data = (2.5 - 1) .* rand(27000, 1) + 1;
     training_target_data = log(training_data);%rand(27000, 5);
-    num_camadas_interm = 1; % forward propagation e backpropagation funcionam só pra 1 por enquanto
     num_neurs_interm = 8;
     tx_aprend = 1; % taxa de aprendizagem
+    %}
+
+    %% cria matriz de pesos
     
+    num_camadas_interm = 1; % forward propagation e backpropagation funcionam só pra 1 por enquanto
+
     tam_camada(1:num_camadas_interm + 2) = num_neurs_interm;
     tam_camada(1) = size(training_data, 2);
     tam_camada(num_camadas_interm + 2) = size(training_target_data, 2);
 
-    %% cria matriz de pesos
     % pesos de cada neurônio da camada à esquerda (incluindo +1 de bias)
     % para cada neurônio da camada à esquerda
     
@@ -52,8 +48,8 @@ function [] = criar_rna()
 
 
     %% learning
-    for epoch = 1:10
-    tic
+    for epoch = 1:num_epocas
+    %tic
         % acumulação de deltas pro offline training
         %deltaAcum_InputInterm = zeros(tam_camada(1) + 1, tam_camada(2));
         %deltaAcum_IntermOutput = zeros(tam_camada(length(tam_camada) - 1) + 1, tam_camada(length(tam_camada)));
@@ -104,9 +100,10 @@ function [] = criar_rna()
         %% offline/batch training (atualiza pesos baseado na soma dos deltas de todas as entradas)
         %pesos_InputInterm = pesos_InputInterm + (deltaAcum_InputInterm * tx_aprend);
         %pesos_IntermOutput = pesos_IntermOutput + (deltaAcum_IntermOutput * tx_aprend);
-    toc
+    %toc
     end
 
+    %{
     entrada = 0;
     while entrada <= 2.5
         entrada = input('Valor: ')
@@ -120,5 +117,6 @@ function [] = criar_rna()
         fprintf('Log(entrada): ')
         log(entrada)
     end
+    %}
 end
 

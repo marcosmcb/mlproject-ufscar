@@ -108,11 +108,11 @@ function menu( train_data, test_data )
 
     if ( resp )
 
-        resp = input('Deseja visulizar os dados gerados pela Rede Neural Artificial? [1-Sim 0-Nao]\n> ');
+        %resp = input('Deseja visulizar os dados gerados pela Rede Neural Artificial? [1-Sim 0-Nao]\n> ');
         
-        if( resp )
-
-        end;
+        %if( resp )
+            RNA_submenu(train_dataset_normalized, nColAlvo);
+        %end;
 
     end;
 
