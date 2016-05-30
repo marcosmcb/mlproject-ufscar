@@ -27,7 +27,26 @@ Introdução:
 
 	Finalmente, na seção V são apresentadas as conclusões feitas durante o estudo dos métodos sobre a base de dados descrita na seção II.
 
+Base de Dados
+
+	A base de dados utilizada nesse trabalho está disponibilizada em [4], essa base de dados contém informações sobre animais domésticos, cachorros e gatos, que foram deixados entre os dias 1 de Outubro de 2013 até Março de 2016 no abrigo Austin Animal Center, nos Estados Unidos. Com base nas informações providas, tabela 2, temos que predizer qual será o destino de um dado animal.
+
+	No conjuntos de dados trabalhados, nós temos 26729 amostras no conjunto de treinamento com 9 atributos cada (não levando em consideração a coluna da classe). Cada uma das amostras é um determinado animal que chegou no abrigo e os atributos dizem respeito a características desse animal. Entre as classes de saída, nós temos 5, elas são: \textit{Adoption}, \textit{Died}, \textit{Euthanasia}, \textit{Return to owner} e \texit{Transfer}.	 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 	[1] Machine Learning - Stanford
 	[2] Livro Katti
 	[3] A Few Useful Things to Know about Machine Learning
-	[ ] Kaggle - https://www.kaggle.com/c/shelter-animal-outcomes
+	[4] Kaggle - https://www.kaggle.com/c/shelter-animal-outcomes

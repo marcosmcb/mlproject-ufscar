@@ -16,7 +16,7 @@ function displayColumnData( column_idx, arr_data, print_to_file )
     end;
 
     if( print_to_file )
-    	printDatasetToFile( mat, 'dataset_statistics.txt' ,  'a+' );
+    	printDatasetToFile( mat, './datasets_originals/dataset_statistics.txt' ,  '-append' );
     else
 	    disp( mat );
     end;
