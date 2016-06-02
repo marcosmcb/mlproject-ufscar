@@ -1,17 +1,60 @@
-function RL_submenu( train_dataset_normalized, nColAlvo )
-% RL_submenu( train_dataset_normalized )
-% Recebe uma base de dados e mostra opcoes de execucao
-% das operacoes da regressao logistica
+function RL_submenu( trainData, testData, nColAlvo, opcaoMenu )
+% RL_submenu( trainData, testData, nColAlvo, opcaoMenu )
 %
-% code by Rocchi™
+% Faz chamadas de funcoes das operacoes da regressao logistica
+%
+%
+% UFSCar BCC 2016-1 - Aprendizado de Máquina - Projeto Classificadores (Kaggle)
+% Filipe Santos Rocchi - 552194
+% Lucas Lukasavicus Silva - 552321
+% Marcos Cavalcante - 408336
+% Rafael Brandao Barbosa Fairbanks - 552372
+
+
+
+%{
+Estrutura do submenu
+
+	Faz operacoes com os dados se necessario
+
+	if opcao == TREINO
+
+	if opcao == AVALIAR
+
+	if opcao == TESTAR
+
+%}
+
+%% Variaveis
+
+%% Operacoes com os dados
+
+%% Treinar
+if opcaoMenu == 1
+	
+end
+
+%% Avaliar
+if opcaoMenu == 2
+	
+end
+
+%% Testar
+if opcaoMenu == 3
+	
+end
+
+
+%% Codigo antigo
+%{
 
 
 %% Variaveis necessarias
 
 % cria a pasta para guardar os dados (se ja existir faz nada)
-[~, ~, ~] = mkdir('RL_results');
+[~, ~, ~] = mkdir('resultados_RL');
 
-listaArquivos = dir('RL_results');
+listaArquivos = dir('resultados_RL');
 [nArquivos, ~] = size(listaArquivos);
 
 resp = 0; % recebe o input do usuario
@@ -20,11 +63,11 @@ numFold = 10; % numero de folds da cross validation
 
 %% Inicializacao dos dados
 
-[~,nCol] = size(train_dataset_normalized);
+[~,nCol] = size(trainData);
 
 % separa as colunas alvo do resto da base de dados
-trainData = train_dataset_normalized(:,1:nCol-nColAlvo);
-targetData = train_dataset_normalized(:,nCol-nColAlvo+1:end);
+trainData = trainData(:,1:nCol-nColAlvo);
+targetData = trainData(:,nCol-nColAlvo+1:end);
 
 
 %% Atributos polinomiais
@@ -179,5 +222,5 @@ for i = 1:nArquivos
 	fprintf('\n');
 	
 end
-
+%}
 end

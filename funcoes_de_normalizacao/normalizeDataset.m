@@ -124,7 +124,7 @@ breedB_preDummy = unique(breedB_preDummy);
 save( 'mapping_data.mat', 'MU', 'SIGMA', 'sex_uniques_arr', 'breedA_preDummy', 'breedB_preDummy' );
 
 % salva os dados na pasta raiz mesmo
-save('processed_data.mat', 'train_dataset_normalized', 'train_dataset_colour', ... 
+save('normalized_data.mat', 'train_dataset_normalized', 'train_dataset_colour', ... 
 	'train_dataset_breed', 'train_dataset_no_colour_breed', 'test_dataset_normalized');
 
 fprintf('Datasets salvos!\n');

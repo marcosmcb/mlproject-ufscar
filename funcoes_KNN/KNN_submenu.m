@@ -1,16 +1,63 @@
-function menu_KNN( train_data, test_data )
+function KNN_submenu( trainData, testData, nColAlvo, opcaoMenu )
+% KNN_submenu( trainData, testData, nColAlvo, opcaoMenu )
+%
+% Faz chamadas de funcoes das operacoes do KNN
+%
+%
+% UFSCar BCC 2016-1 - Aprendizado de Máquina - Projeto Classificadores (Kaggle)
+% Filipe Santos Rocchi - 552194
+% Lucas Lukasavicus Silva - 552321
+% Marcos Cavalcante - 408336
+% Rafael Brandao Barbosa Fairbanks - 552372
 
+%{
+Estrutura do submenu
+
+	Faz operacoes com os dados se necessario
+
+	if opcao == TREINO
+
+	if opcao == AVALIAR
+
+	if opcao == TESTAR
+
+%}
+
+%% Variaveis
+
+%% Operacoes com os dados
+
+%% Treinar
+if opcaoMenu == 1
+	
+end
+
+%% Avaliar
+if opcaoMenu == 2
+	
+end
+
+%% Testar
+if opcaoMenu == 3
+	
+end
+
+
+
+
+%% Codigo antigo
+%{
     resp = input('\nDeseja rodar 10-fold cross validation? [ 1-Sim 0-Nao ]\n> ');
 
     num_fold = 10;
 	resp_grid = 0;
     K = 11; % default value when grid-search is not selected
 	
-	[~, ~, ~] = mkdir('KNN_results');
+	[~, ~, ~] = mkdir('resultados_KNN');
 
 	if resp
 		
-		[ nRows, nCols ] = size( train_data );
+		[ nRows, nCols ] = size( trainData );
 		elementsInFold = ceil( nRows / num_fold );
 		
 		for k_fold=1:num_fold
@@ -33,8 +80,8 @@ function menu_KNN( train_data, test_data )
 				for K_idx = 1:2:ceil( sqrt(nCols) + 1)
 					fprintf('Running KNN...\n\n\nFOLD [%d]\tK[%d]\n', k_fold, K_idx);
 					fprintf('Valor de beg_row[%d], end_row[%d]\n', beg_row, end_row);
-					true_classes = train_data( beg_row:end_row, end-4:end );
-					resp_mat = knn( train_data( beg_row:end_row, : ), K_idx );
+					true_classes = trainData( beg_row:end_row, end-4:end );
+					resp_mat = knn( trainData( beg_row:end_row, : ), K_idx );
 
 					% Preparing result to be evaluated
 					normalized_result = normalizeKNNResult( resp_mat );
@@ -53,10 +100,10 @@ function menu_KNN( train_data, test_data )
 				
 				fprintf('Running KNN...\n\n\n FOLD [%d] \n K[%d]', k_fold, K);
 
-				resp_mat = knn( train_data( beg_row:end_row, : ), K );
+				resp_mat = knn( trainData( beg_row:end_row, : ), K );
 				
 				% Preparing result to be evaluated
-				true_classes = train_data( beg_row:end_row, end-4:end );
+				true_classes = trainData( beg_row:end_row, end-4:end );
 				normalized_result = normalizeKNNResult( resp_mat );
 				[ right_instances, percentage ] = evaluateKNN( normalized_result, true_classes );
 				fprintf( 'Resultado da Avaliacao do KNN com K = [%d] eh: Acertos[%d] / Total[%d] - Percentage [%f] \n', K, right_instances, size(normalized_result,1), percentage );
@@ -77,10 +124,10 @@ function menu_KNN( train_data, test_data )
 		fprintf('Without n-fold or grid search (k=%g)...\n\n\n', K);
 		tic
 		
-		resp_mat = knn( train_data, K );
+		resp_mat = knn( trainData, K );
 		
 		% Preparing result to be evaluated
-		true_classes = train_data( :, end-4:end );
+		true_classes = trainData( :, end-4:end );
 		normalized_result = normalizeKNNResult( resp_mat );
 		[ right_instances, percentage ] = evaluateKNN( normalized_result, true_classes );
 		fprintf( 'Resultado da Avaliacao do KNN com K = [%d] eh: Acertos[%d] / Total[%d] - Percentage [%f] \n', K, right_instances, size(normalized_result,1), percentage );
@@ -91,5 +138,5 @@ function menu_KNN( train_data, test_data )
 		
 		toc
 	end;
-
+%}
 end

@@ -3,28 +3,56 @@
 %  Disciplina: Aprendizado de Maquina
 %  Prof. Tiago A. Almeida
 %
-%  Projeto Aprendizado de Máquina - Shelter Animal Outcomes ( www.kaggle.com )
+%  Projeto Aprendizado de Maquina - Shelter Animal Outcomes ( www.kaggle.com )
 %
 %
-%
+% Filipe Santos Rocchi - 552194
+% Lucas Lukasavicus Silva - 552321
+% Marcos Cavalcante - 408336
+% Rafael Brandao Barbosa Fairbanks - 552372
 
-%% Initialization
+%% Inicializacao
+
 clear; close all; clc;
 
-%% Adding needed subfolders to path
-addpath('./datasets_functions'); % funcoes de tratamento de dados
-addpath('./ANN_files'); % funcao de redes neurais
-addpath('./LR_files'); % funcoes de regressao logistica
-addpath('./SVM_files'); % funcoes de SVM
-addpath('./KNN_files'); % funcoes de KNN
+%% Adicionando pastas necessarias ao path do MATLAB
 
-%% Load the train dataset as well as the test dataset 
-fprintf('Carregando os dados do dataset [sem normalizacao] ...\n\n');
-[ train_data, test_data ] = readData();
+addpath('./funcoes_de_normalizacao/'); % funcoes de tratamento de dados
+addpath('./funcoes_KNN'); % funcoes de KNN
+addpath('./funcoes_RL'); % funcoes de RL
+addpath('./funcoes_RNA'); % funcoes de RNA
+addpath('./funcoes_SVM'); % funcoes de SVM
 
-%% Displays the menu options and gets back the user's answer
-menu(train_data, test_data);
 
-%% Exiting
+%% Carregamento e Normalizacao dos dados (se necessario)
+
+existeDadosProcessados = exist('normalized_data.mat', 'file');
+
+resposta = 0;
+
+if existeDadosProcessados
+	fprintf('Dados normalizados encontrados em arquivo.\n[1] - Carregar dados normalizados\n[2] - Renormalizar dados');
+	resposta = input('> ');
+end
+
+if resposta == 1
+	% carrega os dados normalizados
+	load('processed_data.mat');
+end
+
+if  ~existeDadosProcessados || resposta == 2
+	% carrega os dados originais
+	[trainData, testData] = readData();
+	% normaliza os dados
+	[trainDatasetNormalized, testDatasetNormalized] = normalizeDataset(trainData, testData);
+end
+
+
+%% Menu de opcoes dos algoritmos
+
+menu(trainDatasetNormalized, testDatasetNormalized);
+
+
+%% Mensagem de termino
+
 fprintf('\n[Programa Finalizado]\n');
-%clear; close all; % removido para testes, decidir sobre mudar depois

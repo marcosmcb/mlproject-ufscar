@@ -1,4 +1,52 @@
-function SVM_submenu( train_dataset , nColAlvo )
+function SVM_submenu( trainData, testData, nColAlvo, opcaoMenu )
+% SVM_submenu( trainData, testData, nColAlvo, opcaoMenu )
+%
+% Faz chamadas de funcoes das operacoes de SVM
+%
+%
+% UFSCar BCC 2016-1 - Aprendizado de Máquina - Projeto Classificadores (Kaggle)
+% Filipe Santos Rocchi - 552194
+% Lucas Lukasavicus Silva - 552321
+% Marcos Cavalcante - 408336
+% Rafael Brandao Barbosa Fairbanks - 552372
+
+%{
+Estrutura do submenu
+
+	Faz operacoes com os dados se necessario
+
+	if opcao == TREINO
+
+	if opcao == AVALIAR
+
+	if opcao == TESTAR
+
+%}
+
+%% Variaveis
+
+%% Operacoes com os dados
+
+%% Treinar
+if opcaoMenu == 1
+	
+end
+
+%% Avaliar
+if opcaoMenu == 2
+	
+end
+
+%% Testar
+if opcaoMenu == 3
+	
+end
+
+
+%%
+%{
+
+
 % SVM_SUBMENU( train_dataset )
 % 
 % Sub menu para oferecer as opcoes de execucao da SVM
@@ -25,7 +73,7 @@ function SVM_submenu( train_dataset , nColAlvo )
 
 %% Cria pasta para guardar os resultados
 
-[~, ~, ~] = mkdir('SVM_results');
+[~, ~, ~] = mkdir('resultados_SVM');
 
 %% Separacao inicial dos dados
 
@@ -77,5 +125,6 @@ if opcao == 0
 	SVM_calculaResultados(targetData, nColAlvo);
 	
 end
+%}
 
 end

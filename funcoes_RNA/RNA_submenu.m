@@ -1,10 +1,61 @@
-function RL_submenu( train_dataset_normalized, nColAlvo )
+function RNA_submenu( trainData, testData, nColAlvo, opcaoMenu )
+% RNA_submenu( trainData, testData, nColAlvo, opcaoMenu )
+%
+% Faz chamadas de funcoes das operacoes de Redes Neurais
+%
+%
+% UFSCar BCC 2016-1 - Aprendizado de Máquina - Projeto Classificadores (Kaggle)
+% Filipe Santos Rocchi - 552194
+% Lucas Lukasavicus Silva - 552321
+% Marcos Cavalcante - 408336
+% Rafael Brandao Barbosa Fairbanks - 552372
+
+
+
+%{
+Estrutura do submenu
+
+	Faz operacoes com os dados se necessario
+
+	if opcao == TREINO
+
+	if opcao == AVALIAR
+
+	if opcao == TESTAR
+
+%}
+
+%% Variaveis
+
+%% Operacoes com os dados
+
+%% Treinar
+if opcaoMenu == 1
+	
+end
+
+%% Avaliar
+if opcaoMenu == 2
+	
+end
+
+%% Testar
+if opcaoMenu == 3
+	
+end
+
+
+
+%%
+%{
+
+
 %% Variaveis necessarias
 
 % cria a pasta para guardar os dados (se ja existir faz nada)
-[~, ~, ~] = mkdir('ANN_results');
+[~, ~, ~] = mkdir('resultados_RNA');
 
-listaArquivos = dir('ANN_results');
+listaArquivos = dir('resultados_RNA');
 [nArquivos, ~] = size(listaArquivos);
 
 resp = 0; % recebe o input do usuario
@@ -13,11 +64,11 @@ numFold = 10; % numero de folds da cross validation
 
 %% Inicializacao dos dados
 
-[nLin, nCol] = size(train_dataset_normalized);
+[nLin, nCol] = size(trainData);
 
 % separa as colunas alvo do resto da base de dados
-trainData = train_dataset_normalized(:,1:nCol-nColAlvo);
-targetData = train_dataset_normalized(:,nCol-nColAlvo+1:end);
+trainData = trainData(:,1:nCol-nColAlvo);
+targetData = trainData(:,nCol-nColAlvo+1:end);
 
 
 %% Prepara os dados para o n-fold cross validation
@@ -139,5 +190,7 @@ for i = 1:nArquivos
 	%fprintf('\n');
 	
 end
+%}
+
 %}
 end
