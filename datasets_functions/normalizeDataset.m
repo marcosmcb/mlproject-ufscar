@@ -7,13 +7,13 @@ function [ train_dataset_normalized, train_dataset_colour, train_dataset_breed, 
 % Removes empty cells, noisy ones ('0 years') and transform the data
 train_data = cleanDataSet( train_data, empty_arr, zeros_arr);
 
+
 %% Start to actually normalize the dataset, the previous steps were performed to clean the dataset
 
-[ages_arrNN] = normalizeAgeuponOutcome( train_data{8} );
 
+[ages_arrNN] = normalizeAgeuponOutcome( train_data{8} );
 % normalize age range
-% MAY CAUSE PROBLEMS IN TEST DATA, be warned to preprocess it
-ages_arr = zscore(ages_arrNN);
+[ages_arr, MU, SIGMA] = zscore(ages_arrNN);
 
 
 % 'With name' == 1 and 'without name' == 0
@@ -23,7 +23,9 @@ names_arr = normalizeNames( train_data{2} );
 animal_type_arr = normalizeAnimalType( train_data{6} );
 
 %SexUponOutCome cleaning
-sex_upon_out_come_arr = binarizeColumn( train_data(7) );
+[sex_upon_out_come_arr, sex_uniques_arr] =  normalizeSexUponOutcome( train_data(7) ) ;
+sex_upon_out_come_arr = binarizeColumn( sex_upon_out_come_arr );
+
 
 %Breed cleaning
 [breed_arr_A, breed_arr_B, breedA_preDummy, breedB_preDummy] = normalizeBreed( train_data(9) , animal_type_arr);
@@ -115,6 +117,11 @@ toc;
 %% Saving processesd datasets
 
 fprintf('Salvando datasets processados em arquivo...\n');
+
+breedA_preDummy = unique(breedA_preDummy);
+breedB_preDummy = unique(breedB_preDummy);
+
+save( 'mapping_data.mat', 'MU', 'SIGMA', 'sex_uniques_arr', 'breedA_preDummy', 'breedB_preDummy' );
 
 % salva os dados na pasta raiz mesmo
 save('processed_data.mat', 'train_dataset_normalized', 'train_dataset_colour', ... 

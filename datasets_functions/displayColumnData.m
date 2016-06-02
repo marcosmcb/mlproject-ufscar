@@ -9,8 +9,8 @@ function displayColumnData( column_idx, arr_data, print_to_file )
     perc_arr = num2cell( percentage' );
 
     [ ~, cols ] = size( percentage );
-    if(cols > 10)
-    	mat = [ word_arr(1:10, 1) freq_arr(1:10, 1) perc_arr(1:10, 1) ];
+    if(cols > 1500)
+    	mat = [ word_arr(1:end, 1) freq_arr(1:end, 1) perc_arr(1:end, 1) ];
     else
     	mat = [ word_arr freq_arr perc_arr ];
     end;
