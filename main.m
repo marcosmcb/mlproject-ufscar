@@ -31,7 +31,9 @@ existeDadosProcessados = exist('normalized_data.mat', 'file');
 resposta = 0;
 
 if existeDadosProcessados
-	fprintf('Dados normalizados encontrados em arquivo.\n[1] - Carregar dados normalizados\n[2] - Renormalizar dados\n');
+	fprintf('Dados normalizados encontrados em arquivo.\n');
+	fprintf('[1] - Carregar dados normalizados\n');
+	fprintf('[2] - Renormalizar dados (duracao do processamento: 10 a 20 segundos)\n');
 	resposta = input('> ');
 end
 

@@ -27,26 +27,25 @@ direitaB = strrep(direitaB, ' ', '');
 
 % Numero de elementos em cada vetor
 [nElem, ~] = size(esquerdaA);
-[nCores, ~] = size(cores);
-[nPadroes, ~] = size(padroes);
+[~, nCores] = size(cores);
+[~, nPadroes] = size(padroes);
 
 % prealocacao
 ehCor = zeros(nElem, nCores);
 ehPadrao = zeros(nElem, nPadroes);
 
 
+% para cada elemento, verifica quais cores e padroes ele possui
 for i=1:nElem
-	% para cada elemento, verifica se ele pertence ao conjunto de cores
-	ehCor(i,:) = ismember(esquerdaA{i}, cores) ...
-				| ismember(esquerdaB{i}, cores) ...
-				| ismember(direitaA{i}, cores) ...
-				| ismember(direitaB{i}, cores);
+	ehCor(i,:) = ehCor(i,:) | strcmp(esquerdaA{i}, cores);
+	ehCor(i,:) = ehCor(i,:) | strcmp(esquerdaB{i}, cores);
+	ehCor(i,:) = ehCor(i,:) | strcmp(direitaA{i}, cores);
+	ehCor(i,:) = ehCor(i,:) | strcmp(direitaB{i}, cores);
 
-	% ou padroes
-	ehPadrao(i,:) = ismember(esquerdaA{i}, padroes) ...
-				| ismember(esquerdaB{i}, padroes) ...
-				| ismember(direitaA{i}, padroes) ...
-				| ismember(direitaB{i}, padroes);
+	ehPadrao(i,:) = ehPadrao(i,:) | strcmp(esquerdaA{i}, padroes);
+	ehPadrao(i,:) = ehPadrao(i,:) | strcmp(esquerdaB{i}, padroes);
+	ehPadrao(i,:) = ehPadrao(i,:) | strcmp(direitaA{i}, padroes);
+	ehPadrao(i,:) = ehPadrao(i,:) | strcmp(direitaB{i}, padroes);
 end
 
 % junta cor e padrao em uma variavel

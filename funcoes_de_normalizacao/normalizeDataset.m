@@ -40,7 +40,7 @@ trainRaca = train_data{9}; % aplicar processamento de separacao (reusar codigo)
 trainCor = train_data{10}; % aplicar processamento de separacao (reusar codigo)
 
 % para os dados de teste
-testId = test_data{1}; % guardar para imprimir saida formato Kaggle(? - nao necessario se nao remover ou permutar linhas)
+testId = test_data{1}; % nao necessario ja que nao removemos ou permutamos linhas
 testNome = test_data{2}; % verificar se possui ou nao apenas
 %testData = test_data{3}; % irrelevante
 testTipoAnimal = test_data{4}; % transformar em binario (1-cao 2-gato)
@@ -120,7 +120,7 @@ fprintf('Coluna Idade normalizada\n'); toc;
 
 %% Raca
 
-% funcao que 
+% funcao que separa e agrupa as racas
 racaBin = normalizeBreed(raca, tipoAnimalBin);
 
 fprintf('Coluna Raca normalizada\n'); toc;
@@ -136,7 +136,7 @@ fprintf('Coluna Cor normalizada\n'); toc;
 trainDatasetNormalized = [temNomeBin(1:nElemTreino,:), tipoAnimalBin(1:nElemTreino,:), sexoBin(1:nElemTreino,:), ...
 							idadeNorm(1:nElemTreino, :), racaBin(1:nElemTreino,:), corBin(1:nElemTreino,:), resultadoBin];
 
-% poderia usar (nElem-nElemTeste)+1 tambem nos indices
+% poderia usar (nElem-nElemTeste)+1 tambem nos indices (total-teste+1 = inicio dos de teste)
 testDatasetNormalized = [temNomeBin(nElemTreino+1:end,:), tipoAnimalBin(nElemTreino+1:end,:), sexoBin(nElemTreino+1:end,:), ...
 							idadeNorm(nElemTreino+1:end, :), racaBin(nElemTreino+1:end,:), corBin(nElemTreino+1:end,:)];
 
