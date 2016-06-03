@@ -1,19 +1,40 @@
-function [ age_cells ] = normalizeAgeuponOutcome( age_cells )
+function [ idadeNormalizada ] = normalizeAgeuponOutcome( idadeTexto )
+% [ idadeInteiros ] = normalizeAgeuponOutcome( idadeTexto )
+%
+% Transforma a idade em texto para idade em inteiros
+% E normaliza por padronizacao (media = 0, variancia = 1)
+%
+%
+% UFSCar BCC 2016-1 - Aprendizado de Maquina - Projeto Classificadores (Kaggle)
+% Filipe Santos Rocchi - 552194
+% Lucas Lukasavicus Silva - 552321
+% Marcos Cavalcante - 408336
+% Rafael Brandao Barbosa Fairbanks - 552372
 
-    % Replacing the period set (day/days, week/weeks, month/months, year/years ) 
-    % by its respective value in the value set(1 , 7, 30, 365)
-    % 
-    % We will also add a token to tokenize the string afterwards.
-    age_cells = strrep( age_cells, 'years', '365' );
-    age_cells = strrep( age_cells, 'year', '365' );
-    age_cells = strrep( age_cells, 'months', '30' );
-    age_cells = strrep( age_cells, 'month', '30' );
-    age_cells = strrep( age_cells, 'weeks', '7' );
-    age_cells = strrep( age_cells, 'week', '7' );
-    age_cells = strrep( age_cells, 'days', '1' );
-    age_cells = strrep( age_cells, 'day', '1' );
-    
-    [lengthArr, ~] = size(age_cells);
-    age_cells = tokenizeAndMultiply( age_cells, lengthArr );
-    
+% troca as celulas sem valor para 0 days
+idadeTexto(cellfun(@isempty, idadeTexto)) = {'0 days'};
+
+% troca paralavras por valores correspondentes na string
+idadeTexto = strrep( idadeTexto, 'years', '365' );
+idadeTexto = strrep( idadeTexto, 'year', '365' );
+idadeTexto = strrep( idadeTexto, 'months', '30' );
+idadeTexto = strrep( idadeTexto, 'month', '30' );
+idadeTexto = strrep( idadeTexto, 'weeks', '7' );
+idadeTexto = strrep( idadeTexto, 'week', '7' );
+idadeTexto = strrep( idadeTexto, 'days', '1' );
+idadeTexto = strrep( idadeTexto, 'day', '1' );
+
+[nElem, ~] = size(idadeTexto);
+idadeNormalizada = zeros(nElem,1);
+
+% para cada celula, le o numero e a base de tempo correspondentes
+% e armazena a multiplicacao em idadeNormalizada
+for i = 1:nElem
+	numBase = sscanf(idadeTexto{i}, '%d %d');
+	idadeNormalizada(i,:) = numBase(1) * numBase(2);
+end
+
+% normalizacao por padronizacao
+idadeNormalizada = zscore(idadeNormalizada);
+
 end

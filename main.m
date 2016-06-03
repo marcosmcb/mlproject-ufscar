@@ -41,16 +41,17 @@ if resposta == 1
 end
 
 if  ~existeDadosProcessados || resposta == 2
+	fprintf('Normalizando dados...\n');
 	% carrega os dados originais
 	[trainData, testData] = readData();
-	% normaliza os dados
-	[trainDatasetNormalized, testDatasetNormalized] = normalizeDataset(trainData, testData);
+	% normaliza os dados ( e salva em arquivo )
+	[trainDatasetNormalized, testDatasetNormalized, nColAlvo] = normalizeDataset(trainData, testData);
 end
 
 
 %% Menu de opcoes dos algoritmos
 
-menu(trainDatasetNormalized, testDatasetNormalized);
+menu(trainDatasetNormalized, testDatasetNormalized, nColAlvo);
 
 
 %% Mensagem de termino

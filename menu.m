@@ -1,10 +1,10 @@
-function menu(trainData, testData)
+function menu(trainData, testData, nColAlvo)
 % menu(trainData, testData)
 %
 % Lista opcoes para executar cada parte do projeto
 %
 %
-% UFSCar BCC 2016-1 - Aprendizado de Máquina - Projeto Classificadores (Kaggle)
+% UFSCar BCC 2016-1 - Aprendizado de Maquina - Projeto Classificadores (Kaggle)
 % Filipe Santos Rocchi - 552194
 % Lucas Lukasavicus Silva - 552321
 % Marcos Cavalcante - 408336
@@ -13,29 +13,29 @@ function menu(trainData, testData)
 %% Variaveis
 
 % Numero de colunas-alvo nos dados de treino
-nColAlvo = 5;
+%nColAlvo = 5;
 % Guarda a opcao do menu escolhida
-opcao = 1;
+opcaoMenu = 1;
 % Guarda o algoritmo escolhido
 algoritmo = 1;
 
 
 %% Selecao de opcoes
 
-while opcao ~= 4
+while opcaoMenu ~= 4
 
 	fprintf('\nOpcoes: \n');
 	fprintf('[1] - Treinar classificadores\n');
 	fprintf('[2] - Avaliar resultado do treino dos classificadores\n');
 	fprintf('[3] - Testar classificadores com a base de teste\n');
 	fprintf('[4] - Sair\n');
-	opcao = input('> ');
+	opcaoMenu = input('> ');
 
-	if opcao == 4 % Sair
+	if opcaoMenu == 4 % Sair
 		break;
 	end
 
-	if opcao < 1 || opcao > 4
+	if opcaoMenu < 1 || opcaoMenu > 4
 		fprintf('Opcao Invalida\n');
 		continue;
 	end
@@ -56,16 +56,16 @@ while opcao ~= 4
 
 	switch algoritmo
 		case 1
-			KNN_submenu(trainData, testData, nColAlvo, opcao);
+			KNN_submenu(trainData, testData, nColAlvo, opcaoMenu);
 
 		case 2
-			RL_submenu(trainData, testData, nColAlvo, opcao);
+			RL_submenu(trainData, testData, nColAlvo, opcaoMenu);
 
 		case 3
-			RNA_submenu(trainData, testData, nColAlvo, opcao);
+			RNA_submenu(trainData, testData, nColAlvo, opcaoMenu);
 
 		case 4
-			SVM_submenu(trainData, testData, nColAlvo, opcao);
+			SVM_submenu(trainData, testData, nColAlvo, opcaoMenu);
 	end
 	
 end
