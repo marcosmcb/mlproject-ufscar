@@ -1,7 +1,7 @@
 function [ racaBin ] = normalizeBreed( raca, tipoAnimal )
 % [ racaNormalizada ] = normalizeBreed( raca, tipoAnimal )
 % 
-% Faz a normalizacao das racas por separacao
+% Faz a normalizacao das racas por separacao e agrupamento
 % racaNormalizada eh um vetor binario representando as combinacoes de racas
 %
 %
@@ -23,56 +23,29 @@ function [ racaBin ] = normalizeBreed( raca, tipoAnimal )
 % remove a barra dos nomes de racaB (praticamente nao necessario, mas fica bonito)
 racaB = strrep(racaB, '/', '');
 
-racaGrupoA = zeros(nElem, 1);
-racaGrupoB = zeros(nElem, 1);
+% prealoca resultados parciais
+racaGrupoA = {zeros(nElem, 1)};
+racaGrupoB = {zeros(nElem, 1)};
 
-for i=1:nElem
+% chama funcao que agrupa
+for i = 1:nElem
 	if( tipoAnimal(i) )
-		racaGrupoA(i) = breed2group( char( racaA(i) ) );
+		racaGrupoA(i,:) = breed2group( char( racaA(i) ) );
+		racaGrupoB(i,:) = breed2group( char( racaB(i) ) );
+	else
+		racaGrupoA(i,:) = racaA(i);
+		racaGrupoB(i,:) = racaB(i);
 	end
 end
 
-for i=1:Elem
-	if( tipoAnimal(i) )
-		racaGrupoB(i) = breed2group( char( racaB(i) ) );
-	end
-end
-
+% transforma as racas agrupadas em colunas binario
 racaBinA = dummyvar( grp2idx( racaGrupoA ) );
 racaBinB = dummyvar( grp2idx( racaGrupoB ) );
 
+% substitui os valores nulos
+racaBinB(isnan(racaBinB)) = 0;
+
+% junta numa unica variavel
 racaBin = [racaBinA, racaBinB];
-
-pause;
-
-%% Codigo antigo
-	%{
-
-    [breed_col_A, breed_col_B ] = strtok(raca, '/');
-    
-    breed_col_A = breed_col_A{1};
-    breed_col_B = breed_col_B{1};
-    
-    sizeA = size(breed_col_A,1);
-    sizeB = size(breed_col_B,1);
-
-	for i=1:sizeA
-        if( animal_type_arr(i) )
-            breed_col_A(i) = breed2group( char( breed_col_A(i) ) );
-        end
-	end
-    
-	for i=1:sizeB
-        if( animal_type_arr(i) )
-            breed_col_B(i) = breed2group( char( breed_col_B(i) ) );
-        end
-	end
-	
-    breed_arr1 = dummyvar( grp2idx( breed_col_A ) );
-    breed_arr2 = dummyvar( grp2idx( breed_col_B ) );
-	
-	breedA_preDummy = breed_col_A;
-	breedB_preDummy = breed_col_B;
-%}
 
 end

@@ -1,50 +1,55 @@
-function [color pattern] = splitColorAndPattern( colorAndPattern_arr )
-    
-    patterns = {'Agouti', 'Brindle', 'Calico', 'Merle', 'Point', 'Smoke', 'Tabby', 'Tick', 'Tiger', 'Torbie', 'Tortie', 'Tricolor'};
-    colors = {'Apricot', 'Black', 'Blue', 'Brown', 'Buff', 'Chocolate', 'Cream', 'Fawn', 'Flame', 'Gold', 'Gray', 'Lilac', 'Liver', 'Lynx', 'Orange', 'Pink', 'Red', 'Ruddy', 'Sable', 'Seal', 'Silver', 'Tan', 'White', 'Yellow'};
-    
-    [Left Right] = strtok( colorAndPattern_arr, '/' );
-    
-    [LeftA LeftB] = strtok( Left, ' ' );
-    LeftA = LeftA{1};
-    LeftB = LeftB{1};
-    LeftB = strrep(LeftB, ' ', '');
-    
-    Right = Right{1};
-    Right = strrep(Right, '/', '');
-    [RightA RightB] = strtok( Right, ' ' );
-    RightB = strrep(RightB, ' ', '');
-        
-    sizeN = size(LeftA,1);
-    sizeC = size(colors,2);
-    sizeP = size(patterns,2);
-    
-    color = zeros(sizeN, sizeC);
-    pattern = zeros(sizeN, sizeP);
-    c_aux = zeros(1,sizeC);
-    
-    for i=1:sizeN
-        c_aux = ismember(colors, LeftA(i));
-        color(i,:) = c_aux | color(i,:);
-        c_aux = ismember(colors, LeftB(i));
-        color(i,:) = c_aux | color(i,:);
-        c_aux = ismember(colors, RightA(i));
-        color(i,:) = c_aux | color(i,:);
-        c_aux = ismember(colors, RightB(i));
-        color(i,:) = c_aux | color(i,:);
-    end
-    
-    c_aux = zeros(1,sizeP);
-    
-    for i=1:sizeN
-        c_aux = ismember(patterns, LeftA(i));
-        pattern(i,:) = c_aux | pattern(i,:);
-        c_aux = ismember(patterns, LeftB(i));
-        pattern(i,:) = c_aux | pattern(i,:);
-        c_aux = ismember(patterns, RightA(i));
-        pattern(i,:) = c_aux | pattern(i,:);
-        c_aux = ismember(patterns, RightB(i));
-        pattern(i,:) = c_aux | pattern(i,:);
-    end
-    
+function [corBin] = splitColorAndPattern( cor )
+% [corBin] = splitColorAndPattern( cor )
+%
+% Separa cor e padrao, retorna colunas binarias equivalentes as cores e padroes
+%
+%
+% UFSCar BCC 2016-1 - Aprendizado de Maquina - Projeto Classificadores (Kaggle)
+% Filipe Santos Rocchi - 552194
+% Lucas Lukasavicus Silva - 552321
+% Marcos Cavalcante - 408336
+% Rafael Brandao Barbosa Fairbanks - 552372
+
+% Padroes e Cores presentes nos dados
+padroes = {'Agouti', 'Brindle', 'Calico', 'Merle', 'Point', 'Smoke', 'Tabby', 'Tick', 'Tiger', 'Torbie', 'Tortie', 'Tricolor'};
+cores = {'Apricot', 'Black', 'Blue', 'Brown', 'Buff', 'Chocolate', 'Cream', 'Fawn', 'Flame', 'Gold', 'Gray', 'Lilac', 'Liver', 'Lynx', 'Orange', 'Pink', 'Red', 'Ruddy', 'Sable', 'Seal', 'Silver', 'Tan', 'White', 'Yellow'};
+
+% Separa as cores compostas em esquerda e direita
+[esquerda, direita] = strtok( cor, '/' );
+
+% Separa as cores dos tons para esquerda e direita
+[esquerdaA, esquerdaB] = strtok( esquerda, ' ' );
+esquerdaB = strrep(esquerdaB, ' ', '');
+
+direita = strrep(direita, '/', '');
+[direitaA, direitaB] = strtok( direita, ' ' );
+direitaB = strrep(direitaB, ' ', '');
+
+% Numero de elementos em cada vetor
+[nElem, ~] = size(esquerdaA);
+[nCores, ~] = size(cores);
+[nPadroes, ~] = size(padroes);
+
+% prealocacao
+ehCor = zeros(nElem, nCores);
+ehPadrao = zeros(nElem, nPadroes);
+
+
+for i=1:nElem
+	% para cada elemento, verifica se ele pertence ao conjunto de cores
+	ehCor(i,:) = ismember(esquerdaA{i}, cores) ...
+				| ismember(esquerdaB{i}, cores) ...
+				| ismember(direitaA{i}, cores) ...
+				| ismember(direitaB{i}, cores);
+
+	% ou padroes
+	ehPadrao(i,:) = ismember(esquerdaA{i}, padroes) ...
+				| ismember(esquerdaB{i}, padroes) ...
+				| ismember(direitaA{i}, padroes) ...
+				| ismember(direitaB{i}, padroes);
+end
+
+% junta cor e padrao em uma variavel
+corBin = [ehCor, ehPadrao];
+
 end

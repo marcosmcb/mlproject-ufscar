@@ -31,13 +31,13 @@ existeDadosProcessados = exist('normalized_data.mat', 'file');
 resposta = 0;
 
 if existeDadosProcessados
-	fprintf('Dados normalizados encontrados em arquivo.\n[1] - Carregar dados normalizados\n[2] - Renormalizar dados');
+	fprintf('Dados normalizados encontrados em arquivo.\n[1] - Carregar dados normalizados\n[2] - Renormalizar dados\n');
 	resposta = input('> ');
 end
 
 if resposta == 1
 	% carrega os dados normalizados
-	load('processed_data.mat');
+	load('normalized_data.mat');
 end
 
 if  ~existeDadosProcessados || resposta == 2
