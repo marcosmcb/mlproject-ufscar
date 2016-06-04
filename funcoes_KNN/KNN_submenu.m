@@ -29,7 +29,8 @@ Estrutura do submenu
 
 %% Treinar
 if opcaoMenu == 1
-	KNN_treinar(trainData, nColAlvo);
+	[K, perc] = KNN_treinar(trainData, nColAlvo);
+	fprintf( '\n\n\nValor do melhor K = %d , Valor da Taxa de Acerto = [%f]\n\n\n' , K, perc);
 end
 
 %% Avaliar
