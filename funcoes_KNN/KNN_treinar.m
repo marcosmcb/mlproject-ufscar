@@ -28,7 +28,7 @@ function [ K, perc ] = KNN_treinar( trainData, nColsAlvo )
 		for K_idx = 1:max_grid
 			tic;
 			fprintf('Rodando KNN-Fold-[%d] \t Com K = [%d] - Numero de Elementos no Fold = [%d]\n', k_fold, K_idx, (end_row - beg_row) );
-			result = knn( trainData( beg_row:end_row, : ), K_idx, nColsAlvo );
+			result = knn( trainData( beg_row:end_row, : ), K_idx, nColsAlvo, 0 );
 
 			true_classes = trainData( beg_row:end_row, end-4:end );
 			normalized_result = normalizeKNNResult( result );
