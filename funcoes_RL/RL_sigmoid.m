@@ -1,15 +1,15 @@
-function g = RL_sigmoid(z)
-%SIGMOID Calcula a funcao sigmoidal
-%   G = SIGMOID(z) calcula a sigmoid de z.
+function [ g ] = RL_sigmoid( z )
+% [ g ] = RL_sigmoid( z )
+%
+% Calcula a funcao sigmoid de z, retorna em g
+%
+%
+% UFSCar BCC 2016-1 - Aprendizado de Máquina - Projeto Classificadores (Kaggle)
+% Filipe Santos Rocchi - 552194
+% Lucas Lukasavicus Silva - 552321
+% Marcos Cavalcante - 408336
+% Rafael Brandao Barbosa Fairbanks - 552372
 
-% Variavel de retorno
-g = zeros(size(z));
-
-% Calcula a sigmoid de cada valor de z (z pode ser uma matriz,
-%               vetor ou escalar).
-
-e = exp(1);
-
-g = 1 ./ (1 + e .^ -z);
+g = 1 ./ (1 + exp(-z));
 
 end

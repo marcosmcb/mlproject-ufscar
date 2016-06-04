@@ -25,6 +25,9 @@ Estrutura do submenu
 
 %}
 
+% cria a pasta para guardar os dados (se ja existir faz nada)
+[~, ~, ~] = mkdir('resultados_RL');
+
 
 %% Treinar
 if opcaoMenu == 1

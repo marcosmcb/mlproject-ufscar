@@ -34,8 +34,8 @@ fimFoldAtual = nElemPorFold * (qtdeFolds-foldAtual + 1);
 %% Separacao
 
 % junta de 1 ate (nElementos / totalFolds-nAtual) mais (nElementos / nElementos - nAtual-1) ate o fim
-trainDataFold = [trainData(1 : posAntesFoldAtual ,:) ; ...
-				 trainData(posDepoisFoldAtual : end ,:)];
+trainDataFold = [trainData(1 : posAntesFoldAtual , :) ; ...
+				 trainData(posDepoisFoldAtual : end , :)];
 
 testDataFold = trainData(inicioFoldAtual : fimFoldAtual, :);
 

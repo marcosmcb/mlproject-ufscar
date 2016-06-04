@@ -63,31 +63,48 @@ fprintf('Atributos polinomiais adicionados (numero de colunas aumentou de %g par
 [~, nLambdas] = size(lambda);
 
 % alocacao de variaveis
-thetas = zeros(qtdeFolds, nLambdas, nColPol);
-custos = zeros(qtdeFolds, nLambdas);
+thetas = zeros(qtdeFolds, nLambdas, nColPol-nColAlvo, nColAlvo);
+custos = zeros(qtdeFolds, nLambdas, nColAlvo);
 
-acuracias = zeros(qtdeFolds);
-fmedidas = zeros(qtdeFolds);
+acuracias = zeros(qtdeFolds, nLambdas, nColAlvo);
+% fmedidas = zeros(qtdeFolds); % estara presente em futuras versoes
 
+tic
 % executa os n-folds
 for foldAtual = 1:qtdeFolds
-
+	
+	fprintf('[RL] Executando Fold: %g | Quantidade de lambdas: %g\n', foldAtual, nLambdas);
+	
 	[trainDataFold, testDataFold] = RL_splitDadosNFold(trainData, qtdeFolds, foldAtual);
 	
 	% TREINO com [coarse || normal] gridSearch
+	i = 0; % iterador
 	for itLambda = lambda
-		[thetas(foldAtual, itLambda, :), custos(foldAtual, itLambda)] = RL_principal(trainDataFold, itLambda, nColAlvo);
+		i = i + 1;
+		%[thetas(foldAtual, i, :, :), custos(foldAtual, i, :)] = RL_principal(trainDataFold, itLambda, nColAlvo);
+		toc
 	end
 	
 	% TESTE (validacao)
-	[acuracias(foldAtual), fmedidas(foldAtual)] = RL_calculaResultados(testDataFold, thetas(foldAtual), lambda, nColAlvo);
+	[acuracias(foldAtual, :)] = RL_calculaResultados(testDataFold, thetas(foldAtual, :, :, :), nColAlvo);
 
 end
 
 
 %% Salva resultados em arquivo
 
-%save('lol');
+if tipoGridSearch == 1
+	arquivoParametros = './resultados_RL/coarse_parametros.mat';
+	arquivoResultados = './resultados_RL/coarse_resultados.mat';
+end
+
+if tipoGridSearch == 2
+	arquivoParametros = './resultados_RL/normal_parametros.mat';
+	arquivoResultados = './resultados_RL/normal_resultados.mat';
+end
+
+save(arquivoParametros, 'thetas', 'custos', 'lambda');
+save(arquivoResultados, 'acuracias', 'lambda');
 
 
 end
