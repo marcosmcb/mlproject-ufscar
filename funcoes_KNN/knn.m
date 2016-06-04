@@ -1,6 +1,5 @@
-function [ resp_mat ] = knn( Dataset, K)
+function [ resp_mat ] = knn( Dataset, K, nColsClass )
 
-	nColsClass = 5;
 	colAge = 8;
 
 	trainData  = Dataset( : , 1:end-nColsClass);

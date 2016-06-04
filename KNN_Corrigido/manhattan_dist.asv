@@ -1,9 +1,0 @@
-function D = manhattan_dist(x, X)
-[m, ~] = size(X);  % Quantidade de objetos em X
-D = zeros(m,1); % Inicializa a matriz de distancias D
-
-for i=1:m
-    D(i) = sum(abs( X(i) - x ));
-end
-
-end
