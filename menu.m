@@ -27,7 +27,7 @@ while opcaoMenu ~= 4
 	fprintf('\nOpcoes: \n');
 	fprintf('[1] - Treinar classificadores\n');
 	fprintf('[2] - Avaliar resultado do treino dos classificadores\n');
-	fprintf('[3] - Testar classificadores com a base de teste\n');
+	fprintf('[3] - Classificar a base de teste (formato Kaggle)\n');
 	fprintf('[4] - Sair\n');
 	opcaoMenu = input('> ');
 

@@ -19,7 +19,7 @@ Estrutura do submenu
 
 	if opcao == AVALIAR
 
-	if opcao == TESTAR
+	if opcao == CLASSIFICAR
 
 %}
 

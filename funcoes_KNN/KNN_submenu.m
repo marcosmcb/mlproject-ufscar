@@ -19,7 +19,7 @@ Estrutura do submenu
 
 	if opcao == AVALIAR
 
-	if opcao == TESTAR
+	if opcao == CLASSIFICAR
 
 %}
 
@@ -29,17 +29,17 @@ Estrutura do submenu
 
 %% Treinar
 if opcaoMenu == 1
-	
+	KNN_treinar(trainData, nColAlvo);
 end
 
 %% Avaliar
 if opcaoMenu == 2
-	
+	KNN_avaliar(trainData, nColAlvo);
 end
 
 %% Testar
 if opcaoMenu == 3
-	
+	KNN_classificar(testData);
 end
 
 
