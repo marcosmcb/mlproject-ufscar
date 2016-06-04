@@ -17,7 +17,7 @@ Estrutura do submenu
 
 	Faz operacoes com os dados se necessario
 
-	if opcao == TREINO
+	if opcao == TREINAR
 
 	if opcao == AVALIAR
 
@@ -25,12 +25,23 @@ Estrutura do submenu
 
 %}
 
-%% Variaveis
-
-%% Operacoes com os dados
 
 %% Treinar
 if opcaoMenu == 1
+	
+	tipoGridSearch = 0;
+	
+	while tipoGridSearch ~= 1 && tipoGridSearch ~= 2
+		fprintf('Executar: \n[1]- Coarse Grid Search\n[2] - Normal Grid Search\n');
+		tipoGridSearch = input('> ');
+		
+		if tipoGridSearch ~= 1 && tipoGridSearch ~= 2
+			fprintf('Opcao invalida\n');
+		end
+	end
+	
+	% faz adição de atributos polinomiais, n-fold cross validation, coarse gridSearch ou normal gridSearch
+	RL_treinar(trainData, nColAlvo, tipoGridSearch);
 	
 end
 

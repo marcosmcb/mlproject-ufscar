@@ -1,32 +1,42 @@
-function [ trainDataFold, targetDataFold, testDataFold, testTargetDataFold ] = RL_splitDadosNFold( trainData, targetData, totalFolds, nAtual )
-% RL_splitDadosNFold( trainData, targetData, totalFolds, nAtual )
+function [ trainDataFold, testDataFold ] = RL_splitDadosNFold( trainData, qtdeFolds, foldAtual )
+% [ trainDataFold, testDataFold ] = RL_splitDadosNFold( trainData, qtdeFolds, foldAtual )
 %
-% trainData : 
-% targetData : 
-% totalFolds : 
-% nAtual : 
-% 
-% Divide a base em totalFolds partes e retorna:
-% train e target para treino (tamanho totalFolds-1)
-% test e target para teste (tamanho de 1 fold)
+% Recebe uma base de dados (de treino), separa em qtdeFolds partes
+% pega uma dessas partes (a foldAtual) como de teste
+% e retorna todas menos ela para treino e ela para teste
 %
-% code by Rocchi™
+%
+% UFSCar BCC 2016-1 - Aprendizado de Máquina - Projeto Classificadores (Kaggle)
+% Filipe Santos Rocchi - 552194
+% Lucas Lukasavicus Silva - 552321
+% Marcos Cavalcante - 408336
+% Rafael Brandao Barbosa Fairbanks - 552372
 
-%% Variaveis uteis
+
+%% Variaveis
 
 % numero de amostras na base (linhas)
-[nElementos, ~] = size(targetData);
-% numero de elementos por fold
-nDataPfold = ceil(nElementos/totalFolds);
+[nElem, ~] = size(trainData);
+
+% numero de elementos por fold (o ultimo fold vai ter alguns elementos a mais (parte real da divisao))
+nElemPorFold = floor(nElem/qtdeFolds);
+
+% posicao do elemento antes do fold atual
+posAntesFoldAtual = nElemPorFold*(qtdeFolds-foldAtual);
+
+% posicao do elemento depois do fold atual 
+posDepoisFoldAtual = nElemPorFold * (qtdeFolds-foldAtual + 1) + 1;
+
+% posicoes de inicio e fim dos elementos do fold atual
+inicioFoldAtual = nElemPorFold * (qtdeFolds-foldAtual) + 1;
+fimFoldAtual = nElemPorFold * (qtdeFolds-foldAtual + 1);
 
 %% Separacao
 
 % junta de 1 ate (nElementos / totalFolds-nAtual) mais (nElementos / nElementos - nAtual-1) ate o fim
-trainDataFold = [trainData(1 : nDataPfold*(totalFolds-nAtual) ,:) ; trainData(nDataPfold*(totalFolds-(nAtual-1)):end ,:)];
-targetDataFold = [targetData(1 : nDataPfold*(totalFolds-nAtual) ,:) ; targetData(nDataPfold*(totalFolds-(nAtual-1)):end ,:)];
+trainDataFold = [trainData(1 : posAntesFoldAtual ,:) ; ...
+				 trainData(posDepoisFoldAtual : end ,:)];
 
-% pega somente a nAtual parte da base
-testDataFold = trainData(nDataPfold*(totalFolds-nAtual)+1 : nDataPfold*(totalFolds-nAtual+1)-1, :);
-testTargetDataFold = targetData(nDataPfold*(totalFolds-nAtual)+1 : nDataPfold*(totalFolds-nAtual+1)-1, :);
+testDataFold = trainData(inicioFoldAtual : fimFoldAtual, :);
 
 end

@@ -12,12 +12,10 @@ function menu(trainData, testData, nColAlvo)
 
 %% Variaveis
 
-% Numero de colunas-alvo nos dados de treino
-%nColAlvo = 5;
 % Guarda a opcao do menu escolhida
-opcaoMenu = 1;
+opcaoMenu = 0;
 % Guarda o algoritmo escolhido
-algoritmo = 1;
+algoritmo = 0;
 
 
 %% Selecao de opcoes
@@ -53,7 +51,7 @@ while opcaoMenu ~= 4
 		end
 		
 	end
-
+	
 	switch algoritmo
 		case 1
 			KNN_submenu(trainData, testData, nColAlvo, opcaoMenu);
