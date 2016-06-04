@@ -1,59 +1,85 @@
-function [ RL_AP_matriz ] = RL_atributosPolinomiais( trainData , colReal)
-% RL_atributosPolinomiais( trainData , colReal)
-% trainData : base de dados para gerar os atributos polinomiais
-% colReal : indice da coluna com valores reais possiveis de serem exponenciados (idade)
+function [ trainDataPolinomial ] = RL_atributosPolinomiais( trainData, nColAlvo )
+% RL_atributosPolinomiais( trainData )
+% 
+% Gera atributos polinomiais usando a base de dados fornecida
+% combina as colunas binarias
 %
-% Recebe a base e aplica AND nas colunas binarias para gerar combinacoes
-% Junta com colunas de exponenciacoes da coluna real (idade)
+% e etorna a base original mais as colunas criadas
 %
-% Retorna a base original mais as colunas criadas
 %
-% code by Rocchi™
+% UFSCar BCC 2016-1 - Aprendizado de Máquina - Projeto Classificadores (Kaggle)
+% Filipe Santos Rocchi - 552194
+% Lucas Lukasavicus Silva - 552321
+% Marcos Cavalcante - 408336
+% Rafael Brandao Barbosa Fairbanks - 552372
 
-%% Variaveis uteis
+
+%% Variaveis 
 
 [nLinhas, nColunas] = size(trainData);
 
-nColBin = nColunas - 1; % numero de colunas binarias (todas menos a coluna Real)
+% quantidade de colunas binarias
+nColBin = nColunas - nColAlvo - 1;
+
+% numero da coluna real (idade), em caso de mudanca na normalizacao alterar esse valor
+colReal = 8;
 
 %% Separacao das colunas
 
-% matriz para as operacoes de binario
-binTrainData = [trainData(:,1:(colReal-1)), trainData(:,(colReal+1:end))];
+% matriz para as operacoes de binario (sem a coluna real e as colunas-alvo)
+binTrainData = [trainData(:,1:(colReal-1)), trainData(:,(colReal+1:nColunas-nColAlvo))];
 
-% coluna dos valores reais
-realTrainCol = trainData(:,colReal);
 
-%% Polinomiarizacao
-
-% coluna real exponenciada a 2, 3 e 4
-matrizReal = [realTrainCol.^2, realTrainCol.^3, realTrainCol.^4];
+%% Polinomiarizacao (nenhum resultado no google pra essa palavra, acho que ela nao existe, mas eh bonita)
 
 % combinacoes (AND) 2 a 2
-comb2 = zeros(nLinhas, floor(nColBin/2));
+combAnd2 = zeros(nLinhas, floor(nColBin/2));
 
 for i = 1:floor(nColBin/2)
-	comb2(:,i) = binTrainData(:,(i*2)-1) & binTrainData(:,i*2);
+	combAnd2(:,i) = binTrainData(:,(i*2)-1) & binTrainData(:,i*2);
 end
 
 % combinacoes (AND) 3 a 3
-comb3 = zeros(nLinhas, floor(nColBin/3));
+combAnd3 = zeros(nLinhas, floor(nColBin/3));
 
 for i = 1:floor(nColBin/3)
-	comb3(:,i) = binTrainData(:,(i*3)-2) & binTrainData(:,(i*3)-1) & binTrainData(:,i*3);
+	combAnd3(:,i) = binTrainData(:,(i*3)-2) & binTrainData(:,(i*3)-1) & binTrainData(:,i*3);
 end
 
 % combinacoes (AND) 4 a 4
-comb4 = zeros(nLinhas, floor(nColBin/4));
+combAnd4 = zeros(nLinhas, floor(nColBin/4));
 
 for i = 1:floor(nColBin/4)
-	comb4(:,i) = binTrainData(:,(i*4)-3) & binTrainData(:,(i*4)-2) & binTrainData(:,(i*4)-1) & binTrainData(:,i*4);
+	combAnd4(:,i) = binTrainData(:,(i*4)-3) & binTrainData(:,(i*4)-2) & binTrainData(:,(i*4)-1) & binTrainData(:,i*4);
 end
 
-	
+
+
+% combinacoes (OR) 2 a 2
+combOr2 = zeros(nLinhas, floor(nColBin/2));
+
+for i = 1:floor(nColBin/2)
+	combOr2(:,i) = binTrainData(:,(i*2)-1) | binTrainData(:,i*2);
+end
+
+% combinacoes (OR) 3 a 3
+combOr3 = zeros(nLinhas, floor(nColBin/3));
+
+for i = 1:floor(nColBin/3)
+	combOr3(:,i) = binTrainData(:,(i*3)-2) | binTrainData(:,(i*3)-1) | binTrainData(:,i*3);
+end
+
+% combinacoes (OR) 4 a 4
+combOr4 = zeros(nLinhas, floor(nColBin/4));
+
+for i = 1:floor(nColBin/4)
+	combOr4(:,i) = binTrainData(:,(i*4)-3) | binTrainData(:,(i*4)-2) | binTrainData(:,(i*4)-1) | binTrainData(:,i*4);
+end
+
+
 %% Juncao para retorno
 
-RL_AP_matriz = [trainData, matrizReal, comb2, comb3, comb4];
+trainDataPolinomial = [trainData(:,1:nColunas-nColAlvo), combAnd2, combAnd3, combAnd4, combOr2, combOr3, combOr4, trainData(:,nColunas-nColAlvo+1:end)];
 
 
 end

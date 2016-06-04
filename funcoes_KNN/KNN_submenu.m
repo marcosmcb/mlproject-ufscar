@@ -15,7 +15,7 @@ Estrutura do submenu
 
 	Faz operacoes com os dados se necessario
 
-	if opcao == TREINO
+	if opcao == TREINAR
 
 	if opcao == AVALIAR
 

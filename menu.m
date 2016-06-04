@@ -35,6 +35,7 @@ function menu(trainData, testData, nColAlvo)
 			break;
 		end
 
+
 		if opcaoMenu < 1 || opcaoMenu > 4
 			fprintf('Opcao Invalida\n');
 			continue;
@@ -57,7 +58,7 @@ function menu(trainData, testData, nColAlvo)
 		switch algoritmo
 			case 1
 				KNN_submenu(trainData, testData, nColAlvo, opcaoMenu);
-
+				
 			case 2
 				RL_submenu(trainData, testData, nColAlvo, opcaoMenu);
 
