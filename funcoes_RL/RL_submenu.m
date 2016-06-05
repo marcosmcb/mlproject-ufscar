@@ -32,19 +32,19 @@ Estrutura do submenu
 %% Treinar
 if opcaoMenu == 1
 	
-	tipoGridSearch = 0;
+	opcaoTreino = 0;
 	
-	while tipoGridSearch ~= 1 && tipoGridSearch ~= 2
-		fprintf('Executar: \n[1]- Coarse Grid Search\n[2] - Normal Grid Search\n');
-		tipoGridSearch = input('> ');
+	while opcaoTreino < 1 || opcaoTreino > 3
+		fprintf('Executar: \n[1] - Coarse Grid Search\n[2] - Normal Grid Search\n[3] - Treino com a base inteira\n');
+		opcaoTreino = input('> ');
 		
-		if tipoGridSearch ~= 1 && tipoGridSearch ~= 2
+		if opcaoTreino < 1 || opcaoTreino > 3
 			fprintf('Opcao invalida\n');
 		end
 	end
 	
 	% faz adição de atributos polinomiais, n-fold cross validation, coarse gridSearch ou normal gridSearch
-	RL_treinar(trainData, nColAlvo, tipoGridSearch);
+	RL_treinar(trainData, nColAlvo, opcaoTreino);
 	
 end
 

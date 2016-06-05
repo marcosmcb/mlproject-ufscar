@@ -35,7 +35,7 @@ for iLambda = 1:nLambdas
 		dadosClassificados = RL_sigmoid( classificar * squeeze(thetas(1, iLambda, :, iColAlvo)) );
 
 		% calcula a que classe pertence
-		classesCalculadas = dadosClassificados(:,iColAlvo) >= 0.5;
+		classesCalculadas = dadosClassificados >= 0.5;
 
 		% calcula a acuracia para a coluna-alvo i
 		acuracia(iLambda, iColAlvo) = mean( double( classesCalculadas == validar(:,iColAlvo) ) );
