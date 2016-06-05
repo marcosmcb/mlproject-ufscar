@@ -22,7 +22,7 @@ qtdeFolds = 10;
 % porcentagem dos dados usados na coarse grid search
 porCentagem = 100/(qtdeFolds*100);
 
-%% Treino da base inteira com os melhores paramtros
+%% Treino da base inteira com os melhores parametros
 
 if opcaoTreino == 3
 	
@@ -32,10 +32,10 @@ if opcaoTreino == 3
 	[theta, custo] = RL_principal(trainData, lambda, nColAlvo);
 	
 	% calcula acuracia
-	[acuracia] = RL_calculaResultado(trainData, theta, nColAlvo);
+	[acuracia] = RL_calculaResultados(trainData, theta, nColAlvo);
 	
 	% salva em arquivo
-	nomeArquivo = './resultados_RL/';
+	nomeArquivo = './resultados_RL/parametrosEresultadosTreinoGeral.mat';
 	
 	save(nomeArquivo, 'lambda', 'theta', 'custo', 'acuracia');
 	
@@ -45,7 +45,7 @@ end
 
 %% Reducao da base e inicializacao dos parametros para Coarse Grid Search
 
-if opcaoTreino == 1
+if opcaoTreino == 1 % demorou 3188 segundos para 11 lambdas
 	nElemCoarse = ceil(nElem * porCentagem);
 
 	% variaveis sao modificadas apenas no escopo da funcao (testado)

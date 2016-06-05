@@ -50,12 +50,12 @@ end
 
 %% Avaliar
 if opcaoMenu == 2
-	
+	RL_avaliar(nColAlvo);
 end
 
-%% Testar
+%% Classificar
 if opcaoMenu == 3
-	
+	RL_classificar(testData, nColAlvo);
 end
 
 
