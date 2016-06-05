@@ -1,30 +1,29 @@
-function [ trainDataFold, targetDataFold, testDataFold, testTargetDataFold ] = RL_splitDadosNFold( trainData, targetData, totalFolds, nAtual )
-% RL_splitDadosNFold( trainData, targetData, totalFolds, nAtual )
-%
-% trainData : 
-% targetData : 
-% totalFolds : 
-% nAtual : 
-% 
-% Divide a base em totalFolds partes e retorna:
-% train e target para treino (tamanho totalFolds-1)
-% test e target para teste (tamanho de 1 fold)
+function [ trainDataFold, testDataFold ] = RNA_splitDadosNFold( trainData, qtdeFolds, foldAtual )
 
-%% Variaveis uteis
+%% Variaveis
 
 % numero de amostras na base (linhas)
-[nElementos, ~] = size(targetData);
-% numero de elementos por fold
-nDataPfold = ceil(nElementos/totalFolds);
+[nElem, ~] = size(trainData);
+
+% numero de elementos por fold (o ultimo fold vai ter alguns elementos a mais (parte real da divisao))
+nElemPorFold = floor(nElem / qtdeFolds);
+
+% posicao do elemento antes do fold atual
+posAntesFoldAtual = nElemPorFold * (qtdeFolds - foldAtual);
+
+% posicao do elemento depois do fold atual 
+posDepoisFoldAtual = nElemPorFold * (qtdeFolds - foldAtual + 1) + 1;
+
+% posicoes de inicio e fim dos elementos do fold atual
+inicioFoldAtual = nElemPorFold * (qtdeFolds - foldAtual) + 1;
+fimFoldAtual = nElemPorFold * (qtdeFolds - foldAtual + 1);
 
 %% Separacao
 
 % junta de 1 ate (nElementos / totalFolds-nAtual) mais (nElementos / nElementos - nAtual-1) ate o fim
-trainDataFold = [trainData(1 : nDataPfold*(totalFolds-nAtual) ,:) ; trainData(nDataPfold*(totalFolds-(nAtual-1)):end ,:)];
-targetDataFold = [targetData(1 : nDataPfold*(totalFolds-nAtual) ,:) ; targetData(nDataPfold*(totalFolds-(nAtual-1)):end ,:)];
+trainDataFold = [trainData(1:posAntesFoldAtual , :) ; ...
+				 trainData(posDepoisFoldAtual:end , :)];
 
-% pega somente a nAtual parte da base
-testDataFold = trainData(nDataPfold*(totalFolds-nAtual)+1 : nDataPfold*(totalFolds-nAtual+1)-1, :);
-testTargetDataFold = targetData(nDataPfold*(totalFolds-nAtual)+1 : nDataPfold*(totalFolds-nAtual+1)-1, :);
+testDataFold = trainData(inicioFoldAtual:fimFoldAtual, :);
 
 end

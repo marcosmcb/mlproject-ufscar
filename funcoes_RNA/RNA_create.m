@@ -1,6 +1,6 @@
 function [ pesos_InputInterm, pesos_IntermInterm, pesos_IntermOutput ] = ...
-    RNA_create(training_data, training_target_data, num_neurs_interm, ...
-                tx_aprend, num_epocas)
+    RNA_create(training_data, training_target_data, num_neurs_interm, num_epocas)
+    %            tx_aprend, num_epocas)
 
     %% dummy data
     %{
@@ -8,6 +8,7 @@ function [ pesos_InputInterm, pesos_IntermInterm, pesos_IntermOutput ] = ...
     training_target_data = log(training_data);%rand(27000, 5);
     num_neurs_interm = 8;
     tx_aprend = 1; % taxa de aprendizagem
+    num_epocas = 300;
     %}
 
     %% cria matriz de pesos
@@ -25,6 +26,10 @@ function [ pesos_InputInterm, pesos_IntermInterm, pesos_IntermOutput ] = ...
     pesos_IntermInterm = zeros(num_camadas_interm - 2 + 1, num_neurs_interm + 1, num_neurs_interm);
     pesos_IntermOutput = zeros(tam_camada(length(tam_camada) - 1) + 1, tam_camada(length(tam_camada)));
     
+    txAprend_InputInterm = ones(tam_camada(1) + 1, tam_camada(2)) * 0.1;
+    txAprend_IntermInterm = ones(num_camadas_interm - 2 + 1, num_neurs_interm + 1, num_neurs_interm) * 0.1;
+    txAprend_IntermOutput = ones(tam_camada(length(tam_camada) - 1) + 1, tam_camada(length(tam_camada))) * 0.1;
+
     % input -> interm
     range = sqrt(6) / sqrt(tam_camada(1) + tam_camada(2));
     pesos_InputInterm = (range + range) .* rand(tam_camada(1) + 1, tam_camada(2)) - range;
@@ -48,16 +53,19 @@ function [ pesos_InputInterm, pesos_IntermInterm, pesos_IntermOutput ] = ...
 
 
     %% learning
+    derivAcum_InputInterm_prev = zeros(tam_camada(1) + 1, tam_camada(2));
+    derivAcum_IntermOutput_prev = zeros(tam_camada(length(tam_camada) - 1) + 1, tam_camada(length(tam_camada)));
+
     for epoch = 1:num_epocas
     %tic
         % acumulação de deltas pro offline training
-        %deltaAcum_InputInterm = zeros(tam_camada(1) + 1, tam_camada(2));
-        %deltaAcum_IntermOutput = zeros(tam_camada(length(tam_camada) - 1) + 1, tam_camada(length(tam_camada)));
+        derivAcum_InputInterm = zeros(tam_camada(1) + 1, tam_camada(2));
+        derivAcum_IntermOutput = zeros(tam_camada(length(tam_camada) - 1) + 1, tam_camada(length(tam_camada)));
         
         % aleatorização dos dados pra cada época do online training
-        randomized_rows = randperm(size(training_data, 1));
-        training_data = training_data(randomized_rows, :);
-        training_target_data = training_target_data(randomized_rows, :);
+        %randomized_rows = randperm(size(training_data, 1));
+        %training_data = training_data(randomized_rows, :);
+        %training_target_data = training_target_data(randomized_rows, :);
 
         for row_n = 1:size(training_data, 1)
             %% forward propagation
@@ -87,19 +95,57 @@ function [ pesos_InputInterm, pesos_IntermInterm, pesos_IntermOutput ] = ...
 
             %% online training (atualiza pesos a cada linha entrada)
             
-            pesos_InputInterm = pesos_InputInterm - (derivs_InputInterm * tx_aprend);
-            pesos_IntermOutput = pesos_IntermOutput - (derivs_IntermOutput * tx_aprend);
+            %pesos_InputInterm = pesos_InputInterm - (derivs_InputInterm * tx_aprend);
+            %pesos_IntermOutput = pesos_IntermOutput - (derivs_IntermOutput * tx_aprend);
 
             %% offline/batch training accumulation
 
-            %deltaAcum_InputInterm = deltaAcum_InputInterm - derivs_InputInterm;
-            %deltaAcum_IntermOutput = deltaAcum_IntermOutput - derivs_IntermOutput;
+            derivAcum_InputInterm = derivAcum_InputInterm + derivs_InputInterm;
+            derivAcum_IntermOutput = derivAcum_IntermOutput + derivs_IntermOutput;
 
         end
+        
+        %% offline/batch training com Rprop (atualiza pesos baseado na soma dos deltas de todas as entradas)
+        signInputInterm = derivAcum_InputInterm .* derivAcum_InputInterm_prev;
+        for idx = 1:numel(signInputInterm)
+            if signInputInterm(idx) > 0
+                txAprend_InputInterm(idx) = min(txAprend_InputInterm(idx) * 1.2, 50);
+                delta = -sign(derivAcum_InputInterm(idx)) * txAprend_InputInterm(idx);
+                pesos_InputInterm(idx) = pesos_InputInterm(idx) + delta;
+                derivAcum_InputInterm_prev(idx) = derivAcum_InputInterm(idx);
+            
+            elseif signInputInterm(idx) < 0
+                txAprend_InputInterm(idx) = max(txAprend_InputInterm(idx) * 0.5, 0.000001);
+                derivAcum_InputInterm_prev(idx) = 0;
+                
+            else
+                delta = -sign(derivAcum_InputInterm(idx)) * txAprend_InputInterm(idx);
+                pesos_InputInterm(idx) = pesos_InputInterm(idx) + delta;
+                derivAcum_InputInterm_prev(idx) = derivAcum_InputInterm(idx);
+            end
+        end
+        
+        signIntermOutput = derivAcum_IntermOutput .* derivAcum_IntermOutput_prev;
+        for idx = 1:numel(signIntermOutput)
+            if signIntermOutput(idx) > 0
+                txAprend_IntermOutput(idx) = min(txAprend_IntermOutput(idx) * 1.2, 50);
+                delta = -sign(derivAcum_IntermOutput(idx)) * txAprend_IntermOutput(idx);
+                pesos_IntermOutput(idx) = pesos_IntermOutput(idx) + delta;
+                derivAcum_IntermOutput_prev(idx) = derivAcum_IntermOutput(idx);
+            
+            elseif signIntermOutput(idx) < 0
+                txAprend_IntermOutput(idx) = max(txAprend_IntermOutput(idx) * 0.5, 0.000001);
+                derivAcum_IntermOutput_prev(idx) = 0;
+                
+            else
+                delta = -sign(derivAcum_IntermOutput(idx)) * txAprend_IntermOutput(idx);
+                pesos_IntermOutput(idx) = pesos_IntermOutput(idx) + delta;
+                derivAcum_IntermOutput_prev(idx) = derivAcum_IntermOutput(idx);
+            end
+        end
 
-        %% offline/batch training (atualiza pesos baseado na soma dos deltas de todas as entradas)
-        %pesos_InputInterm = pesos_InputInterm + (deltaAcum_InputInterm * tx_aprend);
-        %pesos_IntermOutput = pesos_IntermOutput + (deltaAcum_IntermOutput * tx_aprend);
+        %pesos_InputInterm = pesos_InputInterm + (derivAcum_InputInterm * tx_aprend);
+        %pesos_IntermOutput = pesos_IntermOutput + (derivAcum_IntermOutput * tx_aprend);
     %toc
     end
 

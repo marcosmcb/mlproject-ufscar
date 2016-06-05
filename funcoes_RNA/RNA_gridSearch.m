@@ -11,6 +11,7 @@ function RL_gridSearch( trainData, targetData, execCGS, nColAlvo, nFold)
 
 [nAmostras, ~] = size(targetData);
 
+% variar neuronios de (num_col_in + num_col_out) / 2) até (2 * num_col_in)
 minNeurs = (size(trainData, 2) + size(targetData, 2)) / 2;
 maxNeurs = size(trainData, 2) * 2;
 stepSizeNeurs = round(0.1 * (maxNeurs - minNeurs));
