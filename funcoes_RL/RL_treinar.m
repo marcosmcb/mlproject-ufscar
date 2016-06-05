@@ -22,32 +22,6 @@ qtdeFolds = 10;
 % porcentagem dos dados usados na coarse grid search
 porCentagem = 100/(qtdeFolds*100);
 
-%% Treino da base inteira com os melhores parametros
-
-if opcaoTreino == 3
-	
-	lambda = [ 9 0.125 11 11 0.5 ]; % mudar depois de selecionar o melhor parâmetro (pode ser um vetor de 5 posicoes)
-	
-	% treina com toda a base 
-	[thetas, custo] = RL_principal(trainData, lambda, nColAlvo);
-	
-	% calcula acuracia
-	[acuracias] = RL_calculaResultados(trainData, thetas, nColAlvo);
-	
-	% salva em arquivo
-	nomeArquivo = '.\resultados_RL\parametrosEresultadosTreinoGeral.mat';
-	
-	save(nomeArquivo, 'lambda', 'thetas', 'custo', 'acuracias');
-	
-	% imprime os valores encontrados
-	fprintf('Acuracias por saida-alvo: ');
-	fprintf('%g ', acuracias);
-	fprintf('Lambdas por saida-alvo: ');
-	fprintf('%g ', lambda);
-	
-	return;
-end
-
 
 %% Reducao da base e inicializacao dos parametros para Coarse Grid Search
 
@@ -90,6 +64,38 @@ trainData = RL_atributosPolinomiais(trainData, nColAlvo);
 [~, nColPol] = size(trainData);
 
 fprintf('Atributos polinomiais adicionados (numero de colunas aumentou de %g para %g)\n', nCol, nColPol);
+
+
+%% Treino da base inteira com os melhores parametros
+
+if opcaoTreino == 3
+	
+	lambda = [ 9 0.125 11 11 0.5 ]; % mudar depois de selecionar o melhor parâmetro (pode ser um vetor de 5 posicoes)
+	
+	fprintf('Treinando com toda a base\nlambdas por saida-alvo: ');
+	fprintf('%g ', lambda);
+	fprintf('\n');
+	tic
+	% treina com toda a base 
+	[thetas, custo] = RL_principal(trainData, lambda, nColAlvo);
+	
+	% calcula acuracia
+	[acuracias] = RL_calculaResultadosGeral(trainData, thetas, nColAlvo);
+	
+	% salva em arquivo
+	nomeArquivo = '.\resultados_RL\parametrosEresultadosTreinoGeral.mat';
+	
+	save(nomeArquivo, 'lambda', 'thetas', 'custo', 'acuracias');
+	
+	% imprime os valores encontrados
+	fprintf('Acuracias por saida-alvo: ');
+	fprintf('%g ', acuracias);
+	fprintf('\nLambdas por saida-alvo: ');
+	fprintf('%g ', lambda);
+	fprintf('\n');
+	
+	return;
+end
 
 
 %% Procedimento principal (n-fold cross validation com grid search)

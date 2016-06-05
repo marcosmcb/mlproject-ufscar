@@ -1,4 +1,4 @@
-function [ acuracia ] = RL_calculaResultados( testData, thetas, nColAlvo )
+function [ acuracia ] = RL_calculaResultadosGeral( testData, thetas, nColAlvo )
 % [ acuracia ] = RL_calculaResultados( testData, thetas, lambda, nColAlvo )
 %
 % Classifica a base de teste passada e calcula a acuracia da classificacao
@@ -14,9 +14,9 @@ function [ acuracia ] = RL_calculaResultados( testData, thetas, nColAlvo )
 %% Variaveis
 
 % numero de lambdas usados na gridsearch e numero de colunas dos dados para classificar (ultimo parametro == nColAlvo)
-[~, nLambdas, nColTreino, ~] = size(thetas);
+[nColTreino, ~] = size(thetas);
 
-acuracia = zeros(nLambdas, nColAlvo);
+acuracia = zeros(1,nColAlvo);
 
 
 %% Separar as colunas (classificar/validar)
@@ -25,23 +25,20 @@ classificar = testData(:, 1:nColTreino);
 validar = testData(:, nColTreino+1:end);
 
 
-%% Classifica e calcula a acuracia para cada lambda
-for iLambda = 1:nLambdas
+%% Classifica e calcula a acuracia
 
-	% para cada coluna de saida
-	for iColAlvo = 1:nColAlvo
-		
-		% Classifica as colunas usando os thetas
-		dadosClassificados = RL_sigmoid( classificar * squeeze(thetas(1, iLambda, :, iColAlvo)) );
+% para cada coluna de saida
+for iColAlvo = 1:nColAlvo
 
-		% calcula a que classe pertence
-		classesCalculadas = dadosClassificados >= 0.5;
+	% Classifica as colunas usando os thetas
+	dadosClassificados = RL_sigmoid( classificar * thetas(:, iColAlvo) );
 
-		% calcula a acuracia para a coluna-alvo i
-		acuracia(iLambda, iColAlvo) = mean( double( classesCalculadas == validar(:,iColAlvo) ) );
+	% calcula a que classe pertence
+	classesCalculadas = dadosClassificados >= 0.5;
 
-	end
-	
+	% calcula a acuracia para a coluna-alvo i
+	acuracia(iColAlvo) = mean( double( classesCalculadas == validar(:,iColAlvo) ) );
+
 end
 
 

@@ -68,6 +68,8 @@ while opcaoMenu ~= 4
 		case 4
 			SVM_submenu(trainData, testData, nColAlvo, opcaoMenu);
 	end
+	
+	algoritmo = 0;
 
 end
 
