@@ -41,7 +41,7 @@ function KNN_submenu( trainData, testData, nColAlvo, opcaoMenu )
 
 	%% Testar
 	if opcaoMenu == 3
-		KNN_classificar(testData, nColAlvo, testData);
+		KNN_classificar(trainData, nColAlvo, testData);
 	end
 
 end
