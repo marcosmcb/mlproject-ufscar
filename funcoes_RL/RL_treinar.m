@@ -26,18 +26,24 @@ porCentagem = 100/(qtdeFolds*100);
 
 if opcaoTreino == 3
 	
-	lambda = 0.005; % mudar depois de selecionar o melhor parâmetro (pode ser um vetor de 5 posicoes)
+	lambda = [ 9 0.125 11 11 0.5 ]; % mudar depois de selecionar o melhor parâmetro (pode ser um vetor de 5 posicoes)
 	
 	% treina com toda a base 
-	[theta, custo] = RL_principal(trainData, lambda, nColAlvo);
+	[thetas, custo] = RL_principal(trainData, lambda, nColAlvo);
 	
 	% calcula acuracia
-	[acuracia] = RL_calculaResultados(trainData, theta, nColAlvo);
+	[acuracias] = RL_calculaResultados(trainData, thetas, nColAlvo);
 	
 	% salva em arquivo
 	nomeArquivo = '.\resultados_RL\parametrosEresultadosTreinoGeral.mat';
 	
-	save(nomeArquivo, 'lambda', 'theta', 'custo', 'acuracia');
+	save(nomeArquivo, 'lambda', 'thetas', 'custo', 'acuracias');
+	
+	% imprime os valores encontrados
+	fprintf('Acuracias por saida-alvo: ');
+	fprintf('%g ', acuracias);
+	fprintf('Lambdas por saida-alvo: ');
+	fprintf('%g ', lambda);
 	
 	return;
 end
@@ -65,7 +71,7 @@ end
 
 %% Inicializacao de parametro para normal grid search
 
-if opcaoTreino == 2
+if opcaoTreino == 2 % demorou ~8200 segundos para esse lambda
 	% lambda pode ser uma matriz com as colunas sendo um lambda para cada coluna-alvo
 	% e as linhas de cada coluna a variação dos lambdas
 	

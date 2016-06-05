@@ -23,23 +23,26 @@ Estrutura do submenu
 
 %}
 
+% cria pasta para guardar os resultados
+[~, ~, ~] = mkdir('resultados_SVM');
+
 %% Variaveis
 
 %% Operacoes com os dados
 
 %% Treinar
 if opcaoMenu == 1
-	
+	SVM_treinar(trainData, nColAlvo);
 end
 
 %% Avaliar
 if opcaoMenu == 2
-	
+	SVM_avaliar();
 end
 
-%% Testar
+%% Classificar
 if opcaoMenu == 3
-	
+	SVM_classificar(testData);
 end
 
 

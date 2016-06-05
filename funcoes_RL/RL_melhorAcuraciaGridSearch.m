@@ -1,5 +1,5 @@
 function RL_melhorAcuraciaGridSearch( acuracias, lambda )
-% RL_melhorAcuraciaGridSearch( acuracias )
+% RL_melhorAcuraciaGridSearch( acuracias, lambda )
 % 
 % Calcula a melhor acuracia e imprime na tela
 % por enquanto eh chamada na linha de comando

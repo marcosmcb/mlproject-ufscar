@@ -16,9 +16,10 @@ function RL_avaliar()
 % Marcos Cavalcante - 408336
 % Rafael Brandao Barbosa Fairbanks - 552372
 
+
 %% Variaveis
 
-opcaoAvaliacao = 0;
+opcaoAvaliacao = 0; %#ok
 
 
 %% Escolha de opcao
@@ -54,7 +55,7 @@ if opcaoAvaliacao == 3
 	load('resultados_RL\parametrosEresultadosTreinoGeral.mat');
 	
 	% chama funcao
-	RL_melhorAcuraciaGeral(bla, bla, bla);
+	RL_melhorAcuraciaGeral(acuracias, lambda);
 end
 
 
