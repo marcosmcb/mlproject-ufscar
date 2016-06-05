@@ -35,7 +35,7 @@ if opcaoMenu == 1
 	opcaoTreino = 0;
 	
 	while opcaoTreino < 1 || opcaoTreino > 3
-		fprintf('Executar: \n[1] - Coarse Grid Search\n[2] - Normal Grid Search\n[3] - Treino com a base inteira\n');
+		fprintf('\nExecutar: \n[1] - Coarse Grid Search\n[2] - Normal Grid Search\n[3] - Treino com a base inteira\n');
 		opcaoTreino = input('> ');
 		
 		if opcaoTreino < 1 || opcaoTreino > 3
@@ -50,7 +50,7 @@ end
 
 %% Avaliar
 if opcaoMenu == 2
-	RL_avaliar(nColAlvo);
+	RL_avaliar();
 end
 
 %% Classificar

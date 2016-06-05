@@ -32,7 +32,7 @@ trainData = trainData(:, 1:nCol-nColAlvo);
 
 % Otimiza o gradiente para cada uma das colunas alvo (aprende a classificar)
 for colAlvo = 1:nColAlvo
-	[theta, RL_custo] = RL_OtimizacaoGradiente(trainData, targetData(:,colAlvo), lambda);
+	[theta, RL_custo] = RL_OtimizacaoGradiente(trainData, targetData(:,colAlvo), lambda(colAlvo));
 	
 	custo(1,colAlvo) = RL_custo; % cada posicao do vetor guarda o custo para uma coluna alvo
 	thetas(:,colAlvo) = theta; % cada coluna da matriz guarda um vetor de thetas para uma coluna alvo

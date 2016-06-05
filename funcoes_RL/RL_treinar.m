@@ -26,7 +26,7 @@ porCentagem = 100/(qtdeFolds*100);
 
 if opcaoTreino == 3
 	
-	lambda = 0.005; % mudar depois de selecionar o melhor parâmetro
+	lambda = 0.005; % mudar depois de selecionar o melhor parâmetro (pode ser um vetor de 5 posicoes)
 	
 	% treina com toda a base 
 	[theta, custo] = RL_principal(trainData, lambda, nColAlvo);
@@ -35,7 +35,7 @@ if opcaoTreino == 3
 	[acuracia] = RL_calculaResultados(trainData, theta, nColAlvo);
 	
 	% salva em arquivo
-	nomeArquivo = './resultados_RL/parametrosEresultadosTreinoGeral.mat';
+	nomeArquivo = '.\resultados_RL\parametrosEresultadosTreinoGeral.mat';
 	
 	save(nomeArquivo, 'lambda', 'theta', 'custo', 'acuracia');
 	
@@ -52,7 +52,9 @@ if opcaoTreino == 1 % demorou 3188 segundos para 11 lambdas
 	trainData = trainData(1:nElemCoarse,:);
 	
 	expoenteCoarse = -5:1:5;
-	lambda = 10.^expoenteCoarse;
+	lambdaPart(:,1) = 10.^expoenteCoarse;
+	
+	lambda = [lambdaPart, lambdaPart, lambdaPart, lambdaPart, lambdaPart ];
 	
 	[nElem, ~] = size(trainData);
 
@@ -64,7 +66,14 @@ end
 %% Inicializacao de parametro para normal grid search
 
 if opcaoTreino == 2
-	lambda = -1:0.1:1; % mudar depois de executar a coarse grid search (afinar)
+	% lambda pode ser uma matriz com as colunas sendo um lambda para cada coluna-alvo
+	% e as linhas de cada coluna a variação dos lambdas
+	
+	lambda = [	8 0.05 8 8 0.5 ;...
+				9 0.075 9 9 0.75 ;...
+				10 0.1 10 10 1 ;...
+				11 0.125 11 11 1.25 ;...
+				12 0.15 12 12 1.5 ;];
 end
 
 
@@ -79,32 +88,31 @@ fprintf('Atributos polinomiais adicionados (numero de colunas aumentou de %g par
 
 %% Procedimento principal (n-fold cross validation com grid search)
 
-% quantidade de lambdas usados no grid search
-[~, nLambdas] = size(lambda);
+% quantidade de variacoes de lambdas usados no grid search
+[nLinLambdas, ~] = size(lambda);
 
 % alocacao de variaveis
-thetas = zeros(qtdeFolds, nLambdas, nColPol-nColAlvo, nColAlvo);
-custos = zeros(qtdeFolds, nLambdas, nColAlvo);
+thetas = zeros(qtdeFolds, nLinLambdas, nColPol-nColAlvo, nColAlvo);
+custos = zeros(qtdeFolds, nLinLambdas, nColAlvo);
 
-acuracias = zeros(qtdeFolds, nLambdas, nColAlvo);
+acuracias = zeros(qtdeFolds, nLinLambdas, nColAlvo);
 % fmedidas = zeros(qtdeFolds); % estara presente em futuras versoes
 
 tic
 % executa os n-folds
 for foldAtual = 1:qtdeFolds
 	
-	fprintf('[RL] Executando Fold: %g | Quantidade de lambdas: %g\n', foldAtual, nLambdas);
+	fprintf('[RL] Executando Fold: %g | Quantidade de lambdas: %g\n', foldAtual, nLinLambdas);
 	
 	[trainDataFold, testDataFold] = RL_splitDadosNFold(trainData, qtdeFolds, foldAtual);
 	
 	% TREINO com [coarse || normal] gridSearch
-	i = 0; % iterador
-	for itLambda = lambda
-		fprintf('Lambda = %g\n', itLambda);
+	for itLambda = 1:nLinLambdas
+		fprintf('Lambdas por saida-alvo = ');
+		fprintf('%g ', lambda(itLambda, :));
+		fprintf('\n');
 		
-		i = i + 1; % iterador
-		
-		[thetas(foldAtual, i, :, :), custos(foldAtual, i, :)] = RL_principal(trainDataFold, itLambda, nColAlvo);
+		[thetas(foldAtual, itLambda, :, :), custos(foldAtual, itLambda, :)] = RL_principal(trainDataFold, lambda(itLambda,:), nColAlvo);
 		toc
 	end
 	
@@ -117,13 +125,13 @@ end
 %% Salva resultados em arquivo
 
 if opcaoTreino == 1
-	arquivoParametros = './resultados_RL/coarse_parametros.mat';
-	arquivoResultados = './resultados_RL/coarse_resultados.mat';
+	arquivoParametros = '.\resultados_RL\coarse_parametros.mat';
+	arquivoResultados = '.\resultados_RL\coarse_resultados.mat';
 end
 
 if opcaoTreino == 2
-	arquivoParametros = './resultados_RL/normal_parametros.mat';
-	arquivoResultados = './resultados_RL/normal_resultados.mat';
+	arquivoParametros = '.\resultados_RL\normal_parametros.mat';
+	arquivoResultados = '.\resultados_RL\normal_resultados.mat';
 end
 
 save(arquivoParametros, 'thetas', 'custos', 'lambda');

@@ -24,9 +24,11 @@ acuraciaMediaPorFold = zeros(nLambdas, nColAlvo);
 
 %% Calcula a acuracia media por fold
 
-for iFolds = 1:nFolds
+for iFold = 1:nFolds
 	for iLambda = 1:nLambdas
-		acuraciaMediaPorFold(iLambda, :) = acuraciaMediaPorFold(iLambda, :) + (acuracias(iFold, iLambda, :) ./ nFolds);
+		for iColAlvo = 1:nColAlvo
+			acuraciaMediaPorFold(iLambda, iColAlvo) = acuraciaMediaPorFold(iLambda, iColAlvo) + (acuracias(iFold, iLambda, iColAlvo) / nFolds);
+		end
 	end
 end
 
@@ -35,8 +37,8 @@ end
 
 for iLambda = 1:nLambdas
 	for iColAlvo = 1:nColAlvo
-		if acuraciaMediaPorFold(iLambda, :) > melhorAcuracia(iColAlvo)
-			melhorAcuracia(iColAlvo) = acuraciaMediaPorFold(iLambda, :);
+		if acuraciaMediaPorFold(iLambda, iColAlvo) > melhorAcuracia(iColAlvo)
+			melhorAcuracia(iColAlvo) = acuraciaMediaPorFold(iLambda, iColAlvo);
 			melhorLambda(iColAlvo) = iLambda;
 		end
 	end
@@ -47,8 +49,10 @@ end
 
 fprintf('Melhor acuracia encontrada (por saida-alvo): ');
 fprintf('%g ', melhorAcuracia);
-fprintf('\nlambda por saida-alvo: ');
-fprintf('%g ', lambda(melhorLambda));
+fprintf('\nMelhor lambda por saida-alvo: ');
+for i = 1:nColAlvo
+	fprintf('%g ', lambda(melhorLambda(i),i));
+end
 fprintf('\n');
 
 
