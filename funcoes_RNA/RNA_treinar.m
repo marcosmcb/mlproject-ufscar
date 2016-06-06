@@ -103,7 +103,7 @@ toc
         %end
     end
     
-    save(strcat('.resultados_RNA/', gridSearchName, 'GS.mat'), ...
+    save(strcat('./resultados_RNA/', gridSearchName, 'GS.mat'), ...
             'melhorPeso_InputInterm', 'melhorPeso_IntermInterm', 'melhorPeso_IntermOutput', 'acuracia');
     
 
