@@ -1,34 +1,58 @@
-function RL_classificar( testDataset )
-% RL_CLASSIFICAR ( testDataset )
-%   Classifica a base de teste
+function RL_classificar( testData, nColAlvo )
+% RL_CLASSIFICAR ( testDataset, nColAlvo )
+%
+% Classifica a base de teste
+%
+%
+% UFSCar BCC 2016-1 - Aprendizado de Máquina - Projeto Classificadores (Kaggle)
+% Filipe Santos Rocchi - 552194
+% Lucas Lukasavicus Silva - 552321
+% Marcos Cavalcante - 408336
+% Rafael Brandao Barbosa Fairbanks - 552372
 
-load('./RL_results/RL_numFolds5_normalGS.mat');
 
-idxLambda = find(RL_lambdas == 0.005);
+tic
+%% Variaveis
 
-[nLin, ~] = size(testDataset);
+% carrega a variavel necessaria do arquivo (os thetas)
+load('./resultados_RL/parametrosEresultadosTreinoGeral.mat', 'thetas');
 
-% Calculo das classes
-evalResults(:,1) = 1:nLin;
-evalResults(:,2:6) = RL_sigmoid(testDataset * RL_thetasMatrix(1:114,:,idxLambda));
+[nLin, ~] = size(testData);
 
-filename = 'submissionMLGROUP7_AM.csv';
+dadosClassificados = zeros(nLin, nColAlvo);
 
-fid = fopen(filename, 'w');
+
+%% Adição de Atributos Polinomiais para uso dos thetas
+
+testData = RL_atributosPolinomiais(testData, 0);
+
+
+%% Classifica a base de teste
+
+for iColAlvo = 1:nColAlvo
+
+	% Classifica as colunas usando os thetas
+	dadosClassificados(:, iColAlvo) = RL_sigmoid( testData * thetas(:, iColAlvo) );
+
+end
+
+%% Salva os resultados no arquivo
+
+nomeArquivo = '.\resultados_RL\testdataClassificadoRL.csv';
+
+fid = fopen(nomeArquivo, 'w');
 fprintf(fid, 'ID,Adoption,Died,Euthanasia,Return_to_owner,Transfer\n');
 fclose(fid);
 
-% Id|Return_to_owner | Euthanasia | Adoption | Transfer | Died
+% Id | Return_to_owner | Euthanasia | Adoption | Transfer | Died
 
-printResults(:,1) = evalResults(:,1);
-printResults(:,2) = evalResults(:,4);
-printResults(:,3) = evalResults(:,6);
-printResults(:,4) = evalResults(:,3);
-printResults(:,5) = evalResults(:,2);
-printResults(:,6) = evalResults(:,5);
+ids(:,1) = 1:nLin;
+dadosSalvarArquivo = [ ids, dadosClassificados ];
 
-dlmwrite(filename, printResults, '-append', 'precision', '%g', 'delimiter', ',');
+dlmwrite(nomeArquivo, dadosSalvarArquivo, '-append', 'precision', '%g', 'delimiter', ',');
 
+fprintf('Base de teste classificada, classes salvas no arquivo: testdataClassificadoRL\n');
+toc
 
 end
 
