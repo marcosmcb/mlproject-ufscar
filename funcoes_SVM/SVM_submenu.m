@@ -32,7 +32,20 @@ Estrutura do submenu
 
 %% Treinar
 if opcaoMenu == 1
-	SVM_treinar(trainData, nColAlvo);
+	
+	opcaoTreino = 0;
+	
+	while opcaoTreino < 1 || opcaoTreino > 3
+		fprintf('\nExecutar: \n[1] - Coarse Grid Search\n[2] - Normal Grid Search\n[3] - Treino com a base inteira\n');
+		opcaoTreino = input('> ');
+		
+		if opcaoTreino < 1 || opcaoTreino > 3
+			fprintf('Opcao invalida\n');
+		end
+	end
+	
+	% faz n-fold cross validation, coarse gridSearch, normal gridSearch ou treino com a base inteira
+	SVM_treinar(trainData, nColAlvo, opcaoTreino);
 end
 
 %% Avaliar

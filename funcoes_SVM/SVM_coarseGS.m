@@ -18,7 +18,7 @@ toc;
 fprintf('Iniciando Coarse gridSearch (na SVM)\n');
 
 randomIndex = randperm(nAmostras); % permuta os indices randomicamente
-nElemCoarse = ceil(nAmostras * p100elem); % pega uma porcentagem das amostras para o coarse GS
+nElemCoarse = floor(nAmostras * p100elem); % pega uma porcentagem das amostras para o coarse GS
 
 % pega p100elem% randomicos dos dados
 coarseTrainData = trainData(randomIndex(1:nElemCoarse),:);
